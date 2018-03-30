@@ -1,0 +1,45 @@
+.main-content {
+    height: 100%;
+    width: 100%;
+}
+
+.main-content>.large-image {
+    width: 50%;
+    height: 100%;
+    float: right;
+}
+
+.main-content>.intro-content {
+    max-width: 950px;
+    height: 50%;
+    padding: 3.5em;
+}
+
+.main-content>.intro-content>.intro-header {
+    color: #464646;
+    font-size: 4em;
+}
+
+.main-content>.intro-content>.intro-intro {
+    color: #bababa;
+    width: 70%;
+}
+
+.main-content>.intro-content>.intro-invitation {
+    height: 50px;
+    width: 180px;
+    padding-top: 10px;
+    text-align: center;
+    border-radius: 25px;
+    background-color: #ffcd38;
+    user-select: none;
+    cursor: pointer;
+}
+
+.intro-invitation>.invitation {
+    margin: 0;
+    font-size: 1.3em;
+    font-weight: 400;
+    text-shadow: rgb(238, 208, 74) 0 0 30px;
+    color: white;
+}
