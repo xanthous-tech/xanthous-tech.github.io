@@ -1,17 +1,25 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import '../static/style/reset.css'
 import './index.css'
 
 const IndexPage = () => (
-  <div className="main-content">
-    <div className="large-image"></div>
-    <div className="intro-content">
-      <h1 className="intro-header">We build software<br />to help business grow.</h1>
-      <p className="intro-intro">
-        We're eager to help data driven companies achieve their business goals.
-        All that is possible thanks to our distributed team of highly motivated individuals.
+  <div className="index">
+    <div className="intro">
+      <div className="intro-title">
+        <div>
+          <h1>We build software</h1>
+          <div className="ghost"></div>
+        </div>
+        <div>
+          <h1>to help business grow.</h1>
+          <div className="ghost"></div>
+        </div>
+      </div>
+      <p className="intro-text">
+        We're eager to help data driven companies achieve their business goals. All that is possible thanks to our distributed team of highly motivated individuals.
       </p>
-      <div className="intro-invitation"><h2 className="invitation">Let's Chat!</h2></div>
+      <div className="intro-invitation"><a href="mailto:xoyljlj@126.com">Let's Chat!</a></div>
     </div>
   </div>
 )

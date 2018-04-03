@@ -14,7 +14,7 @@ const TemplateWrapper = ({ children }) => (
         { name: 'keywords', content: 'xtech, xanthous' },
       ]}
     />
-    <Header/>
+    {/* <Header/> */}
     {children()}
   </div>
 )
