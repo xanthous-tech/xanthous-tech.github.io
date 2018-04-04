@@ -19,7 +19,7 @@ const IndexPage = () => (
       <p className="intro-text">
         We're eager to help data driven companies achieve their business goals. All that is possible thanks to our distributed team of highly motivated individuals.
       </p>
-      <div className="intro-invitation"><a href="mailto:xoyljlj@126.com">Let's Chat!</a></div>
+      <div className="intro-invitation"><a href="mailto:hi@x-tech.io">Let's Chat!</a></div>
     </div>
   </div>
 )
