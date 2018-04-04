@@ -18,7 +18,7 @@
     "build": "gatsby build --prefix-paths",
     "develop": "gatsby develop",
     "format": "prettier --write 'src/**/*.js'",
-    "deploy": "gh-pages -d public",
+    "deploy": "yarn build && gh-pages -d public -b master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
