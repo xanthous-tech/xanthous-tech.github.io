@@ -1,26 +1,20 @@
-# gatsby-starter-default
-The default Gatsby starter.
+## Developing
 
-For an overview of the project structure please refer to the [Gatsby documentation - Building with Components](https://www.gatsbyjs.org/docs/building-with-components/).
+A nodejs >= 6.0.0 setup with [yarn](https://yarnpkg.com/) is recommended.
 
-## Install
+```bash
+# install dependencies
+yarn
 
-Make sure that you have the Gatsby CLI program installed:
-```sh
-npm install --global gatsby-cli
+# ...or, for npm
+npm install
+
+# serve with hot reload at localhost:8000
+npm start
+
+# build for production
+npm run build
+
+# build for production and push to gh-pages branch
+npm run deploy
 ```
-
-And run from your CLI:
-```sh
-gatsby new gatsby-example-site
-```
-
-Then you can run it by:
-```sh
-cd gatsby-example-site
-npm run develop
-```
-
-## Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
