@@ -1,4 +1,9 @@
 'use strict'
+const languages =  {
+  langs: ['en', 'zh'],
+  defaultLangKey: 'en',
+}
+
 
 module.exports = {
   siteMetadata: {
@@ -9,9 +14,19 @@ module.exports = {
       name: 'Resi Respati',
       url: 'https://twitter.com/resir014',
       email: 'resir014@gmail.com'
-    }
+    },
+    languages
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-i18n',
+      options: {
+        langKeyForNull: 'any',
+        langKeyDefault: languages.defaultLangKey,
+        useLangKeyLayout: false
+      }
+    },
+
     {
       resolve: 'gatsby-source-filesystem',
       options: {

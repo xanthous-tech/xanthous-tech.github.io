@@ -1,16 +1,31 @@
-import * as React from "react";
+import React from "react";
+import { graphql } from "gatsby";
+import { redirectToHome } from "ptz-i18n";
 
-import Page from "../components/Page";
-// import Container from "../components/Container";
-import Splash from "../components/Splash";
-import IndexLayout from "../layouts";
+class RedirectIndex extends React.PureComponent {
+  constructor(args) {
+    super(args);
+    // Skip build, Browsers only
+    const { langs, defaultLangKey } = args.data.site.siteMetadata.languages;
+    redirectToHome(langs, defaultLangKey);
+  }
 
-const IndexPage = () => (
-  <IndexLayout>
-    <Page>
-      <Splash />
-    </Page>
-  </IndexLayout>
-);
+  render() {
+    return <div />;
+  }
+}
 
-export default IndexPage;
+export default RedirectIndex;
+
+export const pageQuery = graphql`
+  query IndexQuery {
+    site {
+      siteMetadata {
+        languages {
+          defaultLangKey
+          langs
+        }
+      }
+    }
+  }
+`;
