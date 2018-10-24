@@ -3,10 +3,11 @@ import styled from "react-emotion";
 import { transparentize } from "polished";
 import { Link } from "gatsby";
 
-import { heights, dimensions, colors } from "../styles/variables";
-import Container from "./Container";
+import { heights, dimensions, colors } from "../../styles/variables";
+import Container from "../Container";
 
 const StyledHeader = styled.header`
+  display: none;
   height: ${heights.header}px;
   padding: 0 ${dimensions.containerPadding}rem;
   background-color: ${colors.brand};
