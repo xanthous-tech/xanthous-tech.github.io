@@ -3,8 +3,8 @@ import { Link } from "gatsby";
 import styled from "react-emotion";
 import bg_intro from "./bg_intro.png";
 
-import { widths } from "../../styles/variables";
-import { getEmSize } from "../../styles/mixins";
+import { widths } from "../../../styles/variables";
+import { getEmSize } from "../../../styles/mixins";
 
 const StyledSplash = styled.section`
   position: relative;
