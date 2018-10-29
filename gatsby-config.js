@@ -19,19 +19,10 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: 'gatsby-plugin-i18n',
-      options: {
-        langKeyForNull: 'any',
-        langKeyDefault: languages.defaultLangKey,
-        useLangKeyLayout: false
-      }
-    },
-
-    {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'content',
-        path: `${__dirname}/src/content`
+        name: 'pages',
+        path: `${__dirname}/src/pages`
       }
     },
     {
@@ -59,6 +50,32 @@ module.exports = {
       }
     },
     'gatsby-transformer-json',
+    {
+      resolve: 'gatsby-plugin-i18n',
+      options: {
+        langKeyForNull: 'any',
+        langKeyDefault: languages.defaultLangKey,
+        useLangKeyLayout: true,
+        markdownremark: {
+          postpage: 'src/templates/page.tsx',
+          query: `
+          {
+              allmarkdownremark {
+                  edges {
+                  node {
+                      fields {
+                        slug,
+                        langkey
+                      }
+                  }
+                  }
+              }
+          }
+          `
+        }
+
+      }
+    },
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
