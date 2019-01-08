@@ -84,6 +84,9 @@ const StyledDiv = styled.div`
       margin-left: 7px;
       margin-right: 7px;
       margin-bottom: 10px;
+      &:hover{
+        transform: translate3d(0, -2px, 0);
+      }
       .button--midnight-outline {
         background-color: transparent;
         color: #00396B;
@@ -97,7 +100,7 @@ const StyledDiv = styled.div`
         border: 2px solid transparent;
         min-height: 44px;
         border-radius: 4px;
-        box-shadow: 0 2px 4px 0 rgba(136, 144, 195, 0.2), 0 5px 15px 0 rgba(37, 44, 97,     0.15);
+        box-shadow: 0 2px 4px 0 rgba(136, 144, 195, 0.2), 0 5px 15px 0 rgba(37, 44, 97, 0.15);
         font-size: 14px;
         font-weight: 700;
         -webkit-user-select: none;
