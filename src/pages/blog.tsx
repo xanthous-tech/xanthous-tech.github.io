@@ -4,9 +4,9 @@ import { css } from 'emotion'
 import Helmet from 'react-helmet';
 
 import Footer from '../components/Footer';
+import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
-import Splash from '../components/Splash';
 import IndexLayout from '../layouts';
 import config from '../website-config';
 import {
@@ -76,11 +76,6 @@ export interface IndexProps {
         fluid: any;
       };
     };
-    bg_intro: {
-      childImageSharp: {
-        fluid: any;
-      };
-    };
     allMarkdownRemark: {
       edges: {
         node: PageContext;
@@ -92,7 +87,6 @@ export interface IndexProps {
 const IndexPage: React.FunctionComponent<IndexProps> = props => {
   const width = props.data.header.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
   const height = String(Number(width) / props.data.header.childImageSharp.fluid.aspectRatio);
-  console.log(props)
   return (
     <IndexLayout className={`${HomePosts}`}>
       <Helmet>
@@ -119,7 +113,30 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <meta property="og:image:height" content={height} />
       </Helmet>
       <Wrapper>
-        <Splash bg={props.data.bg_intro.childImageSharp.fluid.src}/>
+        <header
+          className={`${SiteHeader} ${outer}`}
+          style={{
+            backgroundImage: `url('${props.data.header.childImageSharp.fluid.src}')`,
+          }}
+        >
+          <div className={`${inner}`}>
+            <SiteHeaderContent>
+              <SiteTitle>
+                {props.data.logo ? (
+                  <img
+                    style={{ maxHeight: '45px' }}
+                    src={props.data.logo.childImageSharp.fixed.src}
+                    alt={config.title}
+                  />
+                ) : (
+                  config.title
+                )}
+              </SiteTitle>
+              <SiteDescription>{config.description}</SiteDescription>
+            </SiteHeaderContent>
+            <SiteNav isHome={true} />
+          </div>
+        </header>
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
@@ -130,6 +147,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
           </div>
         </main>
         {props.children}
+
         <Footer />
       </Wrapper>
     </IndexLayout>
@@ -140,15 +158,6 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query {
-    bg_intro: file(relativePath: { eq: "img/bg_intro.png" }) {
-      childImageSharp {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
-        fluid {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
     logo: file(relativePath: { eq: "img/ghost-logo.png" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.

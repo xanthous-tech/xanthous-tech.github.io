@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@emotion/core": "^10.0.5",
-    "@emotion/styled": "^10.0.5",
+    "@emotion/styled": "^10.0.6",
     "@emotion/styled-base": "^10.0.5",
     "classnames": "2.2.6",
     "cssnano": "4.1.8",
@@ -52,7 +52,6 @@
     "prismjs": "1.15.0",
     "react": "16.7.0",
     "react-dom": "16.7.0",
-    "react-emotion": "10.0.0",
     "react-helmet": "5.2.0",
     "rehype-react": "3.1.0"
   },
