@@ -8,6 +8,7 @@ import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import Splash from '../components/Splash';
 import Ask from '../components/Ask/Index';
+import Introduce from '../components/Introduce/Introduce';
 import IndexLayout from '../layouts';
 import config from '../website-config';
 import {
@@ -130,6 +131,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <meta property="og:image:height" content={height} />
       </Helmet>
       <Wrapper>
+        <Introduce />
         <Splash bg={props.data.bg_intro.childImageSharp.fluid.src} />
         <Ask />
         <main id="site-main" className={`${SiteMain} ${outer}`}>

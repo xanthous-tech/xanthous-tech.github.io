@@ -4,6 +4,9 @@ import Help from '../icons/help';
 
 const StyledDiv = styled.div`
   text-align:center;
+  .faq-02__question_heading{
+    text-align:left;
+  }
 `;
 
 export interface AskProps {
