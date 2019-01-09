@@ -131,10 +131,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
       </Helmet>
       <Wrapper>
         <Splash bg={props.data.bg_intro.childImageSharp.fluid.src} />
-        <Ask
-          icon={
-            props.data.title_icon.childImageSharp.fluid.src}
-        />
+        <Ask />
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
@@ -156,15 +153,6 @@ export default IndexPage;
 export const pageQuery = graphql`
   query {
     bg_intro: file(relativePath: { eq: "img/bg_intro.png" }) {
-      childImageSharp {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
-        fluid {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    title_icon: file(relativePath: { eq: "img/chatbot.png" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.
         # Makes it trivial to update as your page's design changes.
