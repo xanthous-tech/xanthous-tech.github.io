@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import Splash from '../components/Splash';
-import Ask from '../components/Ask';
+import Ask from '../components/Ask/Index';
 import IndexLayout from '../layouts';
 import config from '../website-config';
 import {
