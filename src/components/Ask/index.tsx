@@ -1,4 +1,5 @@
 import * as React from "react";
+import { StaticQuery, graphql } from "gatsby";
 import styled from "@emotion/styled";
 import AskItem from './AskItem';
 
@@ -118,63 +119,86 @@ const StyledDiv = styled.div`
   }
 `;
 
-export interface AskProps {
-  icon: any
-}
-
-const infos = [
-  {
-    title: 'What is Unicorn Platform?',
-    content: 'Extums unda! Cur ionicis tormento trabem? Mirabilis abactors ducunt ad zeta. A falsis, verpa rusticus victrix. Amors manducare in piscinam! A falsis, accola superbus ionicis tormento. Resistentias persuadere in aetheres! Cum amor trabem, omnes absolutioes carpseris brevis, ferox voxes.',
-  },
-  {
-    title: 'What is Unicorn Platform?',
-    content: 'Extums unda! Cur ionicis tormento trabem? Mirabilis abactors ducunt ad zeta. A falsis, verpa rusticus victrix. Amors manducare in piscinam! A falsis, accola superbus ionicis tormento. Resistentias persuadere in aetheres! Cum amor trabem, omnes absolutioes carpseris brevis, ferox voxes.',
-  },
-  {
-    title: 'What is Unicorn Platform?',
-    content: 'Extums unda! Cur ionicis tormento trabem? Mirabilis abactors ducunt ad zeta. A falsis, verpa rusticus victrix. Amors manducare in piscinam! A falsis, accola superbus ionicis tormento. Resistentias persuadere in aetheres! Cum amor trabem, omnes absolutioes carpseris brevis, ferox voxes.',
-  }
-]
-
-const Ask: React.FunctionComponent<AskProps> = ({ icon }) => (
-  <StyledDiv>
-    <div className="faq-02">
-      <div className="container container--small">
-        <div className="title-box title-box--center">
-          <h2 className="heading">You Ask &mdash; We Tell<img className="emoji" src={icon} alt="Emoji" />
-          </h2>
-          <p className="title-box__text">Musas sunt boreass de varius elevatus. Ferox, camerarius homos inciviliter resuscitabo de talis, bassus mens.</p>
+const renderAsk = (data: any): React.ReactNode => {
+  const icon = data.title_icon.childImageSharp.fluid.src;
+  const faqLeft = data.allFaqYaml.edges.slice(0, data.allFaqYaml.edges.length / 2);
+  const faqRight = data.allFaqYaml.edges.slice(data.allFaqYaml.edges.length / 2);
+  return (
+    <StyledDiv>
+      <div className="faq-02">
+        <div className="container container--small">
+          <div className="title-box title-box--center">
+            <h2 className="heading">You Ask &mdash; We Tell<img className="emoji" src={icon} alt="Emoji" />
+            </h2>
+            {/* <p className="title-box__text">Musas sunt boreass de varius elevatus. Ferox, camerarius homos inciviliter resuscitabo de talis, bassus mens.</p> */}
+          </div>
+        </div>
+        <div className="container faq-02__container">
+          <ul className="faq-02__list">
+            {faqLeft.map((item: any) => (
+              <li className="faq-02__item">
+                <AskItem
+                  title={item.node.question}
+                  content={item.node.answer}
+                />
+              </li>
+            ))}
+          </ul>
+          <ul className="faq-02__list">
+            {faqRight.map((item: any) => (
+              <li className="faq-02__item">
+                <AskItem
+                  title={item.node.question}
+                  content={item.node.answer}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="container">
+          <ul className="faq-02__button_box">
+            <li className="faq-02__button">
+              <a className="button button--midnight-outline " href="#" target="_blank" rel="noreferrer">
+                <span>Email Support</span>
+              </a>
+            </li>
+            <li className="faq-02__button">
+              <a className="button button--midnight-outline " href="#" target="_blank" rel="noreferrer">
+                <span>Live Support</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-      <div className="container faq-02__container">
-        <ul className="faq-02__list">
-          {
-            infos.map(info => (
-              <li className="faq-02__item">
-                <AskItem
-                  title={info.title}
-                  content={info.content}
-                />
-              </li>
-            ))
+    </StyledDiv>
+  );
+};
+
+const Ask: React.FunctionComponent = () => (
+  <StaticQuery
+    query={graphql`
+      query FaqQuery {
+        title_icon: file(relativePath: { eq: "img/chatbot.png" }) {
+          childImageSharp {
+            # Specify the image processing specifications right in the query.
+            # Makes it trivial to update as your page's design changes.
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
           }
-        </ul>
-        <ul className="faq-02__list">
-          {
-            infos.map(info => (
-              <li className="faq-02__item">
-                <AskItem
-                  title={info.title}
-                  content={info.content}
-                />
-              </li>
-            ))
+        }
+        allFaqYaml {
+          edges {
+            node {
+              question
+              answer
+            }
           }
-        </ul>
-      </div>
-    </div>
-  </StyledDiv>
+        }
+      }
+    `}
+    render={renderAsk}
+  />
 );
 
 export default Ask;
