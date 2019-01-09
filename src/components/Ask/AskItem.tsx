@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import Help from '../icons/help';
 
 const StyledDiv = styled.div`
-
+  text-align:center;
 `;
 
 export interface AskProps {

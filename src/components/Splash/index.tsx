@@ -82,6 +82,12 @@ const StyledSplash = styled.section`
     font-size: 30px;
     color: #fff;
   }
+  @media screen and (min-width: 400px) {
+    .intro-invitation {
+    margin-top: 100px;
+  }
+}
+
 `;
 
 export interface SplashProps {

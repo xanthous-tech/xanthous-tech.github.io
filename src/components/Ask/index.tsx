@@ -41,6 +41,7 @@ const StyledDiv = styled.div`
     }
     .faq-02__container {
       display: flex;
+      text-align: center;
       justify-content: space-between;
       align-items: flex-start;
       flex-wrap: wrap;
@@ -55,7 +56,7 @@ const StyledDiv = styled.div`
   }
   .faq-02__list {
       padding: 0;
-      margin: 0;
+      margin: 0 auto;
       list-style: none;
       width: 50%;
       min-width: 375px;
