@@ -1,7 +1,7 @@
 import * as React from "react";
 import { StaticQuery, graphql } from "gatsby";
 import styled from "@emotion/styled";
-import Help from '../icons/help';
+import AskItem from './AskItem';
 
 const StyledDiv = styled.div`
   .faq-02 {
@@ -58,6 +58,7 @@ const StyledDiv = styled.div`
       margin: 0;
       list-style: none;
       width: 50%;
+      min-width:375px;
     .faq-02__item {
         position: relative;
         padding-right: 40px;
@@ -136,26 +137,20 @@ const renderAsk = (data: any): React.ReactNode => {
           <ul className="faq-02__list">
             {faqLeft.map((item: any) => (
               <li className="faq-02__item">
-                <div className="help_icon_wrapper">
-                  <Help />
-                </div>
-                <h2 className="faq-02__question_heading">{item.node.question}</h2>
-                <div className="faq-02__answer">
-                  {item.node.answer}
-                </div>
+                <AskItem
+                  title={item.node.question}
+                  content={item.node.answer}
+                />
               </li>
             ))}
           </ul>
           <ul className="faq-02__list">
             {faqRight.map((item: any) => (
               <li className="faq-02__item">
-                <div className="help_icon_wrapper">
-                  <Help />
-                </div>
-                <h2 className="faq-02__question_heading">{item.node.question}</h2>
-                <div className="faq-02__answer">
-                  {item.node.answer}
-                </div>
+                <AskItem
+                  title={item.node.question}
+                  content={item.node.answer}
+                />
               </li>
             ))}
           </ul>
