@@ -11,7 +11,7 @@ import AuthorCard from '../components/AuthorCard';
 import Footer from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
-import PostContent from '../components/PostContent';
+import PostMDXContent from '../components/PostMDXContent';
 import PostFullFooter from '../components/PostFullFooter';
 import PostFullFooterRight from '../components/PostFullFooterRight';
 import ReadNextCard from '../components/ReadNextCard';
@@ -127,15 +127,15 @@ interface PageTemplateProps {
         fixed: any;
       };
     };
-    markdownRemark: {
+    mdx: {
       html: string;
       htmlAst: any;
-      excerpt: string;
-      timeToRead: string;
       frontmatter: {
         title: string;
         date: string;
         userDate: string;
+        timeToRead: string;
+        excerpt: string;
         image: {
           childImageSharp: {
             fluid: any;
@@ -159,9 +159,9 @@ interface PageTemplateProps {
       totalCount: number;
       edges: {
         node: {
-          timeToRead: number;
           frontmatter: {
             title: string;
+            timeToRead: number;
           };
           fields: {
             slug: string;
@@ -181,6 +181,9 @@ export interface PageContext {
   timeToRead: number;
   fields: {
     slug: string;
+  };
+  code: {
+    body: any;
   };
   frontmatter: {
     image: {
@@ -206,7 +209,7 @@ export interface PageContext {
 }
 
 const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
-  const post = props.data.markdownRemark;
+  const post = props.data.mdx;
   let width = '';
   let height = '';
   if (post.frontmatter.image) {
@@ -220,11 +223,11 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
         <html lang={config.lang} />
         <title>{post.frontmatter.title}</title>
 
-        <meta name="description" content={post.excerpt} />
+        <meta name="description" content={post.frontmatter.excerpt} />
         <meta property="og:site_name" content={config.title} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.frontmatter.title} />
-        <meta property="og:description" content={post.excerpt} />
+        <meta property="og:description" content={post.frontmatter.excerpt} />
         <meta property="og:url" content={config.siteUrl + props.pathContext.slug} />
         {post.frontmatter.image && (
           <meta property="og:image" content={config.siteUrl + post.frontmatter.image.childImageSharp.fluid.src} />
@@ -240,7 +243,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
         {config.facebook && <meta property="article:author" content={config.facebook} />}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post.frontmatter.title} />
-        <meta name="twitter:description" content={post.excerpt} />
+        <meta name="twitter:description" content={post.frontmatter.excerpt} />
         <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
         {post.frontmatter.image && (
           <meta name="twitter:image" content={config.siteUrl + post.frontmatter.image.childImageSharp.fluid.src} />
@@ -293,7 +296,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                   />
                 </PostFullImage>
               )}
-              <PostContent htmlAst={post.htmlAst} />
+              <PostMDXContent body={post.code.body} />
 
               {/* The big email subscribe modal content */}
               {config.showSubscribe && <Subscribe title={config.title} />}
@@ -336,14 +339,17 @@ export const query = graphql`
         }
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
-      htmlAst
+    mdx(fields: { slug: { eq: $slug } }) {
+      # html
+      # htmlAst
       excerpt
       timeToRead
+      code {
+        body
+      }
       frontmatter {
         title
-        userDate: date(formatString: "D MMMM YYYY")
+        # userDate: date(formatString: "D MMMM YYYY")
         date
         tags
         image {
@@ -368,7 +374,7 @@ export const query = graphql`
         }
       }
     }
-    relatedPosts: allMarkdownRemark(
+    relatedPosts: allMdx(
       filter: { frontmatter: { tags: { in: [$primaryTag] }, draft: { ne: true } } }
       limit: 3
     ) {

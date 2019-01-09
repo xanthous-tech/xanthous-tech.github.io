@@ -7,7 +7,7 @@ module.exports = {
     siteUrl: 'https://gatsby-casper.netlify.com', // full path to blog - no ending slash
   },
   mapping: {
-    'MarkdownRemark.frontmatter.author': 'AuthorYaml',
+    'Mdx.frontmatter.author': 'AuthorYaml',
   },
   plugins: [
     'gatsby-plugin-sharp',
@@ -19,19 +19,28 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: `gatsby-mdx`,
       options: {
-        plugins: [
+        extensions: [".mdx", ".md"],
+        gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-responsive-iframe',
             options: {
               wrapperStyle: 'margin-bottom: 1rem',
             },
           },
-          'gatsby-remark-prismjs',
-          'gatsby-remark-copy-linked-files',
-          'gatsby-remark-smartypants',
-          'gatsby-remark-abbr',
+          {
+            resolve: 'gatsby-remark-prismjs',
+          },
+          {
+            resolve: 'gatsby-remark-copy-linked-files',
+          },
+          {
+            resolve: 'gatsby-remark-smartypants',
+          },
+          {
+            resolve: 'gatsby-remark-abbr',
+          },
           {
             resolve: 'gatsby-remark-images',
             options: {
@@ -39,9 +48,33 @@ module.exports = {
               quality: 100,
             },
           },
-        ],
-      },
+        ]
+      }
     },
+    // {
+    //   resolve: 'gatsby-transformer-remark',
+    //   options: {
+    //     plugins: [
+    //       {
+    //         resolve: 'gatsby-remark-responsive-iframe',
+    //         options: {
+    //           wrapperStyle: 'margin-bottom: 1rem',
+    //         },
+    //       },
+    //       'gatsby-remark-prismjs',
+    //       'gatsby-remark-copy-linked-files',
+    //       'gatsby-remark-smartypants',
+    //       'gatsby-remark-abbr',
+    //       {
+    //         resolve: 'gatsby-remark-images',
+    //         options: {
+    //           maxWidth: 1170,
+    //           quality: 100,
+    //         },
+    //       },
+    //     ],
+    //   },
+    // },
     'gatsby-transformer-json',
     {
       resolve: 'gatsby-plugin-canonical-urls',

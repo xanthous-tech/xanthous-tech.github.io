@@ -149,9 +149,9 @@ export interface ReadNextProps {
   tags: string[];
   relatedPosts: {
     totalCount: number;
+    timeToRead: number;
     edges: {
       node: {
-        timeToRead: number;
         frontmatter: {
           title: string;
         };

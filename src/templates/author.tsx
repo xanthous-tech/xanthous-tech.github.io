@@ -84,7 +84,7 @@ interface AuthorTemplateProps {
         fluid: any;
       };
     };
-    allMarkdownRemark: {
+    allMdx: {
       totalCount: number;
       edges: {
         node: PageContext;
@@ -113,7 +113,7 @@ interface AuthorTemplateProps {
 
 const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
   const author = props.data.authorYaml;
-  const { edges, totalCount } = props.data.allMarkdownRemark;
+  const { edges, totalCount } = props.data.allMdx;
 
   return (
     <IndexLayout>
@@ -268,7 +268,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMarkdownRemark(limit: 2000, sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(limit: 2000, sort: { fields: [frontmatter___date], order: DESC }) {
       totalCount
       edges {
         node {

@@ -42,7 +42,7 @@ interface TagTemplateProps {
         };
       }[];
     };
-    allMarkdownRemark: {
+    allMdx: {
       totalCount: number;
       edges: {
         node: PageContext;
@@ -53,7 +53,7 @@ interface TagTemplateProps {
 
 const Tags: React.FunctionComponent<TagTemplateProps> = props => {
   const tag = props.pageContext.tag;
-  const { edges, totalCount } = props.data.allMarkdownRemark;
+  const { edges, totalCount } = props.data.allMdx;
   const tagData = props.data.allTagYaml.edges.find(
     n => n.node.id.toLowerCase() === tag.toLowerCase(),
   );
@@ -138,7 +138,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMarkdownRemark(
+    allMdx(
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { tags: { in: [$tag] } } }
