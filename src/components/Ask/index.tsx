@@ -57,7 +57,7 @@ const StyledDiv = styled.div`
       margin: 0;
       list-style: none;
       width: 50%;
-      min-width:375px;
+      min-width: 375px;
     .faq-02__item {
         position: relative;
         padding-right: 40px;
