@@ -12,12 +12,12 @@ const StyledDiv = styled.div`
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
-    max-width:1080px;
     padding:50px;
     border-bottom: 2px solid #eeeeee;
     .intro-img,.intro-info{
       width:50%;
       min-width:375px;
+      margin: 0 auto;
     }
     .intro-info > .title{
       font-size: 1.55555555555555555555em;
@@ -30,6 +30,15 @@ const StyledDiv = styled.div`
     .content,.title{
       text-align:left;
     }
+    .content{
+      word-wrap: break-word;
+    }
+    @media screen and (min-width: 400px) {
+      .content{
+        width: 100%;
+        max-width: 350px;
+      }
+    }
   }
 `;
 
@@ -41,15 +50,17 @@ const renderAsk = (data: any): React.ReactNode => {
       {
         sourceData.map((d: any) => (
           <div className="intro-wrapper" key={d.node.id}>
-            <div className="intro-img">
+            {/* <div className="intro-img">
               <Truck />
-            </div>
+            </div> */}
             <div className="intro-info">
               <div className="title">
                 Evolution
           </div>
               <div className="content">
-                {d.node.content}
+                <p>
+                  {d.node.content}
+                </p>
               </div>
             </div>
           </div>
