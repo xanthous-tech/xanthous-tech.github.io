@@ -3,8 +3,8 @@ import * as React from 'react';
 
 const Truck: React.FunctionComponent = () => (
   <svg width="210px" height="130px" viewBox="0 0 210 130" version="1.1" >
-    <g id="Website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="MAD---How" transform="translate(-283.000000, -1430.000000)" fill-rule="nonzero" fill="#40404C">
+    <g id="Website" stroke="none" >
+        <g id="MAD---How" transform="translate(-283.000000, -1430.000000)" fill="#40404C">
             <g id="Evolution" transform="translate(283.000000, 1389.000000)">
                 <g id="MAD_services_wohnmobil" transform="translate(0.000000, 41.000000)">
                     <g id="Ebene_3">

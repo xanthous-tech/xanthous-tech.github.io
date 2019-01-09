@@ -131,8 +131,8 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <meta property="og:image:height" content={height} />
       </Helmet>
       <Wrapper>
-        <Introduce />
         <Splash bg={props.data.bg_intro.childImageSharp.fluid.src} />
+        <Introduce />
         <Ask />
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>

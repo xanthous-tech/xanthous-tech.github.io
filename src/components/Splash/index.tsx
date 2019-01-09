@@ -6,7 +6,6 @@ const StyledSplash = styled.section`
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 20px;
   padding-bottom: 70px;
   width: auto;
   background-color: #ffffff;

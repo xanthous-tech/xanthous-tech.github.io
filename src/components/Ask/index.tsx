@@ -137,7 +137,7 @@ const renderAsk = (data: any): React.ReactNode => {
         <div className="container faq-02__container">
           <ul className="faq-02__list">
             {faqLeft.map((item: any) => (
-              <li className="faq-02__item">
+              <li className="faq-02__item" key={item.node.id}>
                 <AskItem
                   title={item.node.question}
                   content={item.node.answer}
@@ -147,7 +147,7 @@ const renderAsk = (data: any): React.ReactNode => {
           </ul>
           <ul className="faq-02__list">
             {faqRight.map((item: any) => (
-              <li className="faq-02__item">
+              <li className="faq-02__item" key={item.node.id}>
                 <AskItem
                   title={item.node.question}
                   content={item.node.answer}
@@ -191,6 +191,7 @@ const Ask: React.FunctionComponent = () => (
         allFaqYaml {
           edges {
             node {
+              id
               question
               answer
             }
