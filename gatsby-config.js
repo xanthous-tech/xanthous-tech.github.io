@@ -2,12 +2,12 @@ const path = require('path');
 
 module.exports = {
   siteMetadata: {
-    title: 'Ghost',
-    description: 'The professional publishing platform',
-    siteUrl: 'https://gatsby-casper.netlify.com', // full path to blog - no ending slash
+    title: 'Xanthous Tech',
+    description: 'We build software to help business grow.',
+    siteUrl: 'https://x-tech.io', // full path to blog - no ending slash
   },
   mapping: {
-    'MarkdownRemark.frontmatter.author': 'AuthorYaml',
+    'Mdx.frontmatter.author': 'AuthorYaml',
   },
   plugins: [
     'gatsby-plugin-sharp',
@@ -19,28 +19,38 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: `gatsby-mdx`,
       options: {
-        plugins: [
+        extensions: [".mdx", ".md"],
+        gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-responsive-iframe',
             options: {
               wrapperStyle: 'margin-bottom: 1rem',
             },
           },
-          'gatsby-remark-prismjs',
-          'gatsby-remark-copy-linked-files',
-          'gatsby-remark-smartypants',
-          'gatsby-remark-abbr',
+          {
+            resolve: 'gatsby-remark-prismjs',
+          },
+          {
+            resolve: 'gatsby-remark-copy-linked-files',
+          },
+          {
+            resolve: 'gatsby-remark-smartypants',
+          },
+          {
+            resolve: 'gatsby-remark-abbr',
+          },
           {
             resolve: 'gatsby-remark-images',
             options: {
-              maxWidth: 1170,
               quality: 100,
+              maxWidth: 2560,
+              wrapperStyle: "max-width: 2560px !important;",
             },
           },
-        ],
-      },
+        ]
+      }
     },
     'gatsby-transformer-json',
     {
@@ -55,7 +65,61 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-sharp',
     'gatsby-transformer-yaml',
-    'gatsby-plugin-feed',
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.edges.map(edge => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.excerpt,
+                  date: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  custom_elements: [{ "content:encoded": edge.node.html }],
+                })
+              })
+            },
+            query: `
+              {
+                allMdx(
+                  limit: 1000,
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                  filter: {frontmatter: { draft: { ne: true } }}
+                ) {
+                  edges {
+                    node {
+                      excerpt
+                      fields { slug }
+                      frontmatter {
+                        title
+                        date
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+            title: "Gatsby RSS Feed",
+          },
+        ],
+      },
+    },
+
     {
       resolve: 'gatsby-plugin-postcss',
       options: {

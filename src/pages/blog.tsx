@@ -76,7 +76,7 @@ export interface IndexProps {
         fluid: any;
       };
     };
-    allMarkdownRemark: {
+    allMdx: {
       edges: {
         node: PageContext;
       }[];
@@ -140,7 +140,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
-              {props.data.allMarkdownRemark.edges.map(post => {
+              {props.data.allMdx.edges.map(post => {
                 return <PostCard key={post.node.fields.slug} post={post.node} />;
               })}
             </div>
@@ -176,7 +176,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMarkdownRemark(limit: 1000, sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(limit: 1000, sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
           timeToRead

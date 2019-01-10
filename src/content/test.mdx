@@ -4,12 +4,21 @@ title: a full and comprehensive style test
 image: img/testimg-cover.jpg
 author: Ghost
 date: 2018-09-30t07:03:47.149z
-timetoread: 3
 excerpt: "lorem"
 draft: false
 tags: 
   - tests
 ---
+import { BigText } from '../components/FuckYeah';
+
+<BigText>
+  FuckYeah
+</BigText>
+
+
+
+
+
 
 below is just about everything you’ll need to style in the theme. check the source code to see the many embedded elements within paragraphs.
 
@@ -41,8 +50,7 @@ lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 
 ### big image
 
-![test image](img/testimg1.jpg)
-
+![test image full](img/testimg1.jpg)
 duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
 ### small image
@@ -102,6 +110,7 @@ typographically, preformatted text is not the same thing as code. sometimes, a f
 code can be presented inline, like `<?php bloginfo('stylesheet_url'); ?>`, or using [jekyll's highlight
 filter](http://jekyllrb.com/docs/templates/#code-snippet-highlighting) to
 highlight a block of code. because we have more specific typographic needs for code, we’ll specify consolas and monaco ahead of the browser-defined monospace font.
+
 
 ---
 

@@ -1,5 +1,6 @@
 const path = require('path');
 const _ = require('lodash');
+const componentWithMDXScope = require("gatsby-mdx/component-with-mdx-scope");
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
@@ -9,7 +10,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   // through `createNodeField` so that the fields still exist and GraphQL won't
   // trip up. An empty string is still required in replacement to `null`.
   switch (node.internal.type) {
-    case 'MarkdownRemark': {
+    case 'Mdx': {
       const { permalink, layout, primaryTag } = node.frontmatter;
       const { relativePath } = getNode(node.parent);
 
@@ -18,6 +19,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       if (!slug) {
         slug = `/${relativePath.replace('.md', '')}/`;
       }
+
+      createNodeField({
+        node,
+        name: 'id',
+        value: node.id || '',
+      });
+
 
       // Used to generate URL to view this content.
       createNodeField({
@@ -47,15 +55,25 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const result = await graphql(`
     {
-      allMarkdownRemark(limit: 2000) {
+      allMdx {
         edges {
           node {
-            excerpt
-            timeToRead
+            id
+            fileAbsolutePath
+            parent {
+              ... on File {
+                name
+                sourceInstanceName
+              }
+            }
+            code {
+              scope
+            }
             frontmatter {
               title
               tags
               date
+              excerpt
               image {
                 childImageSharp {
                   fluid(maxWidth: 3720) {
@@ -104,7 +122,7 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   // Create post pages
-  const posts = result.data.allMarkdownRemark.edges;
+  const posts = result.data.allMdx.edges;
   posts.forEach(({ node }, index) => {
     const { slug, layout } = node.fields;
     const prev = index === 0 ? null : posts[index - 1].node;
@@ -122,6 +140,8 @@ exports.createPages = async ({ graphql, actions }) => {
       //
       // Note that the template has to exist first, or else the build will fail.
       component: path.resolve(`./src/templates/${layout || 'post'}.tsx`),
+      // component: path.resolve("./src/components/PostMDXContent.tsx"),
+      // component: node.fileAbsolutePath,
       context: {
         // Data passed to context is available in page queries as GraphQL variables.
         slug,
@@ -136,7 +156,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const tagTemplate = path.resolve('./src/templates/tags.tsx');
   const tags = _.uniq(
     _.flatten(
-      result.data.allMarkdownRemark.edges.map(edge => {
+      result.data.allMdx.edges.map(edge => {
         return _.castArray(_.get(edge, 'node.frontmatter.tags', []));
       }),
     ),
