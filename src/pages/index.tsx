@@ -7,6 +7,8 @@ import Footer from '../components/Footer';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import Splash from '../components/Splash';
+import Faq from '../components/Faq';
+import Introduce from '../components/Introduce/Introduce';
 import IndexLayout from '../layouts';
 import config from '../website-config';
 import {
@@ -81,6 +83,16 @@ export interface IndexProps {
         fluid: any;
       };
     };
+    title_icon: {
+      childImageSharp: {
+        fluid: any;
+      };
+    };
+    help: {
+      childImageSharp: {
+        fluid: any;
+      };
+    };
     allMdx: {
       edges: {
         node: PageContext;
@@ -119,7 +131,9 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <meta property="og:image:height" content={height} />
       </Helmet>
       <Wrapper>
-        <Splash bg={props.data.bg_intro.childImageSharp.fluid.src}/>
+        <Splash bg={props.data.bg_intro.childImageSharp.fluid.src} />
+        <Introduce />
+        <Faq />
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>

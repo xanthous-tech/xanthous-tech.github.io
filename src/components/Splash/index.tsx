@@ -7,9 +7,10 @@ const StyledSplash = styled.section`
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 20px;
   padding-bottom: 70px;
   width: auto;
+  background-color: #ffffff;
+
   .logo {
     width: 200px;
     padding: 20px;
@@ -58,7 +59,7 @@ const StyledSplash = styled.section`
 
   .intro > .intro-text {
     position: absolute;
-    width: 555px;
+    width: 50%;
     top: 428px;
     left: 103px;
     font-family: PingFangHK-Regular;
@@ -86,6 +87,12 @@ const StyledSplash = styled.section`
     font-size: 30px;
     color: #fff;
   }
+  @media screen and (min-width: 400px) {
+    .intro-invitation {
+    margin-top: 100px;
+  }
+}
+
 `;
 
 export interface SplashProps {
