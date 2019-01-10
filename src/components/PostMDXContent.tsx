@@ -1,7 +1,6 @@
 // posts-page-layout.js
 import { lighten, setLightness, darken, setSaturation } from 'polished';
 import React from "react";
-import { graphql } from "gatsby";
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import styled from '@emotion/styled'
 

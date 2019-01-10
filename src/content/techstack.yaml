@@ -1,0 +1,25 @@
+- id: React 
+  name: React
+  logo: img/react.svg
+- id: GraphQl 
+  name: GraphQL
+  logo: img/grapql.svg
+- id: gRPC 
+  name: gRPC
+  logo: img/grpc.svg
+- id: AWS 
+  name: AWS
+  logo: img/aws.svg
+- id: AWS Lambda 
+  name: AWS Lambda
+  website: https://aws.amazon.com/lambda/
+  desc: AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume - there is no charge when your code is not running. With Lambda, you can run code for virtually any type of application or backend service - all with zero administration. Just upload your code and Lambda takes care of everything required to run and scale your code with high availability. You can set up your code to automatically trigger from other AWS services or call it directly from any web or mobile app.
+  logo: img/xanthous.png
+- id: AWS Appsync
+  name: AWS Appsync
+  website: https://aws.amazon.com/lambda/
+  logo: img/xanthous.png
+- id: AWS SNS 
+  name: AWS SNS 
+  website: https://aws.amazon.com/lambda/
+  logo: img/xanthous.png

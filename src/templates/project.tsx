@@ -15,6 +15,7 @@ import PostMDXContent from '../components/PostMDXContent';
 import PostFullFooter from '../components/PostFullFooter';
 import PostFullFooterRight from '../components/PostFullFooterRight';
 import ReadNextCard from '../components/ReadNextCard';
+import ProjectMeta from '../components/ProjectMeta';
 import Subscribe from '../components/subsribe/Subscribe';
 import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
@@ -56,24 +57,7 @@ export const PostFullHeader = styled.header`
   }
 `;
 
-const PostFullMeta = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: ${colors.midgrey};
-  font-size: 1.4rem;
-  font-weight: 600;
-  text-transform: uppercase;
 
-  @media (max-width: 500px) {
-    font-size: 1.2rem;
-    line-height: 1.3em;
-  }
-`;
-
-const PostFullMetaDate = styled.time`
-  color: ${colors.blue};
-`;
 
 export const PostFullTitle = styled.h1`
   margin: 0;
@@ -84,7 +68,7 @@ export const PostFullTitle = styled.h1`
 `;
 
 const PostFullImage = styled.figure`
-  margin: 0 -10vw -165px;
+  margin: 0 -2vw -30px;
   height: 800px;
   background: ${colors.lightgrey} center center;
   background-size: cover;
@@ -105,10 +89,6 @@ const PostFullImage = styled.figure`
   }
 `;
 
-const DateDivider = styled.span`
-  display: inline-block;
-  margin: 0 6px 1px;
-`;
 
 const ReadNextFeed = styled.div`
   display: flex;
@@ -128,8 +108,9 @@ interface PageTemplateProps {
       };
     };
     mdx: {
-      html: string;
-      htmlAst: any;
+      code: {
+        body: any;
+      };
       frontmatter: {
         title: string;
         date: string;
@@ -142,6 +123,18 @@ interface PageTemplateProps {
           };
         };
         tags: string[];
+        meta: {
+          length: string;
+          techstack: {
+            id: string;
+            name: string;
+            logo: {
+              childImageSharp: {
+                fixed: any;
+              };
+            };
+          }[];
+        };
         author: {
           id: string;
           bio: string;
@@ -194,6 +187,10 @@ export interface PageContext {
     title: string;
     date: string;
     tags: string[];
+    meta: {
+      length: string;
+      techstack: string[];
+    };
     author: {
       id: string;
       bio: string;
@@ -270,23 +267,6 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
           <div>
             {/* TODO: no-image css tag? */}
             <article className={`${PostFull} ${!post.frontmatter.image ? NoImage : ''}`}>
-              <PostFullHeader>
-                <PostFullMeta>
-                  <PostFullMetaDate dateTime={post.frontmatter.date}>
-                    {post.frontmatter.userDate}
-                  </PostFullMetaDate>
-                  {post.frontmatter.tags &&
-                    post.frontmatter.tags.length > 0 && (
-                      <>
-                        <DateDivider>/</DateDivider>
-                        <Link to={`/tags/${_.kebabCase(post.frontmatter.tags[0])}/`}>
-                          {post.frontmatter.tags[0]}
-                        </Link>
-                      </>
-                    )}
-                </PostFullMeta>
-                <PostFullTitle>{post.frontmatter.title}</PostFullTitle>
-              </PostFullHeader>
 
               {post.frontmatter.image && (
                 <PostFullImage>
@@ -296,6 +276,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                   />
                 </PostFullImage>
               )}
+              <ProjectMeta project={post.frontmatter.meta}/> 
               <PostMDXContent body={post.code.body} />
 
               {/* The big email subscribe modal content */}
@@ -340,8 +321,6 @@ export const query = graphql`
       }
     }
     mdx(fields: { slug: { eq: $slug } }) {
-      # html
-      # htmlAst
       excerpt
       timeToRead
       code {
@@ -356,6 +335,20 @@ export const query = graphql`
           childImageSharp {
             fluid(maxWidth: 3720) {
               ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        meta {
+          length
+          techstack {
+            id
+            name
+            logo {
+              childImageSharp {
+                fixed(quality: 100) {
+                  ...GatsbyImageSharpFixed
+                }
+              }
             }
           }
         }

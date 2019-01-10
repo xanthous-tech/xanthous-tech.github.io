@@ -8,6 +8,7 @@ module.exports = {
   },
   mapping: {
     'Mdx.frontmatter.author': 'AuthorYaml',
+    'Mdx.frontmatter.meta.techstack': 'TechstackYaml',
   },
   plugins: [
     'gatsby-plugin-sharp',

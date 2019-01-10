@@ -93,7 +93,12 @@ export interface IndexProps {
         fluid: any;
       };
     };
-    allMdx: {
+    projects: {
+      edges: {
+        node: PageContext;
+      }[];
+    };
+    posts: {
       edges: {
         node: PageContext;
       }[];
@@ -136,7 +141,12 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
-              {props.data.allMdx.edges.map(post => {
+              {props.data.projects.edges.map(post => {
+                return <PostCard key={post.node.fields.slug} post={post.node} />;
+              })}
+            </div>
+            <div className={`${PostFeed} ${PostFeedRaise}`}>
+              {props.data.posts.edges.map(post => {
                 return <PostCard key={post.node.fields.slug} post={post.node} />;
               })}
             </div>
@@ -180,12 +190,57 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMdx(
+    posts: allMdx(
       limit: 4,
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
         frontmatter: {
           layout: {eq: "post"}
+        }
+      }
+    ) {
+      edges {
+        node {
+          timeToRead
+          frontmatter {
+            title
+            date
+            tags
+            image {
+              childImageSharp {
+                fluid(maxWidth: 3720) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            author {
+              id
+              bio
+              avatar {
+                children {
+                  ... on ImageSharp {
+                    fixed(quality: 100) {
+                      src
+                    }
+                  }
+                }
+              }
+            }
+          }
+          excerpt
+          fields {
+            layout
+            slug
+          }
+        }
+      }
+    }
+    projects: allMdx(
+      limit: 4,
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: {
+        frontmatter: {
+          layout: {eq: "project"}
         }
       }
     ) {
