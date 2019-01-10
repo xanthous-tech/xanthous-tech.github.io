@@ -396,7 +396,6 @@ const components = {
 
 // tslint:disable-next-line:function-name
 function PostPageTemplate({ body }) {
-  console.log(body)
   return (
     <PostFullContent className="post-full-content">
       {/* TODO: this will apply the class when rehype-react is published https://github.com/rhysd/rehype-react/pull/11 */}

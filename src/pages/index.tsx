@@ -104,7 +104,6 @@ export interface IndexProps {
 const IndexPage: React.FunctionComponent<IndexProps> = props => {
   const width = props.data.header.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
   const height = String(Number(width) / props.data.header.childImageSharp.fluid.aspectRatio);
-  console.log(props)
   return (
     <IndexLayout className={`${HomePosts}`}>
       <Helmet>
@@ -181,7 +180,15 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMdx(limit: 4, sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(
+      limit: 4,
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: {
+        frontmatter: {
+          layout: {eq: "post"}
+        }
+      }
+    ) {
       edges {
         node {
           timeToRead

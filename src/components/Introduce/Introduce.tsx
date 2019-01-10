@@ -50,7 +50,6 @@ const StyledDiv = styled.div`
 
 const renderAsk = (data: any): React.ReactNode => {
   const sourceData = data.allIntroYaml.edges;
-  console.log(sourceData)
   return (
     <StyledDiv>
       {
