@@ -2,8 +2,6 @@ import * as React from "react";
 import styled from "@emotion/styled";
 import { StaticQuery, graphql } from "gatsby";
 
-import Truck from '../icons/truck';
-
 const StyledDiv = styled.div`
   /* background-color: #f8f0f0; */
   display: flex;
@@ -19,7 +17,7 @@ const StyledDiv = styled.div`
     padding:50px;
     border-bottom: 2px solid #eeeeee;
     width: 60vw;
-    
+
     .intro-img,.intro-info{
       min-width:375px;
       margin: 0 auto;
@@ -61,7 +59,7 @@ const renderAsk = (data: any): React.ReactNode => {
             </div> */}
             <div className="intro-info">
               <div className="title">
-                Evolution
+                {d.node.title}
           </div>
               <div className="content">
                 <p>
@@ -94,6 +92,7 @@ const Ask: React.FunctionComponent = () => (
          edges{
           node{
             id
+            title
             content
           }
         }
