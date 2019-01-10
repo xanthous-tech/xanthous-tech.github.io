@@ -120,7 +120,7 @@ const StyledDiv = styled.div`
   }
 `;
 
-const renderAsk = (data: any): React.ReactNode => {
+const renderFaq = (data: any): React.ReactNode => {
   const icon = data.title_icon.childImageSharp.fluid.src;
   const faqLeft = data.allFaqYaml.edges.slice(0, data.allFaqYaml.edges.length / 2);
   const faqRight = data.allFaqYaml.edges.slice(data.allFaqYaml.edges.length / 2);
@@ -199,7 +199,7 @@ const Faq: React.FunctionComponent = () => (
         }
       }
     `}
-    render={renderAsk}
+    render={renderFaq}
   />
 );
 
