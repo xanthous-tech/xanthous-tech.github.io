@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link } from "gatsby";
 import styled from "@emotion/styled";
+import logo from '../../content/img/x-tech-logo.svg';
 
 const StyledSplash = styled.section`
   position: relative;
@@ -9,6 +10,11 @@ const StyledSplash = styled.section`
   padding-bottom: 70px;
   width: auto;
   background-color: #ffffff;
+
+  .logo {
+    width: 200px;
+    padding: 20px;
+  }
 
   .intro {
     width: 100vw;
@@ -96,6 +102,9 @@ export interface SplashProps {
 const Splash: React.FunctionComponent<SplashProps> = ({ bg }) => (
   <StyledSplash>
     <div className="intro" style={{ backgroundImage: `url(${bg})`}} >
+      <div className="logo">
+        <img src={logo} />
+      </div>
       <div className="intro-title">
         <div>
           <h1>We build software</h1>

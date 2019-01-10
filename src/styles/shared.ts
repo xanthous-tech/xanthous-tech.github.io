@@ -78,7 +78,8 @@ export const SiteHeader = css`
   padding-bottom: 12px;
   color: #fff;
   /* background: color(var(--darkgrey) l(-5%)) no-repeat center center; */
-  background: ${darken('0.05', colors.darkgrey)} no-repeat center center;
+  background: ${darken('0.05', colors.midgrey)} no-repeat center center;
+
   background-size: cover;
 `;
 

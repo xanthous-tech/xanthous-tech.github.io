@@ -1,6 +1,7 @@
 import { graphql, Link, StaticQuery } from 'gatsby';
 import * as React from 'react';
 import { css } from 'emotion'
+import logo from '../../content/img/xanthouslogo.svg';
 
 import config from '../../website-config';
 
@@ -22,7 +23,7 @@ const SiteNavLogoStyles = css`
   img {
     display: block;
     width: auto;
-    height: 21px;
+    height: 36px;
   }
 `;
 
@@ -38,7 +39,7 @@ const SiteNavLogo = () => (
   <StaticQuery
     query={graphql`
       query HeadingQuery {
-        logo: file(relativePath: { eq: "img/ghost-logo.png" }) {
+        logo: file(relativePath: { eq: "img/xanthouslogo.svg" }) {
           childImageSharp {
             fixed {
               ...GatsbyImageSharpFixed
@@ -51,7 +52,7 @@ const SiteNavLogo = () => (
     render={(data: SiteNavLogoProps) => (
       <Link className={`${SiteNavLogoStyles} site-nav-logo`} to="/">
         {data.logo ? (
-          <img src={data.logo.childImageSharp.fixed.src} alt={config.title} />
+          <img src={logo} alt={config.title} />
         ) : (
           config.title
         )}
