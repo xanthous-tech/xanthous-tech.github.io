@@ -266,8 +266,8 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
             <SiteNav />
           </div>
         </header>
-        <main id="site-main" className={`site-main ${SiteMain} ${outer}`}>
-          <div className={`${inner}`}>
+        <main id="site-main" className={`site-main ${SiteMain}`}>
+          <div>
             {/* TODO: no-image css tag? */}
             <article className={`${PostFull} ${!post.frontmatter.image ? NoImage : ''}`}>
               <PostFullHeader>

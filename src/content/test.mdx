@@ -9,23 +9,7 @@ draft: false
 tags: 
   - tests
 ---
-import { graphql } from 'gatsby';
 import { BigText } from '../components/FuckYeah';
-export const pageQuery = graphql`
-query BasicWithQuery {
-    allMdx {
-      totalCount
-    }
-  }
-`
-
-export default ({children, ...props}) => (
-  <div className="my custom layout">
-    <div>{children}</div>
-    <pre>{JSON.stringify(props, null, 2)}</pre>
-  </div>
-)
-
 
 <BigText>
   FuckYeah
@@ -66,8 +50,7 @@ lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 
 ### big image
 
-![test image](img/testimg1.jpg)
-
+![test image full](img/testimg1.jpg)
 duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
 ### small image

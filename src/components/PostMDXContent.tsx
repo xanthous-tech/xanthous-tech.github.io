@@ -12,12 +12,13 @@ import { colors } from '../styles/colors';
 export const PostFullContent = styled.section`
   position: relative;
   margin: 0 auto;
-  padding: 70px 100px 0;
+  padding: 70px 0 0;
   min-height: 230px;
   font-family: Georgia, serif;
   font-size: 2.2rem;
   line-height: 1.6em;
   background: #fff;
+  max-width: 1040px;
 
   @media (max-width: 1170px) {
     padding: 5vw 7vw 0;
@@ -118,10 +119,16 @@ export const PostFullContent = styled.section`
       width: 100%;
     }
   }
+  .gatsby-resp-image-wrapper {
+    // For Full size images
+    max-width: none !important;
+  }
 
-  img[src$='#full'] {
+  img[alt$='full'] {
     max-width: none;
-    width: 100vw;
+    position: absolute !important;
+    width: 100vw !important;
+    margin-left: calc((-100vw + 1040px) / 2) !important;
   }
 
   img + br + small {
