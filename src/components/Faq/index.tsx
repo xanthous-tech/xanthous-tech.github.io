@@ -1,7 +1,7 @@
 import * as React from "react";
 import { StaticQuery, graphql } from "gatsby";
 import styled from "@emotion/styled";
-import AskItem from './AskItem';
+import FaqItem from './FaqItem';
 
 const StyledDiv = styled.div`
   .faq-02 {
@@ -138,7 +138,7 @@ const renderAsk = (data: any): React.ReactNode => {
           <ul className="faq-02__list">
             {faqLeft.map((item: any) => (
               <li className="faq-02__item" key={item.node.id}>
-                <AskItem
+                <FaqItem
                   title={item.node.question}
                   content={item.node.answer}
                 />
@@ -148,7 +148,7 @@ const renderAsk = (data: any): React.ReactNode => {
           <ul className="faq-02__list">
             {faqRight.map((item: any) => (
               <li className="faq-02__item" key={item.node.id}>
-                <AskItem
+                <FaqItem
                   title={item.node.question}
                   content={item.node.answer}
                 />
@@ -175,7 +175,7 @@ const renderAsk = (data: any): React.ReactNode => {
   );
 };
 
-const Ask: React.FunctionComponent = () => (
+const Faq: React.FunctionComponent = () => (
   <StaticQuery
     query={graphql`
       query FaqQuery {
@@ -203,4 +203,4 @@ const Ask: React.FunctionComponent = () => (
   />
 );
 
-export default Ask;
+export default Faq;

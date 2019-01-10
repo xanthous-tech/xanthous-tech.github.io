@@ -14,7 +14,7 @@ export interface AskProps {
   content: any,
 }
 
-const Ask: React.FunctionComponent<AskProps> = ({ title, content }) => (
+const FaqItem: React.FunctionComponent<AskProps> = ({ title, content }) => (
   <StyledDiv>
     <div className="help_icon_wrapper">
       <Help />
@@ -28,4 +28,4 @@ const Ask: React.FunctionComponent<AskProps> = ({ title, content }) => (
   </StyledDiv>
 );
 
-export default Ask;
+export default FaqItem;

@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import Splash from '../components/Splash';
-import Ask from '../components/Ask/Index';
+import Faq from '../components/Faq';
 import Introduce from '../components/Introduce/Introduce';
 import IndexLayout from '../layouts';
 import config from '../website-config';
@@ -133,7 +133,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
       <Wrapper>
         <Splash bg={props.data.bg_intro.childImageSharp.fluid.src} />
         <Introduce />
-        <Ask />
+        <Faq />
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
