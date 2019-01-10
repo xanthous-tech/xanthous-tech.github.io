@@ -1,0 +1,13 @@
+// tslint:disable:no-http-string
+import * as React from 'react';
+
+const Divider: React.FunctionComponent = () => (
+  <svg width="704px" height="7px" viewBox="0 0 704 7" version="1.1" >
+    <g id="Website" stroke="none">
+        <g id="MAD---How" transform="translate(-368.000000, -1257.000000)" stroke="#D4D3D1">
+            <path d="M370,1271 C603.628984,1271 836.125239,1256.10131 1070,1250" id="divider" transform="translate(720.000000, 1260.500000) scale(1, -1) rotate(2.000000) translate(-720.000000, -1260.500000) "></path>
+        </g>
+    </g>
+</svg>
+);
+export default Divider;
