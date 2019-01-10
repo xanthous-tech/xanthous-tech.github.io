@@ -5,17 +5,22 @@ import { StaticQuery, graphql } from "gatsby";
 import Truck from '../icons/truck';
 
 const StyledDiv = styled.div`
-  background-color: #f8f0f0;
+  /* background-color: #f8f0f0; */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
   .intro-wrapper{
     display: flex;
-    text-align: center;
-    justify-content: space-between;
+    text-align: left;
+    justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
     padding:50px;
     border-bottom: 2px solid #eeeeee;
+    width: 60vw;
+    
     .intro-img,.intro-info{
-      width:50%;
       min-width:375px;
       margin: 0 auto;
     }
@@ -32,11 +37,12 @@ const StyledDiv = styled.div`
     }
     .content{
       word-wrap: break-word;
+      width: 80%;
     }
     @media screen and (min-width: 400px) {
       .content{
         width: 100%;
-        max-width: 350px;
+        max-width: 580px;
       }
     }
   }
