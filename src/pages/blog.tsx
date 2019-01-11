@@ -20,6 +20,8 @@ import {
   SiteMain,
   SiteTitle,
 } from '../styles/shared';
+import xanthousLogo from '../content/img/x-tech-logo-1.svg';
+
 import { PageContext } from '../templates/post';
 
 const HomePosts = css`
@@ -122,6 +124,11 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
           <div className={`${inner}`}>
             <SiteHeaderContent>
               <SiteTitle>
+                <img
+                  style={{ maxHeight: '200px' }}
+                  src={xanthousLogo}
+                  alt={config.title}
+                />
                 {props.data.logo ? (
                   <img
                     style={{ maxHeight: '45px' }}
@@ -158,7 +165,7 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query {
-    logo: file(relativePath: { eq: "img/ghost-logo.png" }) {
+    logo: file(relativePath: { eq: "img/xanthous.png" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.
         # Makes it trivial to update as your page's design changes.
