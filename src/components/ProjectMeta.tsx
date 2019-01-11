@@ -2,13 +2,19 @@ import React from 'react';
 import { Link } from 'gatsby';
 import * as _ from 'lodash';
 import styled from '@emotion/styled';
+import { colors } from '../styles/colors';
 
 const StyledSection = styled.section`
-  margin: 100px 10vw 20px;
+  max-width: 1040px;
+  position: relative;
+  margin: 70px auto 0;
+  border-bottom: 1px solid #e4eaed;
+
   .row {
     display: flex;
     flex-flow: column nowrap;
     align-items: flex-start;
+    padding: 10px 0;
     .label {
       font-weight: 600
     }
@@ -19,21 +25,32 @@ const StyledSection = styled.section`
       flex: 2;
     }
   } 
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 const TechItem = styled.div`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 5px 10px;
+  min-width: 170px;
+
   .name {
     font-size: 12px;
-    color: #030303;
+    color: ${colors.darkgrey};
   }
   img {
     height: 40px;
     width: auto;
+  }
+  :hover {
+    .name {
+      border-bottom: 2px solid ${colors.blue};
+    }
   }
 `
 

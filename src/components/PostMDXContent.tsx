@@ -26,7 +26,7 @@ export const PostFullContent = styled.section`
     font-size: 1.9rem;
   }
 
-  :before {
+  /* :before {
     content: '';
     position: absolute;
     top: 15px;
@@ -52,7 +52,7 @@ export const PostFullContent = styled.section`
     background: rgba(39, 44, 49, 0.15);
     filter: blur(5px);
     transform: rotate(5deg);
-  }
+  } */
 
   h1,
   h2,
