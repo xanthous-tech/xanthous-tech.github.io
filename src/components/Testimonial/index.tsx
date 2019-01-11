@@ -5,13 +5,28 @@ import { StaticQuery, graphql } from "gatsby";
 
 const TestimonialContainer = styled.div`
   .testimonials-01 {
-    padding: 70px 0 100px;
+    padding: 50px 0 200px;
     text-align: center; }
+    @media (max-device-width: 800px) {
+      testimonials-01 {
+        padding: 70px 0 0px 0px;
+      }
+    }
+    .heading{
+      margin-bottom:70px;
+      font-size:48px;
+    }
     .testimonials-01 .slick-prev {
       left: 50px;
+      &::before{
+        color: #333;
+      }
     }
     .testimonials-01 .slick-next {
       right: 50px;
+      &::before{
+        color: #333;
+      }
     }
     @media (max-width: 800px) {
       .testimonials-01 .slick-dots {

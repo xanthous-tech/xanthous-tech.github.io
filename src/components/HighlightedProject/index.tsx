@@ -5,22 +5,33 @@ import Slider from "react-slick";
 import { StaticQuery, graphql } from "gatsby";
 
 const HighlightedProjectContainer = styled.div`
+align-content: center;
 .slider-01 {
   padding-top: 70px;
+  width: 100%;
+  margin: 0 auto;
   padding-bottom: 100px; }
   .slider-01 .slick-list {
     border-radius: 10px;
     box-shadow: 0 12px 44px 0 rgba(0, 0, 0, 0.1); }
   .slider-01 .slick-prev {
     left: 50px;
+    z-index: 99;
+    &::before{
+      color:#333;
+    }
   }
   .slider-01 .slick-next {
     right: 50px;
+    z-index: 99;
+    &::before{
+      color:#333;
+    }
   }
 
 .slider-01__title_box {
   text-align: center;
-  margin-bottom: 70px; }
+  margin-bottom: 30px; }
 
 .slider-01__container {
   text-align: center; }
@@ -48,9 +59,16 @@ const HighlightedProjectContainer = styled.div`
 
 .slick-slide {
   outline: none; }
+.slick-list{
+  box-shadow:0 0 0 0 transparent!important;
+}
 
 .slider__img {
   width: 100%; }
+.slider__item_box{
+  width:65%;
+  margin: auto;
+  }
 `;
 
 export interface TestimonialProps {
@@ -62,8 +80,13 @@ export interface HighlightedProjectItemProps {
 }
 
 const TestimonialCard: React.FunctionComponent<HighlightedProjectItemProps> = (props: HighlightedProjectItemProps) => (
-  <div className="slider__item">
-    <Img className="slider__image" fluid={props.image.childImageSharp.fluid} />
+  <div className="slider__item_box">
+    <div className="slider__item">
+      <Img className="slider__image" fluid={props.image.childImageSharp.fluid} />
+    </div>
+    <div>
+      This is project name
+    </div>
   </div>
 );
 
@@ -86,12 +109,13 @@ const renderHighlightedProject = (data: any): React.ReactNode => {
               dots={true}
               infinite={true}
               arrows={true}
-              autoplay={true}
+              // autoplay={true}
               autoplaySpeed={5000}
             >
               {highlightedProjects.map(
                 highlightedProject => <TestimonialCard key={highlightedProject.id} image={highlightedProject.frontmatter.image} />
               )}
+              <TestimonialCard key={highlightedProjects[0].id} image={highlightedProjects[0].frontmatter.image} />
             </Slider>
           </div>
         </div>
