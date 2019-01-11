@@ -3,14 +3,13 @@ import { lighten, setLightness, darken, setSaturation } from 'polished';
 import React from "react";
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import { MDXProvider } from "@mdx-js/tag";
+import { preToCodeBlock } from 'mdx-utils'
 import styled from '@emotion/styled'
 
 import { Image } from './Image';
 
 import { colors } from '../styles/colors';
-import 'prismjs/themes/prism.css';
 import { InlineCode, Code } from './Text/Code';
-const componentWithMDXScope = require('gatsby-mdx/component-with-mdx-scope');
 
 
 export const PostFullContent = styled.section`
@@ -396,20 +395,26 @@ export const PostFullContent = styled.section`
 const components = {
   'Image': Image,
   'InlineCode': InlineCode,
-  'code': Code,
+  pre: (preProps: JSX.IntrinsicAttributes & React.ClassAttributes<HTMLPreElement> & React.HTMLAttributes<HTMLPreElement>) => {
+    const props = preToCodeBlock(preProps)
+    // if there's a codeString and some props, we passed the test
+    if (props) {
+      return <Code {...props} />
+    } 
+    // it's possible to have a pre without a code in it
+    return <pre {...preProps} />
+  },
 }
 
 
 // tslint:disable-next-line:function-name
-function PostPageTemplate({ body }) {
+function PostPageTemplate({ body, scope }) {
   console.log(body)
   return (
-    <MDXProvider
-      components={components}
-    >
+    <MDXProvider components={components}>
       <PostFullContent className="post-full-content">
         {/* TODO: this will apply the class when rehype-react is published https://github.com/rhysd/rehype-react/pull/11 */}
-        <MDXRenderer >{body}</MDXRenderer>
+        <MDXRenderer scope={scope}>{body}</MDXRenderer>
       </PostFullContent>
     </MDXProvider>
   )

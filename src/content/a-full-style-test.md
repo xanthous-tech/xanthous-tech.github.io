@@ -27,6 +27,12 @@ below is just about everything you’ll need to style in the theme. check the so
 
 ###### heading 7
 
+```jsx
+  function() {
+    console.log('lorem')
+  }
+```
+
 ---
 
 lorem ipsum dolor sit amet, [test link]() adipiscing elit. **this is strong.** nullam dignissim convallis est. quisque aliquam. _this is emphasized._ donec faucibus. nunc iaculis suscipit dui. 5<sup>3</sup> = 125. water is h<sub>2</sub>o. nam sit amet sem. aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. <cite>the new york times</cite> (that’s a citation). <span style="text-decoration:underline;">underline</span>. maecenas ornare tortor. donec sed tellus eget sapien fringilla nonummy. mauris a ante. suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. morbi imperdiet augue quis tellus.

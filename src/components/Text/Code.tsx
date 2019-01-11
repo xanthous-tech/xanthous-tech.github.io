@@ -34,25 +34,24 @@ const CodeStyle = css`
  }
 `;
 
-export const Code: React.FunctionComponent = ({ children, lang }, { darkBg } = {}) => {
-  console.log(children, lang)
+export const Code: React.FunctionComponent = ({codeString, language}) => {
   return (
-  <pre className={(darkBg ? 'dark' : '') + (lang ? ` ${lang}` : '')}>
-    {lang ? (
+  <pre className={(true ? 'dark' : '') + (language ? ` ${language}` : '')}>
+    {language ? (
       // tslint:disable-next-line:react-no-dangerous-html
       <code
-        className={`language-${lang} ${CodeStyle}`}
+        className={`language-${language} ${CodeStyle}`}
         dangerouslySetInnerHTML={{
           __html: rehype()
             .stringify({
               type: 'root',
-              children: refractor.highlight(children, lang)
+              children: refractor.highlight(codeString, language)
             })
             .toString()
         }}
       />
     ) : (
-      <code>{children}</code>
+      <code>{codeString}</code>
     )}
   </pre>
   )

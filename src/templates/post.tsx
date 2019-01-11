@@ -296,7 +296,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                   />
                 </PostFullImage>
               )}
-              <PostMDXContent body={post.code.body} />
+              <PostMDXContent {...post.code} />
 
               {/* The big email subscribe modal content */}
               {config.showSubscribe && <Subscribe title={config.title} />}
@@ -345,6 +345,7 @@ export const query = graphql`
       excerpt
       timeToRead
       code {
+        scope
         body
       }
       frontmatter {
