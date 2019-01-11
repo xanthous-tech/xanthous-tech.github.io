@@ -1,25 +1,41 @@
-- id: React 
+- id: react
   name: React
-  logo: img/react.svg
-- id: GraphQl 
+  website: https://reactjs.org
+  desc: React is a declarative, efficient, and flexible JavaScript library for building user interfaces, maintained by Facebook. At Xanthous Tech, we use React to build user-facing part of the project, on browsers and mobile devices.
+  logo: img/react.png
+- id: graphql
   name: GraphQL
-  logo: img/grapql.svg
-- id: gRPC 
+  website: https://graphql.org
+  desc: GraphQL is a query language and execution engine tied to any backend service maintained by Facebook. At Xanthous we use GraphQL extensively to build production grade projects with rich data presentation, which effectively provide smooth collaboration between frontend and backend developers.
+  logo: img/graphql.png
+- id: grpc
   name: gRPC
-  logo: img/grpc.svg
-- id: AWS 
+  website: https://grpc.io
+  desc: gRPC is a high-performance, open-source universal RPC framework by Google. At Xanthous Tech, we use gRPC to construct microservice architecture coordinating between different backend programming languages, without sacrificing individual developer productivity and happiness.
+  logo: img/grpc.png
+- id: aws
   name: AWS
-  logo: img/aws.svg
-- id: AWS Lambda 
+  website: https://aws.amazon.com
+  desc: Amazon Web Services offers reliable, scalable, and inexpensive cloud computing services. At Xanthous Tech, we have several AWS Solutions Architects with deep knowledge on how to effectively build and maintain AWS Stacks to achieve their full potential, and scale out as needed.
+  logo: img/aws.png
+- id: aws lambda
   name: AWS Lambda
   website: https://aws.amazon.com/lambda/
-  desc: AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume - there is no charge when your code is not running. With Lambda, you can run code for virtually any type of application or backend service - all with zero administration. Just upload your code and Lambda takes care of everything required to run and scale your code with high availability. You can set up your code to automatically trigger from other AWS services or call it directly from any web or mobile app.
+  desc: AWS Lambda is a core computing unit in the AWS Serverless Stack. At Xanthous Tech, we know how to effectively use AWS Lambda to build complex serverless data pipelines at low cost.
+  logo: img/lambda.png
+- id: aws appsync
+  name: AWS AppSync
+  website: https://aws.amazon.com/appsync/
+  desc: AppSync is
   logo: img/xanthous.png
-- id: AWS Appsync
-  name: AWS Appsync
-  website: https://aws.amazon.com/lambda/
-  logo: img/xanthous.png
-- id: AWS SNS 
-  name: AWS SNS 
-  website: https://aws.amazon.com/lambda/
-  logo: img/xanthous.png
+- id: spring boot
+  name: Spring Boot
+  website: http://spring.io/projects/spring-boot
+  desc: Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can "just run".
+  logo: img/spring-boot.png
+- id: reactor
+  name: Reactor
+  website: https://projectreactor.io/
+  desc: Reactor is a fourth-generation Reactive library for building non-blocking applications on
+the JVM based on the Reactive Streams Specification
+  logo: img/reactor.png

@@ -23,6 +23,7 @@ import {
   SiteTitle,
 } from '../styles/shared';
 import { PageContext } from '../templates/post';
+import Testimonial from '../components/Testimonial';
 
 const HomePosts = css`
   @media (min-width: 795px) {
@@ -138,6 +139,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <Splash bg={props.data.bg_intro.childImageSharp.fluid.src} />
         <Introduce />
         <Faq />
+        <Testimonial />
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
