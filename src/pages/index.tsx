@@ -25,6 +25,12 @@ import {
 import { PageContext } from '../templates/post';
 import Testimonial from '../components/Testimonial';
 
+// tslint:disable-next-line:no-import-side-effect
+import 'slick-carousel/slick/slick.css';
+// tslint:disable-next-line:no-import-side-effect
+import 'slick-carousel/slick/slick-theme.css';
+import HighlightedProject from '../components/HighlightedProject';
+
 const HomePosts = css`
   @media (min-width: 795px) {
     .post-card:nth-child(6n + 1):not(.no-image) {
@@ -134,19 +140,25 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         {config.twitter && <meta name="twitter:site" content={`@${config.twitter.split('https://twitter.com/')[1]}`} />}
         <meta property="og:image:width" content={width} />
         <meta property="og:image:height" content={height} />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
       </Helmet>
       <Wrapper>
         <Splash bg={props.data.bg_intro.childImageSharp.fluid.src} />
         <Introduce />
+        <div style={{backgroundColor: '#ffffff'}}>
+          <HighlightedProject />
+        </div>
         <Faq />
-        <Testimonial />
+        <div style={{backgroundColor: '#ffffff'}}>
+          <Testimonial />
+        </div>
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>
-            <div className={`${PostFeed} ${PostFeedRaise}`}>
+            {/* <div className={`${PostFeed} ${PostFeedRaise}`}>
               {props.data.projects.edges.map(post => {
                 return <PostCard key={post.node.fields.slug} post={post.node} />;
               })}
-            </div>
+            </div> */}
             <div className={`${PostFeed} ${PostFeedRaise}`}>
               {props.data.posts.edges.map(post => {
                 return <PostCard key={post.node.fields.slug} post={post.node} />;
