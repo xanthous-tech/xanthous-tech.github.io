@@ -16,12 +16,7 @@ const StyledDiv = styled.div`
     flex-wrap: wrap;
     padding:50px;
     border-bottom: 2px solid #eeeeee;
-    width: 60vw;
-
-    .intro-img,.intro-info{
-      min-width:375px;
-      margin: 0 auto;
-    }
+    width: 80vw;
     .intro-info > .title{
       font-size: 1.55555555555555555555em;
       font-family: 'prophetmedium',sans-serif;
@@ -37,12 +32,30 @@ const StyledDiv = styled.div`
       word-wrap: break-word;
       width: 80%;
     }
-    @media screen and (min-width: 400px) {
+  }
+  @media (min-width:376px) and (max-width:425px){
       .content{
-        width: 100%;
+        width: 50%;
         max-width: 580px;
       }
-    }
+      .intro-wrapper{
+        padding:20px
+      }
+      .intro-invitation{
+        top: 666px!important;
+      }
+  }
+  @media (min-device-width : 375px) and (max-device-width : 667px) and (-webkit-min-device-pixel-ratio : 2){
+    .content{
+        width: 50%;
+        max-width: 580px;
+      }
+      .intro-wrapper{
+        padding:20px
+      }
+      .intro-invitation{
+        top: 666px!important;
+      }
   }
 `;
 
@@ -59,7 +72,7 @@ const renderAsk = (data: any): React.ReactNode => {
             <div className="intro-info">
               <div className="title">
                 {d.node.title}
-          </div>
+              </div>
               <div className="content">
                 <p>
                   {d.node.content}

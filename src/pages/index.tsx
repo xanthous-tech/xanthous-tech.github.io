@@ -140,6 +140,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         {config.twitter && <meta name="twitter:site" content={`@${config.twitter.split('https://twitter.com/')[1]}`} />}
         <meta property="og:image:width" content={width} />
         <meta property="og:image:height" content={height} />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
       </Helmet>
       <Wrapper>
         <Splash bg={props.data.bg_intro.childImageSharp.fluid.src} />
@@ -149,11 +150,11 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <Testimonial />
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>
-            <div className={`${PostFeed} ${PostFeedRaise}`}>
+            {/* <div className={`${PostFeed} ${PostFeedRaise}`}>
               {props.data.projects.edges.map(post => {
                 return <PostCard key={post.node.fields.slug} post={post.node} />;
               })}
-            </div>
+            </div> */}
             <div className={`${PostFeed} ${PostFeedRaise}`}>
               {props.data.posts.edges.map(post => {
                 return <PostCard key={post.node.fields.slug} post={post.node} />;
