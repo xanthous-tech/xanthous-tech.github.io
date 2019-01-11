@@ -17,6 +17,9 @@ const StyledDiv = styled.div`
     padding:50px;
     border-bottom: 2px solid #eeeeee;
     width: 80vw;
+    &:last-child{
+      border-bottom: none;
+    }
     .intro-info > .title{
       font-size: 1.55555555555555555555em;
       font-family: 'prophetmedium',sans-serif;

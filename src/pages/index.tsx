@@ -145,9 +145,13 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
       <Wrapper>
         <Splash bg={props.data.bg_intro.childImageSharp.fluid.src} />
         <Introduce />
-        <HighlightedProject />
+        <div style={{backgroundColor: '#ffffff'}}>
+          <HighlightedProject />
+        </div>
         <Faq />
-        <Testimonial />
+        <div style={{backgroundColor: '#ffffff'}}>
+          <Testimonial />
+        </div>
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>
             {/* <div className={`${PostFeed} ${PostFeedRaise}`}>
