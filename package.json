@@ -53,9 +53,12 @@
     "postcss-color-function": "4.0.1",
     "prism-themes": "1.0.1",
     "prismjs": "1.15.0",
+    "prop-types": "^15.6.2",
     "react": "16.7.0",
     "react-dom": "16.7.0",
     "react-helmet": "5.2.0",
+    "refractor": "^2.6.2",
+    "rehype": "^7.0.0",
     "rehype-react": "3.1.0"
   },
   "devDependencies": {

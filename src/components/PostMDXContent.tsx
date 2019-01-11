@@ -2,11 +2,16 @@
 import { lighten, setLightness, darken, setSaturation } from 'polished';
 import React from "react";
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
+import { MDXProvider } from "@mdx-js/tag";
 import styled from '@emotion/styled'
 
 import { Image } from './Image';
 
 import { colors } from '../styles/colors';
+import 'prismjs/themes/prism.css';
+import { InlineCode, Code } from './Text/Code';
+const componentWithMDXScope = require('gatsby-mdx/component-with-mdx-scope');
+
 
 export const PostFullContent = styled.section`
   position: relative;
@@ -389,17 +394,24 @@ export const PostFullContent = styled.section`
 `;
 
 const components = {
-  'Image': Image
+  'Image': Image,
+  'InlineCode': InlineCode,
+  'code': Code,
 }
 
 
 // tslint:disable-next-line:function-name
 function PostPageTemplate({ body }) {
+  console.log(body)
   return (
-    <PostFullContent className="post-full-content">
-      {/* TODO: this will apply the class when rehype-react is published https://github.com/rhysd/rehype-react/pull/11 */}
-      <MDXRenderer components={components}>{body}</MDXRenderer>
-    </PostFullContent>
+    <MDXProvider
+      components={components}
+    >
+      <PostFullContent className="post-full-content">
+        {/* TODO: this will apply the class when rehype-react is published https://github.com/rhysd/rehype-react/pull/11 */}
+        <MDXRenderer >{body}</MDXRenderer>
+      </PostFullContent>
+    </MDXProvider>
   )
 }
 export default PostPageTemplate;
