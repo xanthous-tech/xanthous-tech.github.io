@@ -36,6 +36,5 @@
 - id: reactor
   name: Reactor
   website: https://projectreactor.io/
-  desc: Reactor is a fourth-generation Reactive library for building non-blocking applications on
-the JVM based on the Reactive Streams Specification
+  desc: Reactor is a fourth-generation Reactive library for building non-blocking applications on the JVM based on the Reactive Streams Specification
   logo: img/reactor.png
