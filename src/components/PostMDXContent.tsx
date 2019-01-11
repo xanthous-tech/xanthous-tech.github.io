@@ -1,13 +1,16 @@
 // posts-page-layout.js
 import { lighten, setLightness, darken, setSaturation } from 'polished';
 import React from "react";
-import { graphql } from "gatsby";
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
+import { MDXProvider } from "@mdx-js/tag";
+import { preToCodeBlock } from 'mdx-utils'
 import styled from '@emotion/styled'
 
 import { Image } from './Image';
 
 import { colors } from '../styles/colors';
+import { InlineCode, Code } from './Text/Code';
+
 
 export const PostFullContent = styled.section`
   position: relative;
@@ -27,7 +30,7 @@ export const PostFullContent = styled.section`
     font-size: 1.9rem;
   }
 
-  :before {
+  /* :before {
     content: '';
     position: absolute;
     top: 15px;
@@ -53,7 +56,7 @@ export const PostFullContent = styled.section`
     background: rgba(39, 44, 49, 0.15);
     filter: blur(5px);
     transform: rotate(5deg);
-  }
+  } */
 
   h1,
   h2,
@@ -390,17 +393,30 @@ export const PostFullContent = styled.section`
 `;
 
 const components = {
-  'Image': Image
+  'Image': Image,
+  'InlineCode': InlineCode,
+  pre: (preProps: JSX.IntrinsicAttributes & React.ClassAttributes<HTMLPreElement> & React.HTMLAttributes<HTMLPreElement>) => {
+    const props = preToCodeBlock(preProps)
+    // if there's a codeString and some props, we passed the test
+    if (props) {
+      return <Code {...props} />
+    } 
+    // it's possible to have a pre without a code in it
+    return <pre {...preProps} />
+  },
 }
 
 
 // tslint:disable-next-line:function-name
-function PostPageTemplate({ body }) {
+function PostPageTemplate({ body, scope }) {
+  console.log(body)
   return (
-    <PostFullContent className="post-full-content">
-      {/* TODO: this will apply the class when rehype-react is published https://github.com/rhysd/rehype-react/pull/11 */}
-      <MDXRenderer components={components}>{body}</MDXRenderer>
-    </PostFullContent>
+    <MDXProvider components={components}>
+      <PostFullContent className="post-full-content">
+        {/* TODO: this will apply the class when rehype-react is published https://github.com/rhysd/rehype-react/pull/11 */}
+        <MDXRenderer scope={scope}>{body}</MDXRenderer>
+      </PostFullContent>
+    </MDXProvider>
   )
 }
 export default PostPageTemplate;

@@ -8,6 +8,7 @@ module.exports = {
   },
   mapping: {
     'Mdx.frontmatter.author': 'AuthorYaml',
+    'Mdx.frontmatter.meta.techstack': 'TechstackYaml',
   },
   plugins: [
     'gatsby-plugin-sharp',
@@ -28,9 +29,6 @@ module.exports = {
             options: {
               wrapperStyle: 'margin-bottom: 1rem',
             },
-          },
-          {
-            resolve: 'gatsby-remark-prismjs',
           },
           {
             resolve: 'gatsby-remark-copy-linked-files',

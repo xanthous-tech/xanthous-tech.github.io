@@ -84,7 +84,7 @@ export const PostFullTitle = styled.h1`
 `;
 
 const PostFullImage = styled.figure`
-  margin: 0 -10vw -165px;
+  margin: 0 -10vw 0px;
   height: 800px;
   background: ${colors.lightgrey} center center;
   background-size: cover;
@@ -296,7 +296,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                   />
                 </PostFullImage>
               )}
-              <PostMDXContent body={post.code.body} />
+              <PostMDXContent {...post.code} />
 
               {/* The big email subscribe modal content */}
               {config.showSubscribe && <Subscribe title={config.title} />}
@@ -345,6 +345,7 @@ export const query = graphql`
       excerpt
       timeToRead
       code {
+        scope
         body
       }
       frontmatter {

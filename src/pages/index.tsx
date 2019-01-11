@@ -23,6 +23,13 @@ import {
   SiteTitle,
 } from '../styles/shared';
 import { PageContext } from '../templates/post';
+import Testimonial from '../components/Testimonial';
+
+// tslint:disable-next-line:no-import-side-effect
+import 'slick-carousel/slick/slick.css';
+// tslint:disable-next-line:no-import-side-effect
+import 'slick-carousel/slick/slick-theme.css';
+import HighlightedProject from '../components/HighlightedProject';
 
 const HomePosts = css`
   @media (min-width: 795px) {
@@ -93,7 +100,12 @@ export interface IndexProps {
         fluid: any;
       };
     };
-    allMdx: {
+    projects: {
+      edges: {
+        node: PageContext;
+      }[];
+    };
+    posts: {
       edges: {
         node: PageContext;
       }[];
@@ -128,15 +140,27 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         {config.twitter && <meta name="twitter:site" content={`@${config.twitter.split('https://twitter.com/')[1]}`} />}
         <meta property="og:image:width" content={width} />
         <meta property="og:image:height" content={height} />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
       </Helmet>
       <Wrapper>
         <Splash bg={props.data.bg_intro.childImageSharp.fluid.src} />
         <Introduce />
+        <div style={{backgroundColor: '#ffffff'}}>
+          <HighlightedProject />
+        </div>
         <Faq />
+        <div style={{backgroundColor: '#ffffff'}}>
+          <Testimonial />
+        </div>
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>
+            {/* <div className={`${PostFeed} ${PostFeedRaise}`}>
+              {props.data.projects.edges.map(post => {
+                return <PostCard key={post.node.fields.slug} post={post.node} />;
+              })}
+            </div> */}
             <div className={`${PostFeed} ${PostFeedRaise}`}>
-              {props.data.allMdx.edges.map(post => {
+              {props.data.posts.edges.map(post => {
                 return <PostCard key={post.node.fields.slug} post={post.node} />;
               })}
             </div>
@@ -180,12 +204,57 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMdx(
+    posts: allMdx(
       limit: 4,
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
         frontmatter: {
           layout: {eq: "post"}
+        }
+      }
+    ) {
+      edges {
+        node {
+          timeToRead
+          frontmatter {
+            title
+            date
+            tags
+            image {
+              childImageSharp {
+                fluid(maxWidth: 3720) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            author {
+              id
+              bio
+              avatar {
+                children {
+                  ... on ImageSharp {
+                    fixed(quality: 100) {
+                      src
+                    }
+                  }
+                }
+              }
+            }
+          }
+          excerpt
+          fields {
+            layout
+            slug
+          }
+        }
+      }
+    }
+    projects: allMdx(
+      limit: 4,
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: {
+        frontmatter: {
+          layout: {eq: "project"}
         }
       }
     ) {

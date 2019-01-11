@@ -1,6 +1,5 @@
 const path = require('path');
 const _ = require('lodash');
-const componentWithMDXScope = require("gatsby-mdx/component-with-mdx-scope");
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
@@ -113,6 +112,13 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allTechstackYaml {
+        edges {
+          node {
+            id
+          }
+        }
+      }
     }
   `);
 
@@ -182,6 +188,19 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
+
+  // Create tech pages
+  const techTemplate = path.resolve('./src/templates/tech.tsx');
+  result.data.allTechstackYaml.edges.forEach(edge => {
+    createPage({
+      path: `/tech/${_.kebabCase(edge.node.id)}/`,
+      component: techTemplate,
+      context: {
+        tech: edge.node.id,
+      },
+    });
+  });
+
 };
 
 exports.onCreateWebpackConfig = ({ stage, actions }) => {

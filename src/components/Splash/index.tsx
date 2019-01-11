@@ -87,12 +87,16 @@ const StyledSplash = styled.section`
     font-size: 30px;
     color: #fff;
   }
-  @media screen and (min-width: 400px) {
-    .intro-invitation {
+  @media (min-width:376px) and (max-width:425px){
+  .intro-invitation {
     margin-top: 100px;
   }
 }
-
+@media (min-device-width : 375px) and (max-device-width : 667px) and (-webkit-min-device-pixel-ratio : 2){
+  .intro-invitation {
+    margin-top: 100px;
+  }
+}
 `;
 
 export interface SplashProps {
@@ -101,7 +105,7 @@ export interface SplashProps {
 
 const Splash: React.FunctionComponent<SplashProps> = ({ bg }) => (
   <StyledSplash>
-    <div className="intro" style={{ backgroundImage: `url(${bg})`}} >
+    <div className="intro" style={{ backgroundImage: `url(${bg})` }} >
       <div className="logo">
         <img src={logo} />
       </div>
