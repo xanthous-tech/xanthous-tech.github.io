@@ -28,3 +28,14 @@
   website: https://aws.amazon.com/appsync/
   desc: AppSync is
   logo: img/xanthous.png
+- id: spring boot
+  name: Spring Boot
+  website: http://spring.io/projects/spring-boot
+  desc: Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can "just run".
+  logo: img/spring-boot.png
+- id: reactor
+  name: Reactor
+  website: https://projectreactor.io/
+  desc: Reactor is a fourth-generation Reactive library for building non-blocking applications on
+the JVM based on the Reactive Streams Specification
+  logo: img/reactor.png
