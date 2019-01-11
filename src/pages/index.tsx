@@ -25,6 +25,12 @@ import {
 import { PageContext } from '../templates/post';
 import Testimonial from '../components/Testimonial';
 
+// tslint:disable-next-line:no-import-side-effect
+import 'slick-carousel/slick/slick.css';
+// tslint:disable-next-line:no-import-side-effect
+import 'slick-carousel/slick/slick-theme.css';
+import HighlightedProject from '../components/HighlightedProject';
+
 const HomePosts = css`
   @media (min-width: 795px) {
     .post-card:nth-child(6n + 1):not(.no-image) {
@@ -138,6 +144,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
       <Wrapper>
         <Splash bg={props.data.bg_intro.childImageSharp.fluid.src} />
         <Introduce />
+        <HighlightedProject />
         <Faq />
         <Testimonial />
         <main id="site-main" className={`${SiteMain} ${outer}`}>
