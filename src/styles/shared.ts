@@ -36,6 +36,7 @@ export const SiteDescription = styled.h2`
   font-weight: 300;
   letter-spacing: 0.5px;
   opacity: 0.8;
+  color: #011027;
 `;
 
 export const PostFeed = css`

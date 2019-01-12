@@ -20,7 +20,6 @@ import {
   SiteMain,
   SiteTitle,
 } from '../styles/shared';
-import xanthousLogo from '../content/img/x-tech-logo-1.svg';
 
 import { PageContext } from '../templates/post';
 
@@ -124,20 +123,20 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
           <div className={`${inner}`}>
             <SiteHeaderContent>
               <SiteTitle>
-                <img
+                {/* <img
                   style={{ maxHeight: '200px' }}
                   src={xanthousLogo}
                   alt={config.title}
-                />
+                /> */}
                 {props.data.logo ? (
                   <img
-                    style={{ maxHeight: '45px' }}
+                    style={{ maxHeight: '200px' }}
                     src={props.data.logo.childImageSharp.fixed.src}
                     alt={config.title}
                   />
                 ) : (
-                  config.title
-                )}
+                    config.title
+                  )}
               </SiteTitle>
               <SiteDescription>{config.description}</SiteDescription>
             </SiteHeaderContent>
@@ -165,7 +164,7 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query {
-    logo: file(relativePath: { eq: "img/xanthous.png" }) {
+    logo: file(relativePath: { eq: "img/x-tech-logo-2.png" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.
         # Makes it trivial to update as your page's design changes.
@@ -174,7 +173,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    header: file(relativePath: { eq: "img/blog-cover.jpg" }) {
+    header: file(relativePath: { eq: "img/blog-cover1.jpg" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.
         # Makes it trivial to update as your page's design changes.
@@ -183,7 +182,16 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMdx(limit: 1000, sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(
+      filter: {
+        frontmatter: {
+          layout: { eq: "post"}
+        }
+      },
+      limit: 1000, 
+      sort: { fields: [frontmatter___date], 
+      order: DESC,
+      }) {
       edges {
         node {
           timeToRead
