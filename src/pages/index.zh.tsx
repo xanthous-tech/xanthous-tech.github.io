@@ -118,7 +118,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
   const height = String(Number(width) / props.data.header.childImageSharp.fluid.aspectRatio);
   console.log(props)
   return (
-    <IndexLayout langKey="en" className={`${HomePosts}`}>
+    <IndexLayout langKey="zh" className={`${HomePosts}`}>
       <Helmet>
         <html lang={config.lang} />
         <title>{config.title}</title>
@@ -213,7 +213,7 @@ export const pageQuery = graphql`
           layout: {eq: "post"}
         }
         fields: {
-          lang: {eq: "en"}
+          lang: {eq: "zh"}
         }
       }
     ) {
@@ -233,7 +233,7 @@ export const pageQuery = graphql`
             }
             author {
               id
-              bio
+              # bio
               avatar {
                 children {
                   ... on ImageSharp {
@@ -263,7 +263,7 @@ export const pageQuery = graphql`
           highlighted: { eq: true }
         }
         fields: {
-          lang: {eq: "en"}
+          lang: {eq: "zh"}
         }
       }
     ) {
@@ -283,7 +283,7 @@ export const pageQuery = graphql`
             }
             author {
               id
-              bio
+              # bio
               avatar {
                 children {
                   ... on ImageSharp {

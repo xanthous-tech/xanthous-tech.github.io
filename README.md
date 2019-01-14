@@ -5,7 +5,7 @@
 
 ```
 ---
-  permaLink: custom_path
+  permalink: custom_path
 ---
 ```
 

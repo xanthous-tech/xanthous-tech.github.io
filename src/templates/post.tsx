@@ -181,6 +181,7 @@ export interface PageContext {
   timeToRead: number;
   fields: {
     slug: string;
+    lang: string;
   };
   code: {
     body: any;

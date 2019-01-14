@@ -1,27 +1,47 @@
 - id: Xanthous
+  name: Xanthous Tech
   avatar: avatars/xanthous.png
-  bio: We build software to help business grow.  
+  title: author.xanthous.title
+  bio: author.xanthous.bio 
   twitter: xanthous 
   facebook: xanthous 
   website: https://x-tech.io/
-  location: On a plane
-- id: Ghost
-  avatar: avatars/ghost.png
-  bio: The professional publishing platform
-  twitter: TryGhost
-  facebook: ghost
-  website: https://ghost.org/
-  location: On a plane
-- id: Another Author
-  avatar: avatars/ghost.png
-  bio: This is another test author with a profile background image
-  twitter: TryGhost
-  facebook: ghost
-  website: https://ghost.org/
-  location: On a plane
-  profile_image: img/alex-knight-326705-unsplash.jpg
-- id: Alex Zhao
+  location: country.plane
+- id: alexzhao
+  name: Alex Zhao
   avatar: avatars/alex.jpeg
-  bio: Full stack developer.
-  location: China
+  title: author.alexzhao.title
+  bio: author.alexzhao.bio
+  location: country.china
+  profile_image: img/alex-knight-326705-unsplash.jpg
+- id: Necmttn
+  name: Necmettin Karakaya 
+  avatar: avatars/neco_profile.jpg
+  twitter: necmttn 
+  facebook: necmettin.karakaya
+  github: necmttn
+  title: author.necmttn.title
+  bio: author.necmttn.bio
+  location: country.thailand
+  profile_image: img/NK-logo.png
+- id: osmanmesutozcan
+  name: Osman Mesut Ozcan
+  avatar: avatars/osman.jpg
+  title: author.osmanmesutozcan.title
+  bio: author.osmanmesutozcan.bio
+  location: country.turkey
+  profile_image: img/alex-knight-326705-unsplash.jpg
+- id: simonliang 
+  name: Simon Liang
+  avatar: avatars/alex.jpeg
+  title: author.simonliang.title
+  bio: author.simonliang.bio
+  location: country.china
+  profile_image: img/alex-knight-326705-unsplash.jpg
+- id: chrischen 
+  name: Chris Chen
+  avatar: avatars/alex.jpeg
+  title: author.chrischen.title
+  bio: author.chrischen.bio
+  location: country.china
   profile_image: img/alex-knight-326705-unsplash.jpg

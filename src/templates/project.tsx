@@ -170,6 +170,7 @@ interface PageTemplateProps {
 }
 
 export interface PageContext {
+  id: string;
   excerpt: string;
   timeToRead: number;
   fields: {

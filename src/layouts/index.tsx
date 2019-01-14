@@ -1,6 +1,16 @@
 import { injectGlobal } from 'emotion';
 import { darken, lighten } from 'polished';
 import * as React from 'react';
+import { IntlProvider } from 'react-intl';
+import en from '../content/i18n/en_US';
+import zh from '../content/i18n/zh_CN';
+
+const i18n = {
+  messages: {
+    en,
+    zh,
+  },
+};
 
 import { colors } from '../styles/colors';
 
@@ -478,11 +488,20 @@ body {
 `;
 
 interface IndexProps {
+  langKey: string;
   className?: string;
 }
 
 const IndexLayout: React.FunctionComponent<IndexProps> = props => {
-  return <div className={props.className}>{props.children}</div>;
+  const langKey: String = props.langKey || 'en';
+  return (
+    <IntlProvider
+      locale={'en'}
+      messages={i18n.messages[langKey]}
+    >
+      <div className={props.className}>{props.children}</div>
+    </IntlProvider>
+  );
 };
 
 export default IndexLayout;

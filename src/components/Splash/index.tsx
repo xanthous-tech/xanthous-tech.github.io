@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link } from "gatsby";
 import styled from "@emotion/styled";
 import logo from '../../content/img/x-tech-logo.svg';
+import t from '../../content/i18n'
 
 const StyledSplash = styled.section`
   position: relative;
@@ -111,21 +112,21 @@ const Splash: React.FunctionComponent<SplashProps> = ({ bg }) => (
       </div>
       <div className="intro-title">
         <div>
-          <h1>We build software</h1>
+          <h1>{t["general.splash.title1"]()}</h1>
           <div className="ghost" />
         </div>
         <div>
-          <h1>to help business grow.</h1>
+          <h1>{t["general.splash.title2"]()}</h1>
           <div className="ghost" />
         </div>
       </div>
       <p className="intro-text">
-        We're eager to help data driven companies achieve their business goals.
-        All that is possible thanks to our distributed team of highly motivated
-        individuals.
+        {t["general.splash.intro-text"]()}
       </p>
       <div className="intro-invitation">
-        <Link to="/contact">Let's Chat!</Link>
+        <Link to="/contact">
+          {t["general.splash.lets-chat"]()}
+        </Link>
       </div>
     </div>
   </StyledSplash>

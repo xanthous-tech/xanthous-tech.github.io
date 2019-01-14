@@ -11,6 +11,13 @@ module.exports = {
     'Mdx.frontmatter.meta.techstack': 'TechstackYaml',
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-i18n',
+      options: {
+        langKeyDefault: 'en',
+        useLangKeyLayout: false
+      }
+    },
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-source-filesystem',

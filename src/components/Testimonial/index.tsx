@@ -112,7 +112,6 @@ const TestimonialCard: React.FunctionComponent<TestimonialCardProps> = (props: T
 );
 
 const renderTestimonial = (data: any): React.ReactNode => {
-  console.log(data);
   const testimonials: any[] = data.allTestimonialYaml.edges.map((x: any): any => x.node);
   return (
     <TestimonialContainer>

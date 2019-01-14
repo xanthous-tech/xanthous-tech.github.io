@@ -24,6 +24,7 @@ import { PageContext } from './post';
 import Helmet from 'react-helmet';
 import config from '../website-config';
 import Website from '../components/icons/website';
+import t from '../content/i18n';
 
 const HiddenMobile = css`
   @media (max-width: 500px) {
@@ -75,6 +76,7 @@ interface TechTemplateProps {
   };
   pageContext: {
     author: string;
+    lang: string;
   };
   data: {
     logo: {
@@ -108,7 +110,7 @@ const Tech: React.FunctionComponent<TechTemplateProps> = props => {
   const { edges, totalCount } = props.data.allMdx;
 
   return (
-    <IndexLayout>
+    <IndexLayout langKey={props.pathContext.lang}>
       <Helmet>
         <html lang={config.lang} />
         <title>
@@ -144,7 +146,7 @@ const Tech: React.FunctionComponent<TechTemplateProps> = props => {
                 alt={tech.name}
               />
               <SiteTitle>{tech.name}</SiteTitle>
-              {tech.desc && <AuthorBio>{tech.desc}</AuthorBio>}
+              {tech.desc && <AuthorBio>{t[tech.desc]()}</AuthorBio>}
               <AuthorMeta>
                 <div className={`${HiddenMobile}`}>
                   {totalCount > 1 && `${totalCount} posts`}
@@ -189,7 +191,7 @@ const Tech: React.FunctionComponent<TechTemplateProps> = props => {
 export default Tech;
 
 export const pageQuery = graphql`
-  query($tech: String) {
+  query($tech: String, $lang: String) {
     techstackYaml(id: { eq: $tech }) {
       id
       name
@@ -208,6 +210,9 @@ export const pageQuery = graphql`
       filter: {
         frontmatter: {
           layout: { eq: "project"}
+        },
+        fields: {
+          lang: { eq: $lang }
         }
       }
       sort: { fields: [frontmatter___date], order: DESC }
@@ -251,6 +256,7 @@ export const pageQuery = graphql`
           fields {
             layout
             slug
+            lang
           }
         }
       }

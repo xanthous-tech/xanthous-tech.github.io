@@ -1,5 +1,6 @@
 const path = require('path');
 const _ = require('lodash');
+const languages = require('./src/content/i18n/languages');
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
@@ -15,14 +16,30 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
       let slug = permalink;
 
+      let langInPath = relativePath.match(/\.\w\w\./gi);
+      if  (langInPath){
+        langInPath = langInPath[0].slice(1,3);
+      }
+
       if (!slug) {
-        slug = `/${relativePath.replace('.md', '')}/`;
+        slug = `/${relativePath.replace(/.mdx|.md|index/gi, '')}`;
+        if (langInPath) {
+          slug = slug.replace(`.${langInPath}`, '')
+        }
       }
 
       createNodeField({
         node,
         name: 'id',
         value: node.id || '',
+      });
+
+
+      // Used to generate URL to view this content.
+      createNodeField({
+        node,
+        name: 'lang',
+        value: langInPath || 'en',
       });
 
 
@@ -101,6 +118,7 @@ exports.createPages = async ({ graphql, actions }) => {
             fields {
               layout
               slug
+              lang
             }
           }
         }
@@ -130,12 +148,13 @@ exports.createPages = async ({ graphql, actions }) => {
   // Create post pages
   const posts = result.data.allMdx.edges;
   posts.forEach(({ node }, index) => {
-    const { slug, layout } = node.fields;
+    const { slug, layout, lang } = node.fields;
     const prev = index === 0 ? null : posts[index - 1].node;
     const next = index === posts.length - 1 ? null : posts[index + 1].node;
+    const permalink = (lang === 'en') ? slug : `${lang}${slug}`
 
     createPage({
-      path: slug,
+      path: permalink,
       // This will automatically resolve the template to a corresponding
       // `layout` frontmatter in the Markdown.
       //
@@ -151,6 +170,7 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         // Data passed to context is available in page queries as GraphQL variables.
         slug,
+        lang,
         prev,
         next,
         primaryTag: node.frontmatter.tags ? node.frontmatter.tags[0] : '',
@@ -180,25 +200,63 @@ exports.createPages = async ({ graphql, actions }) => {
   // Create author pages
   const authorTemplate = path.resolve('./src/templates/author.tsx');
   result.data.allAuthorYaml.edges.forEach(edge => {
-    createPage({
-      path: `/author/${_.kebabCase(edge.node.id)}/`,
-      component: authorTemplate,
-      context: {
-        author: edge.node.id,
-      },
-    });
+    languages.langs.map(lang => {
+      switch (lang) {
+        case 'zh': {
+          createPage({
+            path: `/zh/author/${_.kebabCase(edge.node.id)}/`,
+            component: authorTemplate,
+            context: {
+              author: edge.node.id,
+              lang,
+            },
+          });
+          break;
+        }
+        default: {
+          createPage({
+            path: `/author/${_.kebabCase(edge.node.id)}/`,
+            component: authorTemplate,
+            context: {
+              author: edge.node.id,
+              lang: 'en'
+            },
+          });
+        }
+      }
+
+
+    })
   });
 
   // Create tech pages
   const techTemplate = path.resolve('./src/templates/tech.tsx');
   result.data.allTechstackYaml.edges.forEach(edge => {
-    createPage({
-      path: `/tech/${_.kebabCase(edge.node.id)}/`,
-      component: techTemplate,
-      context: {
-        tech: edge.node.id,
-      },
-    });
+    languages.langs.map(lang => {
+      switch (lang) {
+        case 'zh': {
+          createPage({
+            path: `/zh/tech/${_.kebabCase(edge.node.id)}/`,
+            component: techTemplate,
+            context: {
+              tech: edge.node.id,
+              lang,
+            },
+          });
+          break;
+        }
+        default: {
+          createPage({
+            path: `/tech/${_.kebabCase(edge.node.id)}/`,
+            component: techTemplate,
+            context: {
+              tech: edge.node.id,
+              lang: 'en'
+            },
+          });
+        }
+      }
+    })
   });
 
 };

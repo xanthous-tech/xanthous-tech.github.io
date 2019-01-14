@@ -3,6 +3,8 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import styled from '@emotion/styled'
 
+
+import t from '../content/i18n'
 import { colors } from '../styles/colors';
 import { AuthorProfileImage } from '../styles/shared';
 
@@ -38,6 +40,7 @@ export interface AuthorCardProps {
 }
 
 const AuthorCard: React.FunctionComponent<AuthorCardProps> = ({ author }) => {
+  console.log(author)
   return (
     <AuthorCardSection>
       {/* TODO: default avatar */}
@@ -48,7 +51,7 @@ const AuthorCard: React.FunctionComponent<AuthorCardProps> = ({ author }) => {
           <Link to={`/author/${_.kebabCase(author.id)}/`}>{author.id}</Link>
         </AuthorCardName>
         {author.bio ? (
-          <p>{author.bio}</p>
+          <p>{t[author.bio]()}</p>
         ) : (
           <p>
             Read <Link to={`/author/${_.kebabCase(author.id)}/`}>more posts</Link> by this author.

@@ -1,6 +1,9 @@
-- title: Who We Are
-  content: We are a team of freelancers who love to help startups grow. We are used to work in startup environments and understand what it takes to build a product from 0 to 1, and from 1 to 100.
-- title: What We Do
-  content: We have helped startups and teams from all over the world to implement the idea from scratch, optimize and improve their product performance and development workflow, and take their businesses to the next stage ASAP.
-- title: How We Do It
-  content: We use cutting-edge technology (Big Data, IoT, Machine Learning) to boost the technical depth of the ideas and make them come true.
+- id: whoWeAre
+  title: general.intro.whoWeAre.title
+  content: general.intro.whoWeAre.content
+- id: whatWeDo 
+  title: general.intro.whatWeDo.title
+  content: general.intro.whatWeDo.content
+- id: howWeDoIt 
+  title: general.intro.howWeDoIt.title
+  content: general.intro.howWeDoIt.content

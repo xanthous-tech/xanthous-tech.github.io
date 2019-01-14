@@ -26,6 +26,9 @@ import Helmet from 'react-helmet';
 import config from '../website-config';
 import Website from '../components/icons/website';
 import Twitter from '../components/icons/twitter';
+import t from '../content/i18n';
+import { notEqual } from 'assert';
+import { node } from 'prop-types';
 
 const HiddenMobile = css`
   @media (max-width: 500px) {
@@ -42,6 +45,18 @@ const AuthorMeta = styled.div`
   margin: 0 0 10px 0;
   font-family: Georgia, serif;
   font-style: italic;
+`;
+
+const AuthorTitle = styled.h3`
+  z-index: 10;
+  flex-shrink: 0;
+  margin: 5px 0 10px 0;
+  max-width: 600px;
+  font-size: 2rem;
+  line-height: 1.3em;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
 `;
 
 const AuthorBio = styled.h2`
@@ -74,9 +89,11 @@ const AuthorProfileBioImage = css`
 interface AuthorTemplateProps {
   pathContext: {
     slug: string;
+    lang: string;
   };
   pageContext: {
     author: string;
+    lang: string;
   };
   data: {
     logo: {
@@ -101,6 +118,8 @@ interface AuthorTemplateProps {
           fluid: any;
         };
       };
+      name?: string;
+      title?: string;
       bio?: string;
       avatar: {
         childImageSharp: {
@@ -113,10 +132,14 @@ interface AuthorTemplateProps {
 
 const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
   const author = props.data.authorYaml;
-  const { edges, totalCount } = props.data.allMdx;
+  const { edges } = props.data.allMdx;
+  const authorPosts = edges.filter(({node}) => {
+    return node.frontmatter.author.id === author.id
+  });
+
 
   return (
-    <IndexLayout>
+    <IndexLayout langKey={props.pathContext.lang}>
       <Helmet>
         <html lang={config.lang} />
         <title>
@@ -156,18 +179,18 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
                 src={props.data.authorYaml.avatar.childImageSharp.fluid.src}
                 alt={author.id}
               />
-              <SiteTitle>{author.id}</SiteTitle>
-              {author.bio && <AuthorBio>{author.bio}</AuthorBio>}
+              <SiteTitle>{author.name}</SiteTitle>
+              {author.title && <AuthorTitle>{t[author.title]()}</AuthorTitle>}
+              {author.bio && <AuthorBio>{t[author.bio]()}</AuthorBio>}
               <AuthorMeta>
                 {author.location && (
                   <div className={`${HiddenMobile}`}>
-                    {author.location} <Bull>&bull;</Bull>
+                    {t[author.location]()} <Bull>&bull;</Bull>
                   </div>
                 )}
                 <div className={`${HiddenMobile}`}>
-                  {totalCount > 1 && `${totalCount} posts`}
-                  {totalCount === 1 && `1 post`}
-                  {totalCount === 0 && `No posts`} <Bull>•</Bull>
+                  {authorPosts.length >= 1 && `${authorPosts.length} posts`}
+                  {authorPosts.length === 0 && `No posts`} <Bull>•</Bull>
                 </div>
                 {author.website && (
                   <div>
@@ -248,6 +271,8 @@ export const pageQuery = graphql`
   query($author: String) {
     authorYaml(id: { eq: $author }) {
       id
+      name
+      title
       website
       twitter
       bio
@@ -268,7 +293,10 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMdx(limit: 2000, sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(
+      limit: 2000,
+      sort: { fields: [frontmatter___date], order: DESC },
+    ) {
       totalCount
       edges {
         node {
@@ -288,6 +316,7 @@ export const pageQuery = graphql`
             author {
               id
               bio
+              title
               avatar {
                 children {
                   ... on ImageSharp {
