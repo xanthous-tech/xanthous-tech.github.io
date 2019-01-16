@@ -9,6 +9,7 @@ module.exports = {
   mapping: {
     'Mdx.frontmatter.author': 'AuthorYaml',
     'Mdx.frontmatter.meta.techstack': 'TechstackYaml',
+    'Mdx.frontmatter.meta.teammembers': 'TeammembersYaml',
   },
   plugins: [
     'gatsby-plugin-sharp',
@@ -22,7 +23,7 @@ module.exports = {
     {
       resolve: `gatsby-mdx`,
       options: {
-        extensions: [".mdx", ".md"],
+        extensions: ['.mdx', '.md'],
         gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-responsive-iframe',
@@ -44,11 +45,11 @@ module.exports = {
             options: {
               quality: 100,
               maxWidth: 2560,
-              wrapperStyle: "max-width: 2560px !important;",
+              wrapperStyle: 'max-width: 2560px !important;',
             },
           },
-        ]
-      }
+        ],
+      },
     },
     'gatsby-transformer-json',
     {
@@ -87,9 +88,9 @@ module.exports = {
                   date: edge.node.frontmatter.date,
                   url: site.siteMetadata.siteUrl + edge.node.fields.slug,
                   guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  custom_elements: [{ "content:encoded": edge.node.html }],
-                })
-              })
+                  custom_elements: [{ 'content:encoded': edge.node.html }],
+                });
+              });
             },
             query: `
               {
@@ -111,8 +112,8 @@ module.exports = {
                 }
               }
             `,
-            output: "/rss.xml",
-            title: "Gatsby RSS Feed",
+            output: '/rss.xml',
+            title: 'Gatsby RSS Feed',
           },
         ],
       },

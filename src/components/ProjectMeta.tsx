@@ -16,7 +16,7 @@ const StyledSection = styled.section`
     align-items: flex-start;
     padding: 10px 0;
     .label {
-      font-weight: 600
+      font-weight: 600;
     }
     .content {
       margin-top: 10px;
@@ -24,7 +24,7 @@ const StyledSection = styled.section`
       flex-flow: row wrap;
       flex: 2;
     }
-  } 
+  }
 
   a {
     text-decoration: none;
@@ -52,7 +52,7 @@ const TechItem = styled.div`
       border-bottom: 2px solid ${colors.blue};
     }
   }
-`
+`;
 
 export interface ProjectMetaProps {
   project: {
@@ -66,11 +66,13 @@ export interface ProjectMetaProps {
         };
       };
     }[];
+    teammembers: string[];
   };
 }
 
-const ProjectMeta: React.FunctionComponent<ProjectMetaProps> = ({project}) => {
-  console.log(project)
+const ProjectMeta: React.FunctionComponent<ProjectMetaProps> = ({ project }) => {
+  console.log(project);
+  console.log('teammembers: ', project.teammembers);
   return (
     <StyledSection>
       <div className="row">
@@ -80,20 +82,26 @@ const ProjectMeta: React.FunctionComponent<ProjectMetaProps> = ({project}) => {
       <div className="row">
         <span className="label">Tech Stack</span>
         <div className="content">
-          {
-            project.techstack.map(tech => (
-              <Link to={`/tech/${_.kebabCase(tech.id)}/`}>
-                <TechItem>
-                  <img srcSet={tech.logo.childImageSharp.fixed.srcSet} />
-                  <span className="name"> {tech.name} </span>
-                </TechItem>
-              </Link>
-            ))
-          }
+          {project.techstack.map(tech => (
+            <Link to={`/tech/${_.kebabCase(tech.id)}/`}>
+              <TechItem>
+                <img srcSet={tech.logo.childImageSharp.fixed.srcSet} />
+                <span className="name"> {tech.name} </span>
+              </TechItem>
+            </Link>
+          ))}
+        </div>
+      </div>
+      <div className="row">
+        <span className="label">Project Team</span>
+        <div className="content">
+          {project.teammembers.map(teammember => (
+            <Link to={`/tech/${_.kebabCase(teammember)}/`} />
+          ))}
         </div>
       </div>
     </StyledSection>
-  )
-}
+  );
+};
 
 export default ProjectMeta;

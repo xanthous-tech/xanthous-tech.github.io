@@ -25,7 +25,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
         value: node.id || '',
       });
 
-
       // Used to generate URL to view this content.
       createNodeField({
         node,
@@ -200,7 +199,6 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
-
 };
 
 exports.onCreateWebpackConfig = ({ stage, actions }) => {
