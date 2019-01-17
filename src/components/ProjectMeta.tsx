@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'gatsby';
 import * as _ from 'lodash';
 import styled from '@emotion/styled';
+import TeammemberCard from '../components/TeammemberCard';
 import { colors } from '../styles/colors';
+import XTLabel from '../components/XTLabel';
 
 const StyledSection = styled.section`
   max-width: 1040px;
@@ -15,9 +17,6 @@ const StyledSection = styled.section`
     flex-flow: column nowrap;
     align-items: flex-start;
     padding: 10px 0;
-    .label {
-      font-weight: 600;
-    }
     .content {
       margin-top: 10px;
       display: flex;
@@ -66,7 +65,17 @@ export interface ProjectMetaProps {
         };
       };
     }[];
-    teammembers: string[];
+    teammembers: {
+      id: string;
+      bio: string;
+      avatar: {
+        children: {
+          fixed: {
+            src: string;
+          };
+        }[];
+      };
+    }[];
   };
 }
 
@@ -76,11 +85,11 @@ const ProjectMeta: React.FunctionComponent<ProjectMetaProps> = ({ project }) => 
   return (
     <StyledSection>
       <div className="row">
-        <span className="label">Length</span>
+        <XTLabel className="label--blue">Length</XTLabel>
         <span className="content">{project.length}</span>
       </div>
       <div className="row">
-        <span className="label">Tech Stack</span>
+        <XTLabel className="label--blue">Tech Stack</XTLabel>
         <div className="content">
           {project.techstack.map(tech => (
             <Link to={`/tech/${_.kebabCase(tech.id)}/`}>
@@ -92,11 +101,12 @@ const ProjectMeta: React.FunctionComponent<ProjectMetaProps> = ({ project }) => 
           ))}
         </div>
       </div>
+      {/*TODO: What is difference between srcSet  */}
       <div className="row">
-        <span className="label">Project Team</span>
+        <XTLabel className="label--blue">Project Team</XTLabel>
         <div className="content">
           {project.teammembers.map(teammember => (
-            <Link to={`/tech/${_.kebabCase(teammember)}/`} />
+            <TeammemberCard teammember={teammember} />
           ))}
         </div>
       </div>
