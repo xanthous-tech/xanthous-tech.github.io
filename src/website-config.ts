@@ -15,6 +15,7 @@ export interface WebsiteConfig {
   facebook?: string;
   twitter?: string;
   medium?: string;
+  github?: string;
   /**
    * hide or show all email subscribe boxes
    */
@@ -33,14 +34,16 @@ const config: WebsiteConfig = {
   title: 'Xanthous Tech',
   description: 'We build software to help business grow.',
   coverImage: 'img/blog-cover.jpg',
-  logo: 'img/ghost-logo.png',
+  logo: 'avatars/xanthous.png',
   lang: 'en',
-  siteUrl: 'https://gatsby-casper.netlify.com',
-  facebook: 'https://www.facebook.com/ghost',
-  twitter: 'https://twitter.com/tryghost',
+  siteUrl: 'https://x-tech.io',
+  facebook: 'https://www.facebook.com/XanthousTech',
+  twitter: 'https://twitter.com/XanthousTech',
   medium: 'https://medium.com/xanthous',
+  github: 'https://github.com/xanthous-tech',
   showSubscribe: true,
-  mailchimpAction: 'https://twitter.us19.list-manage.com/subscribe/post?u=a89b6987ac248c81b0b7f3a0f&amp;id=7d777b7d75',
+  mailchimpAction:
+    'https://twitter.us19.list-manage.com/subscribe/post?u=a89b6987ac248c81b0b7f3a0f&amp;id=7d777b7d75',
   mailchimpName: 'b_a89b6987ac248c81b0b7f3a0f_7d777b7d75',
 };
 

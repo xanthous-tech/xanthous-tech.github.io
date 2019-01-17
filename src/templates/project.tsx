@@ -100,6 +100,7 @@ const ReadNextFeed = styled.div`
 interface PageTemplateProps {
   pathContext: {
     slug: string;
+    langKey: string;
   };
   data: {
     logo: {
@@ -261,7 +262,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
       <Wrapper className={`${PostTemplate}`}>
         <header className={`${SiteHeader} ${outer}`}>
           <div className={`${inner}`}>
-            <SiteNav />
+            <SiteNav {...props.pathContext}/>
           </div>
         </header>
         <main id="site-main" className={`site-main ${SiteMain}`}>
@@ -313,7 +314,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
 export default PageTemplate;
 
 export const query = graphql`
-  query($slug: String, $primaryTag: String) {
+  query($slug: String, $primaryTag: String, $langKey: String) {
     logo: file(relativePath: { eq: "img/ghost-logo.png" }) {
       childImageSharp {
         fixed {
@@ -321,7 +322,7 @@ export const query = graphql`
         }
       }
     }
-    mdx(fields: { slug: { eq: $slug } }) {
+    mdx(fields: { slug: { eq: $slug }, langKey: { eq: $langKey} }) {
       excerpt
       timeToRead
       code {

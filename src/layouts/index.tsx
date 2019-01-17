@@ -5,15 +5,15 @@ import { IntlProvider } from 'react-intl';
 import en from '../content/i18n/en_US';
 import zh from '../content/i18n/zh_CN';
 
+import { colors } from '../styles/colors';
+import LanguageToggle from '../components/LanguangeToggle';
+
 const i18n = {
   messages: {
     en,
     zh,
   },
 };
-
-import { colors } from '../styles/colors';
-
 // tslint:disable-next-line:no-unused-expression
 injectGlobal`
 html,

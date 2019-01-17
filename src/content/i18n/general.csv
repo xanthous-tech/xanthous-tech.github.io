@@ -1,4 +1,9 @@
 id,en,zh
+nav.home,Home,lorem
+nav.about,About,lorem
+nav.blog,Blog,lorem
+nav.projects,Projects,lorem
+nav.contact,Contact,lorem
 splash.title1,We build software,lorem
 splash.title2,to help business grow.,lorem
 splash.intro-text,"We're eager to help data driven companies achieve their business goals. All that is possible thanks to our distributed team of highly motivated individuals.",lorem upsum

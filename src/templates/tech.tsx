@@ -110,7 +110,7 @@ const Tech: React.FunctionComponent<TechTemplateProps> = props => {
   const { edges, totalCount } = props.data.allMdx;
 
   return (
-    <IndexLayout langKey={props.pathContext.lang}>
+    <IndexLayout langKey={props.pathContext.langKey}>
       <Helmet>
         <html lang={config.lang} />
         <title>
@@ -212,7 +212,7 @@ export const pageQuery = graphql`
           layout: { eq: "project"}
         },
         fields: {
-          lang: { eq: $lang }
+          langKey: { eq: $lang }
         }
       }
       sort: { fields: [frontmatter___date], order: DESC }
@@ -256,7 +256,7 @@ export const pageQuery = graphql`
           fields {
             layout
             slug
-            lang
+            langKey
           }
         }
       }

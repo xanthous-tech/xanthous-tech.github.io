@@ -3,8 +3,8 @@ import Img from 'gatsby-image';
 import * as _ from 'lodash';
 import { setLightness } from 'polished';
 import * as React from 'react';
-import styled from '@emotion/styled'
-import { css } from 'emotion'
+import styled from '@emotion/styled';
+import { css } from 'emotion';
 import { Helmet } from 'react-helmet';
 
 import AuthorCard from '../components/AuthorCard';
@@ -120,6 +120,7 @@ const ReadNextFeed = styled.div`
 interface PageTemplateProps {
   pathContext: {
     slug: string;
+    langKey: string;
   };
   data: {
     logo: {
@@ -181,7 +182,7 @@ export interface PageContext {
   timeToRead: number;
   fields: {
     slug: string;
-    lang: string;
+    langKey: string;
   };
   code: {
     body: any;
@@ -217,7 +218,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
     width = post.frontmatter.image.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
     height = String(Number(width) / post.frontmatter.image.childImageSharp.fluid.aspectRatio);
   }
-
+  console.log(props);
   return (
     <IndexLayout className="post-template">
       <Helmet>
@@ -231,7 +232,10 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
         <meta property="og:description" content={post.frontmatter.excerpt} />
         <meta property="og:url" content={config.siteUrl + props.pathContext.slug} />
         {post.frontmatter.image && (
-          <meta property="og:image" content={config.siteUrl + post.frontmatter.image.childImageSharp.fluid.src} />
+          <meta
+            property="og:image"
+            content={config.siteUrl + post.frontmatter.image.childImageSharp.fluid.src}
+          />
         )}
         <meta property="article:published_time" content={post.frontmatter.date} />
         {/* not sure if modified time possible */}
@@ -247,24 +251,34 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
         <meta name="twitter:description" content={post.frontmatter.excerpt} />
         <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
         {post.frontmatter.image && (
-          <meta name="twitter:image" content={config.siteUrl + post.frontmatter.image.childImageSharp.fluid.src} />
+          <meta
+            name="twitter:image"
+            content={config.siteUrl + post.frontmatter.image.childImageSharp.fluid.src}
+          />
         )}
         <meta name="twitter:label1" content="Written by" />
         <meta name="twitter:data1" content={post.frontmatter.author.id} />
         <meta name="twitter:label2" content="Filed under" />
         {post.frontmatter.tags && <meta name="twitter:data2" content={post.frontmatter.tags[0]} />}
-        {config.twitter && <meta name="twitter:site" content={`@${config.twitter.split('https://twitter.com/')[1]}`} />}
-        {config.twitter && <meta
-          name="twitter:creator"
-          content={`@${config.twitter.split('https://twitter.com/')[1]}`}
-        />}
+        {config.twitter && (
+          <meta
+            name="twitter:site"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
+        {config.twitter && (
+          <meta
+            name="twitter:creator"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
         {width && <meta property="og:image:width" content={width} />}
         {height && <meta property="og:image:height" content={height} />}
       </Helmet>
       <Wrapper className={`${PostTemplate}`}>
         <header className={`${SiteHeader} ${outer}`}>
           <div className={`${inner}`}>
-            <SiteNav />
+            <SiteNav {...props.pathContext} />
           </div>
         </header>
         <main id="site-main" className={`site-main ${SiteMain}`}>
@@ -276,15 +290,14 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                   <PostFullMetaDate dateTime={post.frontmatter.date}>
                     {post.frontmatter.userDate}
                   </PostFullMetaDate>
-                  {post.frontmatter.tags &&
-                    post.frontmatter.tags.length > 0 && (
-                      <>
-                        <DateDivider>/</DateDivider>
-                        <Link to={`/tags/${_.kebabCase(post.frontmatter.tags[0])}/`}>
-                          {post.frontmatter.tags[0]}
-                        </Link>
-                      </>
-                    )}
+                  {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
+                    <>
+                      <DateDivider>/</DateDivider>
+                      <Link to={`/tags/${_.kebabCase(post.frontmatter.tags[0])}/`}>
+                        {post.frontmatter.tags[0]}
+                      </Link>
+                    </>
+                  )}
                 </PostFullMeta>
                 <PostFullTitle>{post.frontmatter.title}</PostFullTitle>
               </PostFullHeader>
@@ -315,7 +328,11 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
           <div className={`${inner}`}>
             <ReadNextFeed>
               {props.data.relatedPosts && (
-                <ReadNextCard tags={post.frontmatter.tags} relatedPosts={props.data.relatedPosts} />
+                <ReadNextCard
+                  tags={post.frontmatter.tags}
+                  relatedPosts={props.data.relatedPosts}
+                  langKey={props.pathContext.langKey}
+                />
               )}
 
               {props.pageContext.prev && <PostCard post={props.pageContext.prev} />}
@@ -332,7 +349,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
 export default PageTemplate;
 
 export const query = graphql`
-  query($slug: String, $primaryTag: String) {
+  query($slug: String, $primaryTag: String, $langKey: String) {
     logo: file(relativePath: { eq: "img/ghost-logo.png" }) {
       childImageSharp {
         fixed {
@@ -340,9 +357,7 @@ export const query = graphql`
         }
       }
     }
-    mdx(fields: { slug: { eq: $slug } }) {
-      # html
-      # htmlAst
+    mdx(fields: { slug: { eq: $slug }, langKey: { eq: $langKey } }) {
       excerpt
       timeToRead
       code {
@@ -377,7 +392,10 @@ export const query = graphql`
       }
     }
     relatedPosts: allMdx(
-      filter: { frontmatter: { tags: { in: [$primaryTag] }, draft: { ne: true } } }
+      filter: {
+        frontmatter: { tags: { in: [$primaryTag] }, draft: { ne: true } }
+        fields: { langKey: { eq: $langKey } }
+      }
       limit: 3
     ) {
       totalCount
@@ -391,6 +409,7 @@ export const query = graphql`
           }
           fields {
             slug
+            langKey
           }
         }
       }
