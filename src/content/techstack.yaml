@@ -8,6 +8,11 @@
   website: https://graphql.org
   desc: GraphQL is a query language and execution engine tied to any backend service maintained by Facebook. At Xanthous we use GraphQL extensively to build production grade projects with rich data presentation, which effectively provide smooth collaboration between frontend and backend developers.
   logo: img/graphql.png
+- id: apollo
+  name: Apollo GraphQL
+  website: https://www.apollographql.com/
+  desc: The Apollo GraphQL platform is an implementation of GraphQL that helps you manage data from the cloud to your UI. It’s incrementally adoptable and can be layered over your existing services, including REST APIs and databases. Apollo includes two open-source libraries for the client and server, in addition to developer tooling that provides everything you need to run a graph API in production with confidence.
+  logo: img/apollo-graphql.png
 - id: grpc
   name: gRPC
   website: https://grpc.io
