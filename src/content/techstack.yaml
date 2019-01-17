@@ -13,6 +13,21 @@
   website: https://www.apollographql.com/
   desc: The Apollo GraphQL platform is an implementation of GraphQL that helps you manage data from the cloud to your UI. It’s incrementally adoptable and can be layered over your existing services, including REST APIs and databases. Apollo includes two open-source libraries for the client and server, in addition to developer tooling that provides everything you need to run a graph API in production with confidence.
   logo: img/apollo-graphql.png
+- id: styled components
+  name: Styled Components
+  website: https://www.styled-components.com/
+  desc: Utilising tagged template literals (a recent addition to JavaScript) and the power of CSS, styled-components allows you to write actual CSS code to style your components. It also removes the mapping between components and styles – using components as a low-level styling construct could not be easier!
+  logo: img/styled-components.png
+- id: loopback
+  name: LoopBack
+  website: https://loopback.io/
+  desc: LoopBack is a highly-extensible, open-source Node.js framework that enables you to create dynamic end-to-end REST APIs with little or no coding.
+  logo: img/loopback.png
+- id:
+  name:
+  website:
+  desc:
+  logo:
 - id: grpc
   name: gRPC
   website: https://grpc.io
