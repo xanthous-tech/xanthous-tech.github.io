@@ -20,6 +20,7 @@ import {
 import { PageContext } from './post';
 import Helmet from 'react-helmet';
 import config from '../website-config';
+import _ from 'lodash';
 
 interface TagTemplateProps {
   pageContext: {
@@ -52,7 +53,8 @@ interface TagTemplateProps {
 
 const Tags: React.FunctionComponent<TagTemplateProps> = props => {
   const tag = props.pageContext.tag;
-  const { edges, totalCount } = props.data.allMdx;
+  const edges = _.get(props, 'data.allMdx.edges', []);
+  const totalCount = _.get(props, 'data.allMdx.totalCount', 0);
   const tagData = props.data.allTagYaml.edges.find(
     n => n.node.id.toLowerCase() === tag.toLowerCase(),
   );
