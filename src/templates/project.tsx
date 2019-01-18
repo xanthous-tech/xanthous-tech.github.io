@@ -409,15 +409,11 @@ export const query = graphql`
     }
     relatedPosts: allMdx(
       filter: {
-<<<<<<< HEAD
         frontmatter: {
           layout: { eq: "project" },
           tags: { in: [$primaryTag] },
           draft: { ne: true }
         }
-=======
-        frontmatter: { layout: { eq: "project" }, tags: { in: [$primaryTag] }, draft: { ne: true } }
->>>>>>> add feature: Team members
       }
       limit: 3
     ) {
