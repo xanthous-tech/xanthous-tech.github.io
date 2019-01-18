@@ -3,6 +3,8 @@ import { Link } from 'gatsby';
 import * as _ from 'lodash';
 import styled from '@emotion/styled';
 import { colors } from '../styles/colors';
+import TeammemberCard from './TeammemberCard';
+import XTLabel from './XTLabel';
 
 const StyledSection = styled.section`
   max-width: 1040px;
@@ -16,7 +18,7 @@ const StyledSection = styled.section`
     align-items: flex-start;
     padding: 10px 0;
     .label {
-      font-weight: 600
+      font-weight: 600;
     }
     .content {
       margin-top: 10px;
@@ -24,7 +26,7 @@ const StyledSection = styled.section`
       flex-flow: row wrap;
       flex: 2;
     }
-  } 
+  }
 
   a {
     text-decoration: none;
@@ -52,7 +54,7 @@ const TechItem = styled.div`
       border-bottom: 2px solid ${colors.blue};
     }
   }
-`
+`;
 
 export interface ProjectMetaProps {
   project: {
@@ -66,11 +68,22 @@ export interface ProjectMetaProps {
         };
       };
     }[];
+    teammembers: {
+      id: string;
+      bio: string;
+      avatar: {
+        children: {
+          fixed: {
+            src: string;
+          };
+        }[];
+      };
+    }[];
   };
 }
 
-const ProjectMeta: React.FunctionComponent<ProjectMetaProps> = ({project}) => {
-  console.log(project)
+const ProjectMeta: React.FunctionComponent<ProjectMetaProps> = ({ project }) => {
+  console.log(project);
   return (
     <StyledSection>
       <div className="row">
@@ -80,20 +93,26 @@ const ProjectMeta: React.FunctionComponent<ProjectMetaProps> = ({project}) => {
       <div className="row">
         <span className="label">Tech Stack</span>
         <div className="content">
-          {
-            project.techstack.map(tech => (
-              <Link to={`/tech/${_.kebabCase(tech.id)}/`}>
-                <TechItem>
-                  <img srcSet={tech.logo.childImageSharp.fixed.srcSet} />
-                  <span className="name"> {tech.name} </span>
-                </TechItem>
-              </Link>
-            ))
-          }
+          {project.techstack.map(tech => (
+            <Link to={`/tech/${_.kebabCase(tech.id)}/`}>
+              <TechItem>
+                <img srcSet={tech.logo.childImageSharp.fixed.srcSet} />
+                <span className="name"> {tech.name} </span>
+              </TechItem>
+            </Link>
+          ))}
+        </div>
+      </div>
+      <div className="row">
+        <XTLabel className="label--blue">Project Team</XTLabel>
+        <div className="content">
+          {project.teammembers.map(teammember => (
+            <TeammemberCard teammember={teammember} />
+          ))}
         </div>
       </div>
     </StyledSection>
-  )
-}
+  );
+};
 
 export default ProjectMeta;

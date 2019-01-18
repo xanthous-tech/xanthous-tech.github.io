@@ -3,8 +3,8 @@ import Img from 'gatsby-image';
 import * as _ from 'lodash';
 import { setLightness } from 'polished';
 import * as React from 'react';
-import styled from '@emotion/styled'
-import { css } from 'emotion'
+import styled from '@emotion/styled';
+import { css } from 'emotion';
 import { Helmet } from 'react-helmet';
 
 import AuthorCard from '../components/AuthorCard';
@@ -57,8 +57,6 @@ export const PostFullHeader = styled.header`
   }
 `;
 
-
-
 export const PostFullTitle = styled.h1`
   margin: 0;
   color: ${setLightness('0.05', colors.darkgrey)};
@@ -88,7 +86,6 @@ const PostFullImage = styled.figure`
     height: 350px;
   }
 `;
-
 
 const ReadNextFeed = styled.div`
   display: flex;
@@ -147,6 +144,17 @@ interface PageTemplateProps {
             }[];
           };
         };
+        teammembers: {
+          id: string;
+          bio: string;
+          avatar: {
+            children: {
+              fixed: {
+                src: string;
+              };
+            }[];
+          };
+        }[];
       };
     };
     relatedPosts: {
@@ -192,6 +200,7 @@ export interface PageContext {
     meta: {
       length: string;
       techstack: string[];
+      teammembers: string[];
     };
     author: {
       id: string;
@@ -229,7 +238,10 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
         <meta property="og:description" content={post.frontmatter.excerpt} />
         <meta property="og:url" content={config.siteUrl + props.pathContext.slug} />
         {post.frontmatter.image && (
-          <meta property="og:image" content={config.siteUrl + post.frontmatter.image.childImageSharp.fluid.src} />
+          <meta
+            property="og:image"
+            content={config.siteUrl + post.frontmatter.image.childImageSharp.fluid.src}
+          />
         )}
         <meta property="article:published_time" content={post.frontmatter.date} />
         {/* not sure if modified time possible */}
@@ -245,31 +257,40 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
         <meta name="twitter:description" content={post.frontmatter.excerpt} />
         <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
         {post.frontmatter.image && (
-          <meta name="twitter:image" content={config.siteUrl + post.frontmatter.image.childImageSharp.fluid.src} />
+          <meta
+            name="twitter:image"
+            content={config.siteUrl + post.frontmatter.image.childImageSharp.fluid.src}
+          />
         )}
         <meta name="twitter:label1" content="Written by" />
         {/* <meta name="twitter:data1" content={post.frontmatter.author.id} /> */}
         <meta name="twitter:label2" content="Filed under" />
         {post.frontmatter.tags && <meta name="twitter:data2" content={post.frontmatter.tags[0]} />}
-        {config.twitter && <meta name="twitter:site" content={`@${config.twitter.split('https://twitter.com/')[1]}`} />}
-        {config.twitter && <meta
-          name="twitter:creator"
-          content={`@${config.twitter.split('https://twitter.com/')[1]}`}
-        />}
+        {config.twitter && (
+          <meta
+            name="twitter:site"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
+        {config.twitter && (
+          <meta
+            name="twitter:creator"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
         {width && <meta property="og:image:width" content={width} />}
         {height && <meta property="og:image:height" content={height} />}
       </Helmet>
       <Wrapper className={`${PostTemplate}`}>
         <header className={`${SiteHeader} ${outer}`}>
           <div className={`${inner}`}>
-            <SiteNav {...props.pathContext}/>
+            <SiteNav {...props.pathContext} />
           </div>
         </header>
         <main id="site-main" className={`site-main ${SiteMain}`}>
           <div>
             {/* TODO: no-image css tag? */}
             <article className={`${PostFull} ${!post.frontmatter.image ? NoImage : ''}`}>
-
               {post.frontmatter.image && (
                 <PostFullImage>
                   <Img
@@ -278,7 +299,11 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                   />
                 </PostFullImage>
               )}
+<<<<<<< HEAD
               <ProjectMeta project={post.frontmatter.meta}/>
+=======
+              <ProjectMeta project={post.frontmatter.meta} />
+>>>>>>> add feature: Team members
               <PostMDXContent body={post.code.body} />
 
               {/* The big email subscribe modal content */}
@@ -322,7 +347,7 @@ export const query = graphql`
         }
       }
     }
-    mdx(fields: { slug: { eq: $slug }, langKey: { eq: $langKey} }) {
+    mdx(fields: { slug: { eq: $slug }, langKey: { eq: $langKey } }) {
       excerpt
       timeToRead
       code {
@@ -353,6 +378,19 @@ export const query = graphql`
               }
             }
           }
+          teammembers {
+            id
+            bio
+            avatar {
+              children {
+                ... on ImageSharp {
+                  fixed(quality: 100) {
+                    ...GatsbyImageSharpFixed
+                  }
+                }
+              }
+            }
+          }
         }
         author {
           id
@@ -371,11 +409,15 @@ export const query = graphql`
     }
     relatedPosts: allMdx(
       filter: {
+<<<<<<< HEAD
         frontmatter: {
           layout: { eq: "project" },
           tags: { in: [$primaryTag] },
           draft: { ne: true }
         }
+=======
+        frontmatter: { layout: { eq: "project" }, tags: { in: [$primaryTag] }, draft: { ne: true } }
+>>>>>>> add feature: Team members
       }
       limit: 3
     ) {
