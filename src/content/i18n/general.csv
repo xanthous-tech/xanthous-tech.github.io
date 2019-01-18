@@ -1,0 +1,24 @@
+id,en,zh
+nav.home,Home,首页
+nav.about,About,关于
+nav.blog,Blog,博客
+nav.projects,Projects,项目
+nav.contact,Contact,联系
+splash.title1,We build software,我们协助企业
+splash.title2,to help business grow.,共同成长
+splash.intro-text,"We're eager to help data driven companies achieve their business goals. All that is possible thanks to our distributed team of highly motivated individuals.",我们渴望通过软件帮助企业达成商业上的目标
+splash.lets-chat,"Let's Chat!",聊一聊
+intro.whoWeAre.title,Who We Are,我们是谁
+intro.whoWeAre.content,"We are a team of freelancers who love to help startups grow. We are used to work in startup environments and understand what it takes to build a product from 0 to 1, and from 1 to 100.We are a team of freelancers who love to help startups grow. We are used to work in startup environments and understand what it takes to build a product from 0 to 1, and from 1 to 100.",我们是一个帮初创企业成长的团队，我们熟悉初创公司的环境和节奏，懂得如何从0到1地打造产品，并且能够把产品从1推向100。
+intro.whatWeDo.title,What We Do,我们做什么
+intro.whatWeDo.content,"We have helped startups and teams from all over the world to implement the idea from scratch, optimize and improve their product performance and development workflow, and take their businesses to the next stage ASAP.",我们给海内外的初创团队和企业制作产品原型，优化产品性能和开发流程，以最快的速度把业务推进到一个新的高度。
+intro.howWeDoIt.title,How We Do It,我们怎么做
+intro.howWeDoIt.content,"We use cutting-edge technology (Big Data, IoT, Machine Learning) to boost the technical depth of the ideas and make them come true.",我们用最前沿的技术（大数据、物联网、人工智能），通过技术手段去实现企业的初创理念，达到商业上的成功
+projects.title,Project Highlights,项目案例
+projects.subtitle,Some of recent projects we have completed,近期完成项目
+faq.start.question,"How do we start a project?",我们如何开始一个项目？
+faq.start.answer,"If you would like us to help you solve your problems, please feel free to reach out, and we can have as many conversations/conference meetings as needed for both of us to find out what the actual issues are. Then we will take our time to evaluate together on the possible solutions we can try to solve. Once we land on a plan with what exactly we are building, how many of us it takes, how long it takes to finish, and finally get all the logistics cleared out, we start our development phase.",我们前期会进行充分的沟通，了解客户的想法，并梳理成可以实现的方案和计划，根据计划我们会调用相关的人员进入项目，估算工时，等双方认可方案和人员安排时，项目进入开发阶段。
+faq.tools.question,"How do we collaborate during the development phase?",在开发阶段我们如何进行合作？
+faq.tools.answer,"We use modern tools to ensure transparency (tasks and progress via Trello, IM via Slack/Wechat, source code via GitHub/GitLab, but most importantly, a *working* demo at all times, so you can constantly visualize the progress), and fluidity (being able to visualize progress meaning that we can cater to some amount of change on a weekly basis) during the entire development process. We do whatever it takes to keep this remote collaboration smooth, and make it to the timeline we want. Time is essence in the startup world.",我们使用自研的项目管理软件，并结合微信，每周制定工作计划，同步沟通项目进度，并且会有可运行的demo，确保项目进行有条不紊，并按时交付。
+faq.button.email-support,Email Support,Email
+faq.button.live-support,Live Support,实时聊天

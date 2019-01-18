@@ -409,7 +409,6 @@ const components = {
 
 // tslint:disable-next-line:function-name
 function PostPageTemplate({ body, scope }) {
-  console.log(body)
   return (
     <MDXProvider components={components}>
       <PostFullContent className="post-full-content">

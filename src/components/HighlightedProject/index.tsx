@@ -3,6 +3,8 @@ import Img from 'gatsby-image';
 import styled from "@emotion/styled";
 import Slider from "react-slick";
 import { StaticQuery, graphql } from "gatsby";
+import t from '../../content/i18n';
+import { PageContext } from '../../templates/project';
 
 const HighlightedProjectContainer = styled.div`
 align-content: center;
@@ -76,30 +78,45 @@ export interface TestimonialProps {
 }
 
 export interface HighlightedProjectItemProps {
-  [key: string]: any,
+  title: string;
+  image: {
+    childImageSharp: {
+      fluid: any;
+    };
+  }
 }
 
-const TestimonialCard: React.FunctionComponent<HighlightedProjectItemProps> = (props: HighlightedProjectItemProps) => (
+const ProjectCard: React.FunctionComponent<HighlightedProjectItemProps> = (props: HighlightedProjectItemProps) => (
   <div className="slider__item_box">
     <div className="slider__item">
       <Img className="slider__image" fluid={props.image.childImageSharp.fluid} />
     </div>
     <div>
-      This is project name
+      {props.title}
     </div>
   </div>
 );
 
-const renderHighlightedProject = (data: any): React.ReactNode => {
-  console.log(data);
-  const highlightedProjects: any[] = data.allMdx.edges.map((x: any): any => x.node);
+export interface HighlightedProjectProps {
+  projects: {
+    edges: {
+      node: PageContext;
+    }[];
+  };
+}
+
+
+const HighlightedProject: React.FunctionComponent<HighlightedProjectProps>= ({projects}) => {
+  const highlightedProjects: PageContext[] = projects.edges.map((x) => x.node);
   return (
     <HighlightedProjectContainer>
       <div className="slider-01">
         <div className="container container--small">
           <div className="slider-01__title_box">
-            <h1 className="heading">Project Highlights</h1>
-            {/* <p>Combine ground beef, cauliflower and mackerel. Enamel with chopped marmalade and serve mashed with okra. Enjoy!</p> */}
+            <h1 className="heading">{t["general.projects.title"]()}</h1>
+            <p>
+              {t["general.projects.subtitle"]()}
+            </p>
           </div>
         </div>
         <div className="container slider-01__container">
@@ -109,13 +126,13 @@ const renderHighlightedProject = (data: any): React.ReactNode => {
               dots={true}
               infinite={true}
               arrows={true}
-              // autoplay={true}
+              autoplay={true}
               autoplaySpeed={5000}
             >
               {highlightedProjects.map(
-                highlightedProject => <TestimonialCard key={highlightedProject.id} image={highlightedProject.frontmatter.image} />
+                highlightedProject => <ProjectCard key={highlightedProject.id} {...highlightedProject.frontmatter}/>
               )}
-              <TestimonialCard key={highlightedProjects[0].id} image={highlightedProjects[0].frontmatter.image} />
+              <ProjectCard key={highlightedProjects[0].id} {...highlightedProjects[0].frontmatter} />
             </Slider>
           </div>
         </div>
@@ -123,46 +140,5 @@ const renderHighlightedProject = (data: any): React.ReactNode => {
     </HighlightedProjectContainer>
   );
 };
-
-class HighlightedProject extends React.Component {
-  constructor(props: TestimonialProps) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    return (
-      <StaticQuery
-        query={graphql`
-          query getHighlightedProjects {
-            allMdx(
-              filter: {
-                frontmatter: {
-                  highlighted: { eq: true }
-                }
-              }
-            ) {
-              edges {
-                node {
-                  id
-                  frontmatter {
-                    image {
-                      childImageSharp {
-                        fluid(maxWidth: 800) {
-                          ...GatsbyImageSharpFluid
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        `}
-        render={renderHighlightedProject}
-      />
-    );
-  }
-}
 
 export default HighlightedProject;

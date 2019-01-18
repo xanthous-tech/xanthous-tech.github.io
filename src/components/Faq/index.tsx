@@ -3,6 +3,8 @@ import { StaticQuery, graphql } from "gatsby";
 import styled from "@emotion/styled";
 import FaqItem from './FaqItem';
 
+import t from '../../content/i18n';
+
 const StyledDiv = styled.div`
   .faq-02 {
     padding: 70px 0 40px;
@@ -120,7 +122,25 @@ const StyledDiv = styled.div`
   }
 `;
 
-const renderFaq = (data: any): React.ReactNode => {
+export interface FAQProps {
+  title_icon: {
+    childImageSharp: {
+      fluid: any;
+    };
+  }
+  allFaqYaml: {
+    edges: {
+      node: {
+        question: string;
+        answer: string;
+      };
+    }[];
+  }
+
+}
+
+
+const renderFaq: React.FunctionComponent<FAQProps> = (data) => {
   const icon = data.title_icon.childImageSharp.fluid.src;
   const faqLeft = data.allFaqYaml.edges.slice(0, data.allFaqYaml.edges.length / 2);
   const faqRight = data.allFaqYaml.edges.slice(data.allFaqYaml.edges.length / 2);
@@ -139,8 +159,8 @@ const renderFaq = (data: any): React.ReactNode => {
             {faqLeft.map((item: any) => (
               <li className="faq-02__item" key={item.node.id}>
                 <FaqItem
-                  title={item.node.question}
-                  content={item.node.answer}
+                  title={t[item.node.question]()}
+                  content={t[item.node.answer]()}
                 />
               </li>
             ))}
@@ -149,8 +169,8 @@ const renderFaq = (data: any): React.ReactNode => {
             {faqRight.map((item: any) => (
               <li className="faq-02__item" key={item.node.id}>
                 <FaqItem
-                  title={item.node.question}
-                  content={item.node.answer}
+                  title={t[item.node.question]()}
+                  content={t[item.node.answer]()}
                 />
               </li>
             ))}
@@ -160,12 +180,12 @@ const renderFaq = (data: any): React.ReactNode => {
           <ul className="faq-02__button_box">
             <li className="faq-02__button">
               <a className="button button--midnight-outline " href="#" target="_blank" rel="noreferrer">
-                <span>Email Support</span>
+                <span>{t["general.faq.button.email-support"]()}</span>
               </a>
             </li>
             <li className="faq-02__button">
               <a className="button button--midnight-outline " href="#" target="_blank" rel="noreferrer">
-                <span>Live Support</span>
+                <span>{t["general.faq.button.live-support"]()}</span>
               </a>
             </li>
           </ul>

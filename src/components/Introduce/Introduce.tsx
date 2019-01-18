@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { StaticQuery, graphql } from "gatsby";
+import t from '../../content/i18n';
 
 const StyledDiv = styled.div`
   /* background-color: #f8f0f0; */
@@ -74,11 +75,11 @@ const renderAsk = (data: any): React.ReactNode => {
             </div> */}
             <div className="intro-info">
               <div className="title">
-                {d.node.title}
+                {t[d.node.title]()}
               </div>
               <div className="content">
                 <p>
-                  {d.node.content}
+                  {t[d.node.content]()}
                 </p>
               </div>
             </div>

@@ -20,13 +20,13 @@ import {
 import { PageContext } from './post';
 import Helmet from 'react-helmet';
 import config from '../website-config';
+import _ from 'lodash';
 
 interface TagTemplateProps {
-  pathContext: {
-    slug: string;
-  };
   pageContext: {
     tag: string;
+    slug: string;
+    langKey: string;
   };
   data: {
     allTagYaml: {
@@ -53,19 +53,23 @@ interface TagTemplateProps {
 
 const Tags: React.FunctionComponent<TagTemplateProps> = props => {
   const tag = props.pageContext.tag;
-  const { edges, totalCount } = props.data.allMdx;
+  const edges = _.get(props, 'data.allMdx.edges', []);
+  const totalCount = _.get(props, 'data.allMdx.totalCount', 0);
   const tagData = props.data.allTagYaml.edges.find(
     n => n.node.id.toLowerCase() === tag.toLowerCase(),
   );
 
   return (
-    <IndexLayout>
+    <IndexLayout langKey={props.pageContext.langKey}>
       <Helmet>
         <html lang={config.lang} />
         <title>
           {tag} - {config.title}
         </title>
-        <meta name="description" content={tagData && tagData.node ? tagData.node.description : ''} />
+        <meta
+          name="description"
+          content={tagData && tagData.node ? tagData.node.description : ''}
+        />
         <meta property="og:site_name" content={config.title} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={`${tag} - ${config.title}`} />
@@ -74,7 +78,12 @@ const Tags: React.FunctionComponent<TagTemplateProps> = props => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${tag} - ${config.title}`} />
         <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
-        {config.twitter && <meta name="twitter:site" content={`@${config.twitter.split('https://twitter.com/')[1]}`} />}
+        {config.twitter && (
+          <meta
+            name="twitter:site"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
       </Helmet>
       <Wrapper>
         <header
@@ -87,7 +96,7 @@ const Tags: React.FunctionComponent<TagTemplateProps> = props => {
           }}
         >
           <div className={`${inner}`}>
-            <SiteNav isHome={false} />
+            <SiteNav {...props.pageContext} isHome={false} />
             <SiteHeaderContent>
               <SiteTitle>{tag}</SiteTitle>
               <SiteDescription>
@@ -122,7 +131,7 @@ const Tags: React.FunctionComponent<TagTemplateProps> = props => {
 export default Tags;
 
 export const pageQuery = graphql`
-  query($tag: String) {
+  query($tag: String, $langKey: String) {
     allTagYaml {
       edges {
         node {
@@ -141,7 +150,7 @@ export const pageQuery = graphql`
     allMdx(
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { tags: { in: [$tag] } } }
+      filter: { frontmatter: { tags: { in: [$tag] } }, fields: { langKey: { eq: $langKey } } }
     ) {
       totalCount
       edges {
@@ -176,6 +185,7 @@ export const pageQuery = graphql`
           fields {
             layout
             slug
+            langKey
           }
         }
       }

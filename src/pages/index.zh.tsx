@@ -16,13 +16,9 @@ import {
   outer,
   PostFeed,
   PostFeedRaise,
-  SiteDescription,
   SiteHeader,
-  SiteHeaderContent,
   SiteMain,
-  SiteTitle,
 } from '../styles/shared';
-import { PageContext } from '../templates/post';
 import Testimonial from '../components/Testimonial';
 
 // tslint:disable-next-line:no-import-side-effect
@@ -31,6 +27,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import HighlightedProject from '../components/HighlightedProject';
 import SiteNav from '../components/header/SiteNav';
+import { IndexProps } from '.';
 
 const HomePosts = css`
   @media (min-width: 795px) {
@@ -74,56 +71,12 @@ const HomePosts = css`
   }
 `;
 
-export interface IndexProps {
-  pageContext: {
-    langKey: string;
-    slug: string;
-  }
-  data: {
-    logo: {
-      childImageSharp: {
-        fixed: any;
-      };
-    };
-    header: {
-      childImageSharp: {
-        fluid: any;
-      };
-    };
-    bg_intro: {
-      childImageSharp: {
-        fluid: any;
-      };
-    };
-    title_icon: {
-      childImageSharp: {
-        fluid: any;
-      };
-    };
-    help: {
-      childImageSharp: {
-        fluid: any;
-      };
-    };
-    projects: {
-      edges: {
-        node: PageContext;
-      }[];
-    };
-    posts: {
-      edges: {
-        node: PageContext;
-      }[];
-    };
-  };
-}
-
 const IndexPage: React.FunctionComponent<IndexProps> = props => {
   const width = props.data.header.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
   const height = String(Number(width) / props.data.header.childImageSharp.fluid.aspectRatio);
   console.log(props)
   return (
-    <IndexLayout langKey="en" className={`${HomePosts}`}>
+    <IndexLayout langKey="zh" className={`${HomePosts}`}>
       <Helmet>
         <html lang={config.lang} />
         <title>{config.title}</title>
@@ -152,9 +105,8 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <header
           className={`${SiteHeader} ${outer}`}
         >
-          <SiteNav {...props.pageContext} />
+          <SiteNav {...props.pageContext} slug="/"/>
         </header>
- 
         <Splash bg={props.data.bg_intro.childImageSharp.fluid.src} />
         <Introduce />
         <div style={{backgroundColor: '#ffffff'}}>
@@ -224,7 +176,7 @@ export const pageQuery = graphql`
           layout: {eq: "post"}
         }
         fields: {
-          langKey: {eq: "en"}
+          langKey: {eq: "zh"}
         }
       }
     ) {
@@ -244,7 +196,7 @@ export const pageQuery = graphql`
             }
             author {
               id
-              bio
+              # bio
               avatar {
                 children {
                   ... on ImageSharp {
@@ -274,7 +226,7 @@ export const pageQuery = graphql`
           highlighted: { eq: true }
         }
         fields: {
-          langKey: {eq: "en"}
+          langKey: {eq: "zh"}
         }
       }
     ) {
@@ -294,7 +246,7 @@ export const pageQuery = graphql`
             }
             author {
               id
-              bio
+              # bio
               avatar {
                 children {
                   ... on ImageSharp {

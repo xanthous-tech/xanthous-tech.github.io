@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 import * as React from 'react';
-import { css } from 'emotion'
+import { css } from 'emotion';
 import Helmet from 'react-helmet';
 
 import Footer from '../components/Footer';
@@ -67,6 +67,10 @@ const HomePosts = css`
 `;
 
 export interface IndexProps {
+  pageContext: {
+    langKey: string;
+    slug: string;
+  };
   data: {
     logo: {
       childImageSharp: {
@@ -89,6 +93,7 @@ export interface IndexProps {
 const IndexPage: React.FunctionComponent<IndexProps> = props => {
   const width = props.data.header.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
   const height = String(Number(width) / props.data.header.childImageSharp.fluid.aspectRatio);
+  console.log(props);
   return (
     <IndexLayout className={`${HomePosts}`}>
       <Helmet>
@@ -100,7 +105,10 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <meta property="og:title" content={config.title} />
         <meta property="og:description" content={config.description} />
         <meta property="og:url" content={config.siteUrl} />
-        <meta property="og:image" content={config.siteUrl + props.data.header.childImageSharp.fluid.src} />
+        <meta
+          property="og:image"
+          content={config.siteUrl + props.data.header.childImageSharp.fluid.src}
+        />
         {config.facebook && <meta property="article:publisher" content={config.facebook} />}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={config.title} />
@@ -110,7 +118,12 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
           name="twitter:image"
           content={config.siteUrl + props.data.header.childImageSharp.fluid.src}
         />
-        {config.twitter && <meta name="twitter:site" content={`@${config.twitter.split('https://twitter.com/')[1]}`} />}
+        {config.twitter && (
+          <meta
+            name="twitter:site"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
         <meta property="og:image:width" content={width} />
         <meta property="og:image:height" content={height} />
       </Helmet>
@@ -124,11 +137,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
           <div className={`${inner}`}>
             <SiteHeaderContent>
               <SiteTitle>
-                <img
-                  style={{ maxHeight: '200px' }}
-                  src={xanthousLogo}
-                  alt={config.title}
-                />
+                <img style={{ maxHeight: '200px' }} src={xanthousLogo} alt={config.title} />
                 {props.data.logo ? (
                   <img
                     style={{ maxHeight: '45px' }}
@@ -141,7 +150,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
               </SiteTitle>
               <SiteDescription>{config.description}</SiteDescription>
             </SiteHeaderContent>
-            <SiteNav isHome={true} />
+            <SiteNav {...props.pageContext} isHome />
           </div>
         </header>
         <main id="site-main" className={`${SiteMain} ${outer}`}>
@@ -183,7 +192,11 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMdx(limit: 1000, sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(
+      limit: 1000
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { fields: { langKey: { eq: "en" } }, frontmatter: { layout: { eq: "post" } } }
+    ) {
       edges {
         node {
           timeToRead
@@ -216,6 +229,7 @@ export const pageQuery = graphql`
           fields {
             layout
             slug
+            langKey
           }
         }
       }

@@ -1,12 +1,14 @@
 import { Link } from 'gatsby';
 import { setLightness } from 'polished';
 import * as React from 'react';
-import styled from '@emotion/styled'
-import { css } from 'emotion'
+import styled from '@emotion/styled';
+import { css } from 'emotion';
 
 import { colors } from '../styles/colors';
 import { outer, inner } from '../styles/shared';
 import config from '../website-config';
+
+import t from '../content/i18n';
 
 const SiteFooter = css`
   position: relative;
@@ -84,10 +86,16 @@ const Footer: React.FunctionComponent = () => {
               Twitter
             </a>
           )}
-
-          <a href="https://ghost.org" target="_blank" rel="noopener noreferrer">
-            Ghost
-          </a>
+          {config.medium && (
+            <a href={config.medium} title="Medium" target="_blank" rel="noopener noreferrer">
+              Medium
+            </a>
+          )}
+          {config.github && (
+            <a href={config.github} title="Medium" target="_blank" rel="noopener noreferrer">
+              Github
+            </a>
+          )}
 
           <Link to="/rss.xml">RSS</Link>
         </SiteFooterNav>

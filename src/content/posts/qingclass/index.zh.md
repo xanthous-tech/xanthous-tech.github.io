@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 公众号管理平台开发记录
-image: ../img/testimg-cover.jpg
-author: Alex Zhao
+lang: zh
+author: alexzhao
 date: Jan 11, 2019 at 7:28:43 PM
 timetoread: 5
 draft: false

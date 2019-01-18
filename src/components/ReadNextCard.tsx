@@ -1,6 +1,6 @@
 import { Link, StaticQuery, graphql } from 'gatsby';
 import * as React from 'react';
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 import * as _ from 'lodash';
 
 import { colors } from '../styles/colors';
@@ -157,10 +157,12 @@ export interface ReadNextProps {
         };
         fields: {
           slug: string;
+          langKey: string;
         };
       };
     }[];
   };
+  langKey: string;
 }
 
 export interface ReadNextQuery {
@@ -195,7 +197,13 @@ const ReadNextCard: React.FunctionComponent<ReadNextProps> = props => {
               &mdash; {config.title} &mdash;
             </ReadNextCardHeaderSitetitle>
             <ReadNextCardHeaderTitle>
-              <Link to={`/tags/${_.kebabCase(props.tags[0])}/`}>{props.tags[0]}</Link>
+              <Link
+                to={`${props.langKey === 'en' ? '' : props.langKey}/tags/${_.kebabCase(
+                  props.tags[0],
+                )}/`}
+              >
+                {props.tags[0]}
+              </Link>
             </ReadNextCardHeaderTitle>
           </ReadNextCardHeader>
           <ReadNextDivider>
@@ -206,14 +214,24 @@ const ReadNextCard: React.FunctionComponent<ReadNextProps> = props => {
               {props.relatedPosts.edges.map(n => {
                 return (
                   <li key={n.node.frontmatter.title}>
-                    <Link to={n.node.fields.slug}>{n.node.frontmatter.title}</Link>
+                    <Link
+                      to={`${n.node.fields.langKey === 'en' ? '' : n.node.fields.langKey}/${
+                        n.node.fields.slug
+                      }`}
+                    >
+                      {n.node.frontmatter.title}
+                    </Link>
                   </li>
                 );
               })}
             </ul>
           </ReadNextCardContent>
           <ReadNextCardFooter>
-            <Link to={`/tags/${_.kebabCase(props.tags[0])}/`}>
+            <Link
+              to={`${props.langKey === 'en' ? '' : props.langKey}/tags/${_.kebabCase(
+                props.tags[0],
+              )}/`}
+            >
               {props.relatedPosts.totalCount > 1 &&
                 `See all ${props.relatedPosts.totalCount} posts`}
               {props.relatedPosts.totalCount === 1 && `1 post`}

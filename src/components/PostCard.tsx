@@ -3,8 +3,8 @@ import Img from 'gatsby-image';
 import * as _ from 'lodash';
 import { lighten } from 'polished';
 import * as React from 'react';
-import styled from '@emotion/styled'
-import { css } from 'emotion'
+import styled from '@emotion/styled';
+import { css } from 'emotion';
 
 import { colors } from '../styles/colors';
 import { PageContext } from '../templates/post';
@@ -200,21 +200,26 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
   return (
     <article className={`post-card ${PostCardStyles} ${!post.frontmatter.image ? 'no-image' : ''}`}>
       {post.frontmatter.image && (
-        <Link className={`${PostCardImageLink} post-card-image-link`} to={post.fields.slug}>
+        <Link
+          className={`${PostCardImageLink} post-card-image-link`}
+          to={`/${post.fields.langKey === 'en' ? '' : post.fields.langKey}${post.fields.slug}`}
+        >
           <PostCardImage className="post-card-image">
-            {post.frontmatter.image &&
-              post.frontmatter.image.childImageSharp.fluid && (
-                <Img
-                  alt={`${post.frontmatter.title} cover image`}
-                  style={{ height: '100%' }}
-                  fluid={post.frontmatter.image.childImageSharp.fluid}
-                />
-              )}
+            {post.frontmatter.image && post.frontmatter.image.childImageSharp.fluid && (
+              <Img
+                alt={`${post.frontmatter.title} cover image`}
+                style={{ height: '100%' }}
+                fluid={post.frontmatter.image.childImageSharp.fluid}
+              />
+            )}
           </PostCardImage>
         </Link>
       )}
       <PostCardContent className="post-card-content">
-        <Link className={`${PostCardContentLink} post-card-content-link`} to={post.fields.slug}>
+        <Link
+          className={`${PostCardContentLink} post-card-content-link`}
+          to={`/${post.fields.langKey === 'en' ? '' : post.fields.langKey}${post.fields.slug}`}
+        >
           <header className="post-card-header">
             {post.frontmatter.tags && <PostCardTags>{post.frontmatter.tags[0]}</PostCardTags>}
             <PostCardTitle>{post.frontmatter.title}</PostCardTitle>
