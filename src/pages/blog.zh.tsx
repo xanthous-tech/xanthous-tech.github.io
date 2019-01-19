@@ -97,9 +97,9 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
     <IndexLayout className={`${HomePosts}`} {...props.pageContext}>
       <Helmet>
         <html lang={config.lang} />
-        <title>{config.title}</title>
+        <title>{`博客 - ${config.title}`}</title>
         <meta name="description" content={config.description} />
-        <meta property="og:site_name" content={config.title} />
+        <meta property="og:site_name" content={`博客 - ${config.title}`} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={config.title} />
         <meta property="og:description" content={config.description} />
@@ -110,7 +110,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         />
         {config.facebook && <meta property="article:publisher" content={config.facebook} />}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={config.title} />
+        <meta name="twitter:title" content={`博客 - ${config.title}`} />
         <meta name="twitter:description" content={config.description} />
         <meta name="twitter:url" content={config.siteUrl} />
         <meta
