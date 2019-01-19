@@ -224,6 +224,19 @@ export const pageQuery = graphql`
                 }
               }
             }
+            meta {
+              techstack {
+                id
+                name
+                logo {
+                  childImageSharp {
+                    fixed(quality: 100) {
+                      ...GatsbyImageSharpFixed
+                    }
+                  }
+                }
+              }
+            }
           }
           excerpt
           fields {

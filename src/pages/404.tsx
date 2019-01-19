@@ -1,7 +1,7 @@
 import { graphql, Link } from 'gatsby';
 import * as React from 'react';
-import styled from '@emotion/styled'
-import { css } from 'emotion'
+import styled from '@emotion/styled';
+import { css } from 'emotion';
 
 import SiteNavLogo from '../components/header/SiteNavLogo';
 import PostCard from '../components/PostCard';
@@ -123,6 +123,19 @@ export const pageQuery = graphql`
                   ... on ImageSharp {
                     fixed(quality: 100) {
                       src
+                    }
+                  }
+                }
+              }
+            }
+            meta {
+              techstack {
+                id
+                name
+                logo {
+                  childImageSharp {
+                    fixed(quality: 100) {
+                      ...GatsbyImageSharpFixed
                     }
                   }
                 }

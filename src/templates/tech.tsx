@@ -237,6 +237,13 @@ export const pageQuery = graphql`
               techstack {
                 id
                 name
+                logo {
+                  childImageSharp {
+                    fixed(quality: 100) {
+                      ...GatsbyImageSharpFixed
+                    }
+                  }
+                }
               }
             }
             author {

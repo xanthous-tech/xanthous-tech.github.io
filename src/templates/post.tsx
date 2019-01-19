@@ -400,6 +400,19 @@ export const query = graphql`
             }
           }
         }
+        meta {
+          techstack {
+            id
+            name
+            logo {
+              childImageSharp {
+                fixed(quality: 100) {
+                  ...GatsbyImageSharpFixed
+                }
+              }
+            }
+          }
+        }
       }
     }
     relatedPosts: allMdx(
