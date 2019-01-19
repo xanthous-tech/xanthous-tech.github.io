@@ -62,17 +62,6 @@ const PostCardContentLink = css`
   }
 `;
 
-const PostCardTags = styled.span`
-  display: block;
-  margin-bottom: 4px;
-  color: ${colors.midgrey};
-  font-size: 1.2rem;
-  line-height: 1.15em;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-`;
-
 const PostCardTitle = styled.h2`
   margin-top: 0;
 `;
@@ -88,7 +77,7 @@ const PostCardMeta = styled.footer`
   padding: 0 25px 25px;
 `;
 
-const AuthorList = styled.ul`
+const TechList = styled.ul`
   display: flex;
   flex-wrap: wrap-reverse;
   margin: 0;
@@ -96,7 +85,7 @@ const AuthorList = styled.ul`
   list-style: none;
 `;
 
-const AuthorListItem = styled.li`
+const TechListItem = styled.li`
   position: relative;
   flex-shrink: 0;
   margin: 0;
@@ -132,13 +121,23 @@ const AuthorListItem = styled.li`
   :nth-child(10) {
     z-index: 1;
   }
-  :hover .author-name-tooltip {
+  :hover .tech-name-tooltip {
     opacity: 1;
     transform: translateY(0px);
   }
 `;
 
-const AuthorNameTooltip = styled.div`
+const StaticAvatar = css`
+  display: block;
+  overflow: hidden;
+  margin: 0 0px;
+  width: 34px;
+  height: 34px;
+  border: #fff 2px solid;
+  border-radius: 100%;
+`;
+
+const TechNameTooltip = styled.div`
   position: absolute;
   bottom: 105%;
   z-index: 999;
@@ -161,35 +160,14 @@ const AuthorNameTooltip = styled.div`
   }
 `;
 
-const StaticAvatar = css`
-  display: block;
-  overflow: hidden;
-  margin: 0 -5px;
-  width: 34px;
-  height: 34px;
-  border: #fff 2px solid;
-  border-radius: 100%;
-`;
-
-const AuthorProfileImage = styled.img`
+const TechImage = styled.img`
   display: block;
   width: 100%;
   height: 100%;
   /* background: color(var(--lightgrey) l(+10%)); */
-  background: ${lighten('0.1', colors.lightgrey)}
+  background: ${lighten('0.1', colors.lightgrey)};
   border-radius: 100%;
   object-fit: cover;
-`;
-
-const ReadingTime = styled.span`
-  flex-shrink: 0;
-  margin-left: 20px;
-  color: ${colors.midgrey};
-  font-size: 1.2rem;
-  line-height: 33px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
 `;
 
 export interface PostCardProps {
@@ -197,6 +175,8 @@ export interface PostCardProps {
 }
 
 const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
+  const { meta } = post.frontmatter;
+  console.log(meta);
   return (
     <article className={`post-card ${PostCardStyles} ${!post.frontmatter.image ? 'no-image' : ''}`}>
       {post.frontmatter.image && (
@@ -221,7 +201,6 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
           to={`/${post.fields.langKey === 'en' ? '' : post.fields.langKey}${post.fields.slug}`}
         >
           <header className="post-card-header">
-            {post.frontmatter.tags && <PostCardTags>{post.frontmatter.tags[0]}</PostCardTags>}
             <PostCardTitle>{post.frontmatter.title}</PostCardTitle>
           </header>
           <PostCardExcerpt>
@@ -229,24 +208,32 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
           </PostCardExcerpt>
         </Link>
         <PostCardMeta className="post-card-meta">
-          <AuthorList>
-            <AuthorListItem>
-              <AuthorNameTooltip className="author-name-tooltip">
-                {post.frontmatter.author.id}
-              </AuthorNameTooltip>
-              <Link
-                className={`${StaticAvatar}`}
-                to={`/author/${_.kebabCase(post.frontmatter.author.id)}/`}
-              >
-                <img
-                  className={`${AuthorProfileImage}`}
-                  src={post.frontmatter.author.avatar.children[0].fixed.src}
-                  alt={post.frontmatter.author.id}
-                />
-              </Link>
-            </AuthorListItem>
-          </AuthorList>
-          <ReadingTime>{post.timeToRead} min read</ReadingTime>
+          {meta && meta.techstack && (
+            <div className="tech-stack">
+              <h6>Tech Stack</h6>
+              <TechList>
+                {meta.techstack.map((tech, idx) => {
+                  if (idx < 3) {
+                    return (
+                      <TechListItem>
+                        <TechNameTooltip className="tech-name-tooltip">{tech.name}</TechNameTooltip>
+                        <Link className={`${StaticAvatar}`} to={`/tech/${_.kebabCase(tech.id)}/`}>
+                          <img
+                            className={`${TechImage}`}
+                            srcSet={tech.logo.childImageSharp.fixed.srcSet}
+                            alt={tech.id}
+                          />
+                        </Link>
+                      </TechListItem>
+                    );
+                  }
+                  if (idx === 3) {
+                    return <p>+</p>;
+                  }
+                })}
+              </TechList>
+            </div>
+          )}
         </PostCardMeta>
       </PostCardContent>
     </article>

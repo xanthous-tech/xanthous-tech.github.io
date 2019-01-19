@@ -207,6 +207,17 @@ export interface PageContext {
         }[];
       };
     };
+    meta: {
+      techstack: {
+        id: string;
+        name: string;
+        logo: {
+          childImageSharp: {
+            fixed: any;
+          };
+        };
+      }[];
+    };
   };
 }
 

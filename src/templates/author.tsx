@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby';
 import React from 'react';
-import styled from '@emotion/styled'
-import { css } from 'emotion'
+import styled from '@emotion/styled';
+import { css } from 'emotion';
 
 import Footer from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
@@ -133,10 +133,9 @@ interface AuthorTemplateProps {
 const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
   const author = props.data.authorYaml;
   const { edges } = props.data.allMdx;
-  const authorPosts = edges.filter(({node}) => {
-    return node.frontmatter.author.id === author.id
+  const authorPosts = edges.filter(({ node }) => {
+    return node.frontmatter.author.id === author.id;
   });
-
 
   return (
     <IndexLayout langKey={props.pathContext.lang}>
@@ -155,12 +154,18 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={`${author.id} - ${config.title}`} />
         <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
-        {config.twitter && <meta name="twitter:site" content={`@${config.twitter.split('https://twitter.com/')[1]}`} />}
-        {config.twitter &&
-        <meta
-          name="twitter:creator"
-          content={`@${config.twitter.split('https://twitter.com/')[1]}`}
-        />}
+        {config.twitter && (
+          <meta
+            name="twitter:site"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
+        {config.twitter && (
+          <meta
+            name="twitter:creator"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
       </Helmet>
       <Wrapper>
         <header
@@ -293,10 +298,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMdx(
-      limit: 2000,
-      sort: { fields: [frontmatter___date], order: DESC },
-    ) {
+    allMdx(limit: 2000, sort: { fields: [frontmatter___date], order: DESC }) {
       totalCount
       edges {
         node {
@@ -322,6 +324,19 @@ export const pageQuery = graphql`
                   ... on ImageSharp {
                     fixed(quality: 100) {
                       src
+                    }
+                  }
+                }
+              }
+            }
+            meta {
+              techstack {
+                id
+                name
+                logo {
+                  childImageSharp {
+                    fixed(quality: 100) {
+                      ...GatsbyImageSharpFixed
                     }
                   }
                 }
