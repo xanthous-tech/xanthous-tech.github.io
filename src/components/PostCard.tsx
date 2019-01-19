@@ -232,7 +232,7 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
           <AuthorList>
             <AuthorListItem>
               <AuthorNameTooltip className="author-name-tooltip">
-                {post.frontmatter.author.id}
+                {post.frontmatter.author.name}
               </AuthorNameTooltip>
               <Link
                 className={`${StaticAvatar}`}
@@ -241,7 +241,7 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
                 <img
                   className={`${AuthorProfileImage}`}
                   src={post.frontmatter.author.avatar.children[0].fixed.src}
-                  alt={post.frontmatter.author.id}
+                  alt={post.frontmatter.author.name}
                 />
               </Link>
             </AuthorListItem>

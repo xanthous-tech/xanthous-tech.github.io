@@ -198,6 +198,7 @@ export interface PageContext {
     tags: string[];
     author: {
       id: string;
+      name: string;
       bio: string;
       avatar: {
         children: {
@@ -378,6 +379,8 @@ export const query = graphql`
         }
         author {
           id
+          name
+          title
           bio
           avatar {
             children {

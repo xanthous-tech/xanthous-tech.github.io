@@ -6,12 +6,14 @@ import { css } from 'emotion';
 
 import { SocialLink } from '../../styles/shared';
 import config from '../../website-config';
-import Facebook from '../icons/facebook';
-import Twitter from '../icons/twitter';
-import Medium from '../icons/medium';
 import SubscribeModal from '../subsribe/SubscribeOverlay';
 import SiteNavLogo from './SiteNavLogo';
 import LanguageToggle from '../LanguangeToggle';
+
+import Facebook from '../icons/facebook';
+import Twitter from '../icons/twitter';
+import Medium from '../icons/medium';
+import GitHub from '../icons/github';
 
 import t from '../../content/i18n';
 
@@ -198,6 +200,17 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
                 rel="noopener noreferrer"
               >
                 <Medium />
+              </a>
+            )}
+            {config.github && (
+              <a
+                className={`${SocialLink}`}
+                href={config.github}
+                title="GitHub"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GitHub />
               </a>
             )}
           </SocialLinks>

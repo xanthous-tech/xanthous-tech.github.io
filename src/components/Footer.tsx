@@ -75,7 +75,6 @@ const Footer: React.FunctionComponent = () => {
           <Link to="/">{config.title}</Link> &copy; {new Date().getFullYear()}
         </section>
         <SiteFooterNav>
-          <Link to="/">Latest Posts</Link>
           {config.facebook && (
             <a href={config.facebook} target="_blank" rel="noopener noreferrer">
               Facebook
@@ -92,8 +91,8 @@ const Footer: React.FunctionComponent = () => {
             </a>
           )}
           {config.github && (
-            <a href={config.github} title="Medium" target="_blank" rel="noopener noreferrer">
-              Github
+            <a href={config.github} title="GitHub" target="_blank" rel="noopener noreferrer">
+              GitHub
             </a>
           )}
 

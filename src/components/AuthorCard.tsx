@@ -3,7 +3,6 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import styled from '@emotion/styled'
 
-
 import t from '../content/i18n'
 import { colors } from '../styles/colors';
 import { AuthorProfileImage } from '../styles/shared';
@@ -45,13 +44,13 @@ const AuthorCard: React.FunctionComponent<AuthorCardProps> = ({ author }) => {
     <AuthorCardSection>
       {/* TODO: default avatar */}
       {/* TODO: author page url */}
-      <img className={`${AuthorProfileImage}`} src={author.avatar.children[0].fixed.src} alt={author.id} />
+      <img className={`${AuthorProfileImage}`} src={author.avatar.children[0].fixed.src} alt={author.name} />
       <AuthorCardContent>
         <AuthorCardName>
-          <Link to={`/author/${_.kebabCase(author.id)}/`}>{author.id}</Link>
+          <Link to={`/author/${_.kebabCase(author.id)}/`}>{author.name}</Link>
         </AuthorCardName>
-        {author.bio ? (
-          <p>{t[author.bio]()}</p>
+        {author.title ? (
+          <p>{t[author.title]()}</p>
         ) : (
           <p>
             Read <Link to={`/author/${_.kebabCase(author.id)}/`}>more posts</Link> by this author.
