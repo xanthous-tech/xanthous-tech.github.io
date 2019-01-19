@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby';
 import React from 'react';
-import styled from '@emotion/styled'
-import { css } from 'emotion'
+import styled from '@emotion/styled';
+import { css } from 'emotion';
 
 import Footer from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
@@ -126,17 +126,21 @@ const Tech: React.FunctionComponent<TechTemplateProps> = props => {
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={`${tech.name} - ${config.title}`} />
         <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
-        {config.twitter && <meta name="twitter:site" content={`@${config.twitter.split('https://twitter.com/')[1]}`} />}
-        {config.twitter &&
-        <meta
-          name="twitter:creator"
-          content={`@${config.twitter.split('https://twitter.com/')[1]}`}
-        />}
+        {config.twitter && (
+          <meta
+            name="twitter:site"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
+        {config.twitter && (
+          <meta
+            name="twitter:creator"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
       </Helmet>
       <Wrapper>
-        <header
-          className={`${SiteHeader} ${outer} no-cover`}
-        >
+        <header className={`${SiteHeader} ${outer} no-cover`}>
           <div className={`${inner}`}>
             <SiteNav isHome={false} />
             <SiteHeaderContent>
@@ -174,7 +178,10 @@ const Tech: React.FunctionComponent<TechTemplateProps> = props => {
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
               {edges.map(({ node }) => {
-                if (node.frontmatter.meta.techstack && node.frontmatter.meta.techstack.map(t => t.id).includes(tech.id)) {
+                if (
+                  node.frontmatter.meta.techstack &&
+                  node.frontmatter.meta.techstack.map(t => t.id).includes(tech.id)
+                ) {
                   return <PostCard key={node.fields.slug} post={node} />;
                 }
                 return null;
@@ -206,15 +213,8 @@ export const pageQuery = graphql`
       }
     }
     allMdx(
-      limit: 2000,
-      filter: {
-        frontmatter: {
-          layout: { eq: "project"}
-        },
-        fields: {
-          langKey: { eq: $lang }
-        }
-      }
+      limit: 2000
+      filter: { frontmatter: { layout: { eq: "project" } }, fields: { langKey: { eq: $lang } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       totalCount

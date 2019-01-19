@@ -177,6 +177,7 @@ export interface PostCardProps {
 
 const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
   const { meta } = post.frontmatter;
+  console.log(post);
   console.log(meta);
   return (
     <article className={`post-card ${PostCardStyles} ${!post.frontmatter.image ? 'no-image' : ''}`}>
