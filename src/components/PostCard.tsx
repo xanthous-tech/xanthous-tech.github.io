@@ -8,6 +8,7 @@ import { css } from 'emotion';
 
 import { colors } from '../styles/colors';
 import { PageContext } from '../templates/post';
+import MoreButton from './icons/more-buttons.png';
 
 const PostCardStyles = css`
   flex: 1 1 300px;
@@ -228,7 +229,11 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
                     );
                   }
                   if (idx === 3) {
-                    return <p>+</p>;
+                    return (
+                      <div className={`${StaticAvatar}`}>
+                        <img src={MoreButton} className={`${TechImage}`} alt={tech.id} />
+                      </div>
+                    );
                   }
                 })}
               </TechList>
