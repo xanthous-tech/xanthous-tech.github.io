@@ -27,8 +27,6 @@ import config from '../website-config';
 import Website from '../components/icons/website';
 import Twitter from '../components/icons/twitter';
 import t from '../content/i18n';
-import { notEqual } from 'assert';
-import { node } from 'prop-types';
 
 const HiddenMobile = css`
   @media (max-width: 500px) {
@@ -89,11 +87,13 @@ const AuthorProfileBioImage = css`
 interface AuthorTemplateProps {
   pathContext: {
     slug: string;
-    lang: string;
+    author: string;
+    langKey: string;
   };
   pageContext: {
+    slug: string;
     author: string;
-    lang: string;
+    langKey: string;
   };
   data: {
     logo: {
@@ -137,9 +137,10 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
     return node.frontmatter.author.id === author.id
   });
 
+  console.log(props);
 
   return (
-    <IndexLayout langKey={props.pathContext.lang}>
+    <IndexLayout {...props.pathContext}>
       <Helmet>
         <html lang={config.lang} />
         <title>
@@ -172,7 +173,7 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
           }}
         >
           <div className={`${inner}`}>
-            <SiteNav isHome={false} />
+            <SiteNav isHome={false} {...props.pathContext} />
             <SiteHeaderContent>
               <img
                 className={`${AuthorProfileBioImage} ${AuthorProfileImage}`}

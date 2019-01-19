@@ -379,6 +379,7 @@ exports.createPages = async ({
               path: `/zh/author/${_.kebabCase(edge.node.id)}/`,
               component: authorTemplate,
               context: {
+                slug: `/author/${edge.node.id}`,
                 author: edge.node.id,
                 langKey,
               },
@@ -391,6 +392,7 @@ exports.createPages = async ({
               path: `/author/${_.kebabCase(edge.node.id)}/`,
               component: authorTemplate,
               context: {
+                slug: `/author/${edge.node.id}`,
                 author: edge.node.id,
                 langKey: 'en'
               },
