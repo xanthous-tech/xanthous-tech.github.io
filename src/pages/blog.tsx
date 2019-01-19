@@ -20,7 +20,6 @@ import {
   SiteMain,
   SiteTitle,
 } from '../styles/shared';
-import xanthousLogo from '../content/img/x-tech-logo-1.svg';
 
 import { PageContext } from '../templates/post';
 
@@ -95,7 +94,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
   const height = String(Number(width) / props.data.header.childImageSharp.fluid.aspectRatio);
   console.log(props);
   return (
-    <IndexLayout className={`${HomePosts}`}>
+    <IndexLayout className={`${HomePosts}`} {...props.pageContext}>
       <Helmet>
         <html lang={config.lang} />
         <title>{config.title}</title>
@@ -137,10 +136,9 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
           <div className={`${inner}`}>
             <SiteHeaderContent>
               <SiteTitle>
-                <img style={{ maxHeight: '200px' }} src={xanthousLogo} alt={config.title} />
                 {props.data.logo ? (
                   <img
-                    style={{ maxHeight: '45px' }}
+                    style={{ maxHeight: '120px' }}
                     src={props.data.logo.childImageSharp.fixed.src}
                     alt={config.title}
                   />
@@ -150,7 +148,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
               </SiteTitle>
               <SiteDescription>{config.description}</SiteDescription>
             </SiteHeaderContent>
-            <SiteNav {...props.pageContext} isHome />
+            <SiteNav {...props.pageContext} isHome slug="/blog" />
           </div>
         </header>
         <main id="site-main" className={`${SiteMain} ${outer}`}>
@@ -174,7 +172,7 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query {
-    logo: file(relativePath: { eq: "img/xanthous.png" }) {
+    logo: file(relativePath: { eq: "img/x-tech-logo-2.png" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.
         # Makes it trivial to update as your page's design changes.

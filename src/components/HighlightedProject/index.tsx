@@ -2,7 +2,7 @@ import React from 'react';
 import Img from 'gatsby-image';
 import styled from "@emotion/styled";
 import Slider from "react-slick";
-import { StaticQuery, graphql } from "gatsby";
+import { StaticQuery, graphql, Link } from "gatsby";
 import t from '../../content/i18n';
 import { PageContext } from '../../templates/project';
 
@@ -78,21 +78,31 @@ export interface TestimonialProps {
 }
 
 export interface HighlightedProjectItemProps {
-  title: string;
-  image: {
-    childImageSharp: {
-      fluid: any;
+  frontmatter: {
+    title: string;
+    image: {
+      childImageSharp: {
+        fluid: any;
+      };
     };
+  };
+  fields: {
+    langKey: string;
+    slug: string;
   }
 }
 
 const ProjectCard: React.FunctionComponent<HighlightedProjectItemProps> = (props: HighlightedProjectItemProps) => (
   <div className="slider__item_box">
     <div className="slider__item">
-      <Img className="slider__image" fluid={props.image.childImageSharp.fluid} />
+      <Link
+        to={`/${props.fields.langKey === 'en' ? '' : props.fields.langKey}${props.fields.slug}`}
+      >
+        <Img className="slider__image" fluid={props.frontmatter.image.childImageSharp.fluid} />
+      </Link>
     </div>
     <div>
-      {props.title}
+      {props.frontmatter.title}
     </div>
   </div>
 );
@@ -130,9 +140,8 @@ const HighlightedProject: React.FunctionComponent<HighlightedProjectProps>= ({pr
               autoplaySpeed={5000}
             >
               {highlightedProjects.map(
-                highlightedProject => <ProjectCard key={highlightedProject.id} {...highlightedProject.frontmatter}/>
+                highlightedProject => <ProjectCard key={highlightedProject.id} {...highlightedProject}/>
               )}
-              <ProjectCard key={highlightedProjects[0].id} {...highlightedProjects[0].frontmatter} />
             </Slider>
           </div>
         </div>

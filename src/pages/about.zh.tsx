@@ -19,14 +19,14 @@ const PageTemplate = css`
 
 
 const About: React.FunctionComponent = () => (
-  <IndexLayout langKey="en">
+  <IndexLayout langKey="zh">
     <Helmet>
       <title>About</title>
     </Helmet>
     <Wrapper className={`${PageTemplate}`}>
       <header className={`${SiteHeader} ${outer}`}>
         <div className={`${inner}`}>
-          <SiteNav langKey="en" slug="/about" />
+          <SiteNav langKey="zh" slug="/about" />
         </div>
       </header>
       <main id="site-main" className={`site-main ${SiteMain} ${outer}`}>
