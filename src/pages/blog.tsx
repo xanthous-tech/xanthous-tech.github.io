@@ -195,7 +195,15 @@ export const pageQuery = graphql`
     allMdx(
       limit: 1000
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { fields: { langKey: { eq: "en" } }, frontmatter: { layout: { eq: "post" } } }
+      filter: {
+        fields: {
+          langKey: { eq: "en" }
+        },
+        frontmatter: {
+          layout: { eq: "post" }
+          draft: { ne: true }
+        }
+      }
     ) {
       edges {
         node {

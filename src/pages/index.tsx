@@ -154,7 +154,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         >
           <SiteNav {...props.pageContext} />
         </header>
- 
+
         <Splash bg={props.data.bg_intro.childImageSharp.fluid.src} />
         <Introduce />
         <div style={{backgroundColor: '#ffffff'}}>
@@ -220,11 +220,12 @@ export const pageQuery = graphql`
       limit: 4,
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
-        frontmatter: {
-          layout: {eq: "post"}
-        }
         fields: {
           langKey: {eq: "en"}
+        }
+        frontmatter: {
+          layout: {eq: "post"}
+          draft: { ne: true }
         }
       }
     ) {
@@ -269,12 +270,13 @@ export const pageQuery = graphql`
       limit: 4,
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
+        fields: {
+          langKey: {eq: "en"}
+        }
         frontmatter: {
           layout: {eq: "project"}
           highlighted: { eq: true }
-        }
-        fields: {
-          langKey: {eq: "en"}
+          draft: { ne: true }
         }
       }
     ) {

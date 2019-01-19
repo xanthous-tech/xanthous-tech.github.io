@@ -172,11 +172,12 @@ export const pageQuery = graphql`
       limit: 4,
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
-        frontmatter: {
-          layout: {eq: "post"}
-        }
         fields: {
           langKey: {eq: "zh"}
+        }
+        frontmatter: {
+          layout: {eq: "post"}
+          draft: { ne: true }
         }
       }
     ) {
@@ -221,12 +222,13 @@ export const pageQuery = graphql`
       limit: 4,
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
+        fields: {
+          langKey: {eq: "zh"}
+        }
         frontmatter: {
           layout: {eq: "project"}
           highlighted: { eq: true }
-        }
-        fields: {
-          langKey: {eq: "zh"}
+          draft: { ne: true }
         }
       }
     ) {

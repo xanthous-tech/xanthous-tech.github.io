@@ -2,9 +2,9 @@
   name: Xanthous Tech
   avatar: avatars/xanthous.png
   title: author.xanthous.title
-  bio: author.xanthous.bio 
-  twitter: xanthous 
-  facebook: xanthous 
+  bio: author.xanthous.bio
+  twitter: xanthous
+  facebook: xanthous
   website: https://x-tech.io/
   location: country.plane
 - id: alexzhao
@@ -15,9 +15,9 @@
   location: country.china
   profile_image: img/alex-knight-326705-unsplash.jpg
 - id: Necmttn
-  name: Necmettin Karakaya 
+  name: Necmettin Karakaya
   avatar: avatars/neco_profile.jpg
-  twitter: necmttn 
+  twitter: necmttn
   facebook: necmettin.karakaya
   github: necmttn
   title: author.necmttn.title
@@ -31,14 +31,14 @@
   bio: author.osmanmesutozcan.bio
   location: country.turkey
   profile_image: img/alex-knight-326705-unsplash.jpg
-- id: simonliang 
+- id: simonliang
   name: Simon Liang
-  avatar: avatars/alex.jpeg
+  avatar: avatars/simonliang.jpg
   title: author.simonliang.title
   bio: author.simonliang.bio
   location: country.china
-  profile_image: img/alex-knight-326705-unsplash.jpg
-- id: chrischen 
+  profile_image: img/speeches-cover.jpg
+- id: chrischen
   name: Chris Chen
   avatar: avatars/alex.jpeg
   title: author.chrischen.title
