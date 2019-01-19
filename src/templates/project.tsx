@@ -278,7 +278,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                   />
                 </PostFullImage>
               )}
-              <ProjectMeta project={post.frontmatter.meta}/> 
+              <ProjectMeta project={post.frontmatter.meta}/>
               <PostMDXContent body={post.code.body} />
 
               {/* The big email subscribe modal content */}
@@ -300,8 +300,8 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                 <ReadNextCard tags={post.frontmatter.tags} relatedPosts={props.data.relatedPosts} />
               )}
 
-              {props.pageContext.prev && <PostCard post={props.pageContext.prev} />}
-              {props.pageContext.next && <PostCard post={props.pageContext.next} />}
+              {/* {props.pageContext.prev && <PostCard post={props.pageContext.prev} />}
+              {props.pageContext.next && <PostCard post={props.pageContext.next} />} */}
             </ReadNextFeed>
           </div>
         </aside>
@@ -374,8 +374,8 @@ export const query = graphql`
         frontmatter: {
           layout: { eq: "project" },
           tags: { in: [$primaryTag] },
-          draft: { ne: true } 
-        } 
+          draft: { ne: true }
+        }
       }
       limit: 3
     ) {
@@ -390,6 +390,7 @@ export const query = graphql`
           }
           fields {
             slug
+            langKey
           }
         }
       }

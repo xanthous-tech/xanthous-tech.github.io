@@ -90,7 +90,7 @@ export const SiteHeaderContent = styled.div`
   align-items: center;
   padding: 10vw 4vw;
   min-height: 200px;
-  max-height: 450px;
+  max-height: 600px;
   text-align: center;
 `;
 

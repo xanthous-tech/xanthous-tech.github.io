@@ -413,6 +413,7 @@ exports.createPages = async ({
               path: `/zh/tech/${_.kebabCase(edge.node.id)}/`,
               component: techTemplate,
               context: {
+                slug: `/tech/${_.kebabCase(edge.node.id)}/`,
                 tech: edge.node.id,
                 langKey,
               },
@@ -425,6 +426,7 @@ exports.createPages = async ({
               path: `/tech/${_.kebabCase(edge.node.id)}/`,
               component: techTemplate,
               context: {
+                slug: `/tech/${_.kebabCase(edge.node.id)}/`,
                 tech: edge.node.id,
                 langKey: 'en'
               },

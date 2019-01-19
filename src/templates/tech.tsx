@@ -73,10 +73,13 @@ const AuthorProfileBioImage = css`
 interface TechTemplateProps {
   pathContext: {
     slug: string;
+    tech: string;
+    langKey: string;
   };
   pageContext: {
-    author: string;
-    lang: string;
+    slug: string;
+    tech: string;
+    langKey: string;
   };
   data: {
     logo: {
@@ -110,7 +113,7 @@ const Tech: React.FunctionComponent<TechTemplateProps> = props => {
   const { edges, totalCount } = props.data.allMdx;
 
   return (
-    <IndexLayout langKey={props.pathContext.langKey}>
+    <IndexLayout {...props.pathContext}>
       <Helmet>
         <html lang={config.lang} />
         <title>
@@ -138,7 +141,7 @@ const Tech: React.FunctionComponent<TechTemplateProps> = props => {
           className={`${SiteHeader} ${outer} no-cover`}
         >
           <div className={`${inner}`}>
-            <SiteNav isHome={false} />
+            <SiteNav isHome={false} {...props.pathContext} />
             <SiteHeaderContent>
               <img
                 className={`${AuthorProfileBioImage} ${AuthorProfileImage}`}
@@ -210,6 +213,7 @@ export const pageQuery = graphql`
       filter: {
         frontmatter: {
           layout: { eq: "project"}
+          draft: { ne: true }
         },
         fields: {
           langKey: { eq: $lang }
@@ -241,6 +245,7 @@ export const pageQuery = graphql`
             }
             author {
               id
+              name
               bio
               avatar {
                 children {

@@ -60,7 +60,7 @@ const Tags: React.FunctionComponent<TagTemplateProps> = props => {
   );
 
   return (
-    <IndexLayout langKey={props.pageContext.langKey}>
+    <IndexLayout {...props.pageContext}>
       <Helmet>
         <html lang={config.lang} />
         <title>
@@ -131,7 +131,7 @@ const Tags: React.FunctionComponent<TagTemplateProps> = props => {
 export default Tags;
 
 export const pageQuery = graphql`
-  query($tag: String, $langKey: String) {
+  query($tag: String) {
     allTagYaml {
       edges {
         node {
@@ -150,7 +150,12 @@ export const pageQuery = graphql`
     allMdx(
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { tags: { in: [$tag] } }, fields: { langKey: { eq: $langKey } } }
+      filter: {
+        frontmatter: {
+          tags: { in: [$tag] }
+          draft: { ne: true }
+        }
+      }
     ) {
       totalCount
       edges {
@@ -170,6 +175,7 @@ export const pageQuery = graphql`
             }
             author {
               id
+              name
               bio
               avatar {
                 children {

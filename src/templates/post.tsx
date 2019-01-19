@@ -336,8 +336,8 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                 />
               )}
 
-              {props.pageContext.prev && <PostCard post={props.pageContext.prev} />}
-              {props.pageContext.next && <PostCard post={props.pageContext.next} />}
+              {/* {props.pageContext.prev && <PostCard post={props.pageContext.prev} />}
+              {props.pageContext.next && <PostCard post={props.pageContext.next} />} */}
             </ReadNextFeed>
           </div>
         </aside>

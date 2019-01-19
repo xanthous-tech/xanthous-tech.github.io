@@ -297,6 +297,12 @@ export const pageQuery = graphql`
     allMdx(
       limit: 2000,
       sort: { fields: [frontmatter___date], order: DESC },
+      filter: {
+        frontmatter: {
+          author: { eq: $author }
+          draft: { ne: true }
+        }
+      }
     ) {
       totalCount
       edges {
@@ -316,6 +322,7 @@ export const pageQuery = graphql`
             }
             author {
               id
+              name
               bio
               title
               avatar {
@@ -331,6 +338,7 @@ export const pageQuery = graphql`
           }
           fields {
             layout
+            langKey
             slug
           }
         }
