@@ -299,11 +299,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                   />
                 </PostFullImage>
               )}
-<<<<<<< HEAD
-              <ProjectMeta project={post.frontmatter.meta}/>
-=======
               <ProjectMeta project={post.frontmatter.meta} />
->>>>>>> add feature: Team members
               <PostMDXContent body={post.code.body} />
 
               {/* The big email subscribe modal content */}
