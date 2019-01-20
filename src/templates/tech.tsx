@@ -5,7 +5,7 @@ import { css } from 'emotion'
 
 import Footer from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
-import PostCard from '../components/PostCard';
+import ProjectCard from '../components/ProjectCard';
 import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
 import {
@@ -178,7 +178,7 @@ const Tech: React.FunctionComponent<TechTemplateProps> = props => {
             <div className={`${PostFeed} ${PostFeedRaise}`}>
               {edges.map(({ node }) => {
                 if (node.frontmatter.meta.techstack && node.frontmatter.meta.techstack.map(t => t.id).includes(tech.id)) {
-                  return <PostCard key={node.fields.slug} post={node} />;
+                  return <ProjectCard key={node.fields.slug} post={node} />;
                 }
                 return null;
               })}
@@ -241,6 +241,13 @@ export const pageQuery = graphql`
               techstack {
                 id
                 name
+                logo {
+                  childImageSharp {
+                    fixed(quality: 100) {
+                      ...GatsbyImageSharpFixed
+                    }
+                  }
+                }
               }
             }
             author {

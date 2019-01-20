@@ -167,6 +167,7 @@ export const pageQuery = graphql`
           excerpt
           timeToRead
           frontmatter {
+            layout
             title
             tags
             date
