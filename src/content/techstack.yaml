@@ -8,6 +8,31 @@
   website: https://graphql.org
   desc: techstack.graphql.desc
   logo: img/graphql.png
+- id: apollo
+  name: Apollo GraphQL
+  website: https://www.apollographql.com/
+  desc: techstack.apollo.desc
+  logo: img/apollo-graphql.png
+- id: styled components
+  name: Styled Components
+  website: https://www.styled-components.com/
+  desc: techstack.styled components.desc
+  logo: img/styled-components.png
+- id: loopback
+  name: LoopBack
+  website: https://loopback.io/
+  desc: techstack.loopback.desc
+  logo: img/loopback.png
+- id: lombok
+  name: Project Lombok
+  website: https://projectlombok.org/
+  desc: techstack.lombok.desc
+  logo: img/lombok.png
+- id: typeorm
+  name: TypeORM
+  website: http://typeorm.io/#/
+  desc: techstack.typeorm.desc
+  logo: img/typeorm.png
 - id: grpc
   name: gRPC
   website: https://grpc.io
@@ -26,12 +51,12 @@
 - id: aws appsync
   name: AWS AppSync
   website: https://aws.amazon.com/appsync/
-  desc: techstack.aws appsync.desc 
+  desc: techstack.aws appsync.desc
   logo: img/xanthous.png
 - id: spring boot
   name: Spring Boot
   website: http://spring.io/projects/spring-boot
-  desc: techstack.spring boot.desc 
+  desc: techstack.spring boot.desc
   logo: img/spring-boot.png
 - id: reactor
   name: Reactor

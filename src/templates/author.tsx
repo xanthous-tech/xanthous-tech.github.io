@@ -131,13 +131,13 @@ interface AuthorTemplateProps {
 }
 
 const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
-  const author = props.data.authorYaml;
-  const { edges } = props.data.allMdx;
-  const authorPosts = edges.filter(({node}) => {
-    return node.frontmatter.author.id === author.id
-  });
+  const { allMdx, authorYaml: author } = props.data;
 
-  console.log(props);
+  let { edges } = (allMdx || {});
+
+  if (!edges) {
+    edges = [];
+  }
 
   return (
     <IndexLayout {...props.pathContext}>
@@ -190,8 +190,8 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
                   </div>
                 )}
                 <div className={`${HiddenMobile}`}>
-                  {authorPosts.length >= 1 && `${authorPosts.length} posts`}
-                  {authorPosts.length === 0 && `No posts`} <Bull>•</Bull>
+                  {edges.length >= 1 && `${edges.length} posts`}
+                  {edges.length === 0 && `No posts`} <Bull>•</Bull>
                 </div>
                 {author.website && (
                   <div>
