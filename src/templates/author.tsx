@@ -6,6 +6,7 @@ import { css } from 'emotion';
 import Footer from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
+import ProjectCard from '../components/ProjectCard';
 import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
 import {
@@ -258,14 +259,10 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
               {edges.map(({ node }) => {
-                if (
-                  node.frontmatter.author &&
-                  node.frontmatter.author.id === author.id &&
-                  node.fields.layout !== 'project'
-                ) {
-                  return <PostCard key={node.fields.slug} post={node} />;
+                if (node.frontmatter.layout === 'project') {
+                  return <ProjectCard key={node.fields.slug} post={node} />;
                 }
-                return null;
+                return <PostCard key={node.fields.slug} post={node} />;
               })}
             </div>
           </div>
@@ -307,7 +304,12 @@ export const pageQuery = graphql`
     allMdx(
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { author: { eq: $author }, draft: { ne: true } } }
+      filter: {
+        frontmatter: {
+          author: { eq: $author },
+          draft: { ne: true }
+        }
+      }
     ) {
       totalCount
       edges {
@@ -315,6 +317,7 @@ export const pageQuery = graphql`
           excerpt
           timeToRead
           frontmatter {
+            layout
             title
             tags
             date
