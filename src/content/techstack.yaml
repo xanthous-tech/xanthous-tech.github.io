@@ -13,10 +13,10 @@
   website: https://www.apollographql.com/
   desc: techstack.apollo.desc
   logo: img/apollo-graphql.png
-- id: styledComponents
+- id: styled components
   name: Styled Components
   website: https://www.styled-components.com/
-  desc: techstack.styledComponents.desc
+  desc: techstack.styled components.desc
   logo: img/styled-components.png
 - id: loopback
   name: LoopBack
