@@ -5,7 +5,8 @@ import Helmet from 'react-helmet';
 
 import Footer from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
-import PostCard from '../components/PostCard';
+// import PostCard from '../components/PostCard';
+import ProjectCard from '../components/ProjectCard';
 import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
 import config from '../website-config';
@@ -20,8 +21,6 @@ import {
   SiteMain,
   SiteTitle,
 } from '../styles/shared';
-
-import { PageContext } from '../templates/post';
 
 const HomePosts = css`
   @media (min-width: 795px) {
@@ -64,6 +63,52 @@ const HomePosts = css`
     }
   }
 `;
+
+export interface PageContext {
+  excerpt: string;
+  timeToRead: number;
+  fields: {
+    slug: string;
+    langKey: string;
+  };
+  code: {
+    body: any;
+  };
+  frontmatter: {
+    image: {
+      childImageSharp: {
+        fluid: any;
+      };
+    };
+    title: string;
+    date: string;
+    tags: string[];
+    author: {
+      id: string;
+      name: string;
+      bio: string;
+      avatar: {
+        children: {
+          fixed: {
+            src: string;
+          };
+        }[];
+      };
+    };
+    meta: {
+      length: string;
+      techstack: {
+        id: string;
+        name: string;
+        logo: {
+          childImageSharp: {
+            fixed: any;
+          };
+        };
+      }[];
+    };
+  };
+}
 
 export interface IndexProps {
   pageContext: {
@@ -155,7 +200,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
               {props.data.allMdx.edges.map(post => {
-                return <PostCard key={post.node.fields.slug} post={post.node} />;
+                return <ProjectCard key={post.node.fields.slug} post={post.node} />;
               })}
             </div>
           </div>
@@ -194,13 +239,8 @@ export const pageQuery = graphql`
       limit: 1000
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
-        fields: {
-          langKey: { eq: "en" }
-        },
-        frontmatter: {
-          layout: { eq: "project" }
-          draft: { ne: true }
-        }
+        fields: { langKey: { eq: "en" } }
+        frontmatter: { layout: { eq: "project" }, draft: { ne: true } }
       }
     ) {
       edges {
@@ -225,6 +265,19 @@ export const pageQuery = graphql`
                   ... on ImageSharp {
                     fixed(quality: 100) {
                       src
+                    }
+                  }
+                }
+              }
+            }
+            meta {
+              techstack {
+                id
+                name
+                logo {
+                  childImageSharp {
+                    fixed(quality: 100) {
+                      ...GatsbyImageSharpFixed
                     }
                   }
                 }

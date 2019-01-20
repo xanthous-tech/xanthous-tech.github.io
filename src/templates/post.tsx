@@ -160,9 +160,9 @@ interface PageTemplateProps {
       totalCount: number;
       edges: {
         node: {
+          timeToRead: number;
           frontmatter: {
             title: string;
-            timeToRead: number;
           };
           fields: {
             slug: string;
@@ -182,6 +182,7 @@ export interface PageContext {
   timeToRead: number;
   fields: {
     slug: string;
+    layout?: string;
     langKey: string;
   };
   code: {
@@ -193,6 +194,7 @@ export interface PageContext {
         fluid: any;
       };
     };
+    layout: string;
     title: string;
     date: string;
     tags: string[];

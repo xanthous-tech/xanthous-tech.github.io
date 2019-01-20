@@ -4,6 +4,7 @@ import React from 'react';
 import Footer from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
+import ProjectCard from '../components/ProjectCard';
 import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
 import {
@@ -116,9 +117,12 @@ const Tags: React.FunctionComponent<TagTemplateProps> = props => {
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
-              {edges.map(({ node }) => (
-                <PostCard key={node.fields.slug} post={node} />
-              ))}
+              {edges.map(({ node }) => {
+                if (node.frontmatter.layout === 'project') {
+                  return <ProjectCard key={node.fields.slug} post={node} />;
+                }
+                return <PostCard key={node.fields.slug} post={node} />;
+              })}
             </div>
           </div>
         </main>
@@ -163,6 +167,7 @@ export const pageQuery = graphql`
           excerpt
           timeToRead
           frontmatter {
+            layout
             title
             tags
             date

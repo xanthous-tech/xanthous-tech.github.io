@@ -1,11 +1,12 @@
 import { graphql } from 'gatsby';
 import React from 'react';
-import styled from '@emotion/styled'
-import { css } from 'emotion'
+import styled from '@emotion/styled';
+import { css } from 'emotion';
 
 import Footer from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
+import ProjectCard from '../components/ProjectCard';
 import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
 import {
@@ -156,12 +157,18 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={`${author.name} - ${config.title}`} />
         <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
-        {config.twitter && <meta name="twitter:site" content={`@${config.twitter.split('https://twitter.com/')[1]}`} />}
-        {config.twitter &&
-        <meta
-          name="twitter:creator"
-          content={`@${config.twitter.split('https://twitter.com/')[1]}`}
-        />}
+        {config.twitter && (
+          <meta
+            name="twitter:site"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
+        {config.twitter && (
+          <meta
+            name="twitter:creator"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
       </Helmet>
       <Wrapper>
         <header
@@ -252,10 +259,10 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
               {edges.map(({ node }) => {
-                if (node.frontmatter.author && node.frontmatter.author.id === author.id) {
-                  return <PostCard key={node.fields.slug} post={node} />;
+                if (node.frontmatter.layout === 'project') {
+                  return <ProjectCard key={node.fields.slug} post={node} />;
                 }
-                return null;
+                return <PostCard key={node.fields.slug} post={node} />;
               })}
             </div>
           </div>
@@ -295,11 +302,11 @@ export const pageQuery = graphql`
       }
     }
     allMdx(
-      limit: 2000,
-      sort: { fields: [frontmatter___date], order: DESC },
+      limit: 2000
+      sort: { fields: [frontmatter___date], order: DESC }
       filter: {
         frontmatter: {
-          author: { eq: $author }
+          author: { eq: $author },
           draft: { ne: true }
         }
       }
@@ -310,6 +317,7 @@ export const pageQuery = graphql`
           excerpt
           timeToRead
           frontmatter {
+            layout
             title
             tags
             date
