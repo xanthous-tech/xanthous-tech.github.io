@@ -44,6 +44,7 @@ export const NoImage = css`
   .post-full-content:after {
     display: none;
   }
+  align-items: center;
 `;
 
 export const PostFullHeader = styled.header`
@@ -66,14 +67,14 @@ export const PostFullTitle = styled.h1`
 `;
 
 const PostFullImage = styled.figure`
-  margin: 0 -2vw -30px;
+  margin: 0 -2vw;
   height: 800px;
   background: ${colors.lightgrey} center center;
   background-size: cover;
   border-radius: 5px;
 
   @media (max-width: 1170px) {
-    margin: 0 -4vw -100px;
+    margin: 0 -4vw;
     height: 600px;
     border-radius: 0;
   }
@@ -82,7 +83,6 @@ const PostFullImage = styled.figure`
     height: 400px;
   }
   @media (max-width: 500px) {
-    margin-bottom: 4vw;
     height: 350px;
   }
 `;
@@ -135,6 +135,7 @@ interface PageTemplateProps {
         };
         author: {
           id: string;
+          name: string;
           bio: string;
           avatar: {
             children: {
@@ -204,6 +205,7 @@ export interface PageContext {
     };
     author: {
       id: string;
+      name: string;
       bio: string;
       avatar: {
         children: {
@@ -390,6 +392,7 @@ export const query = graphql`
         }
         author {
           id
+          name
           bio
           avatar {
             children {
@@ -405,11 +408,7 @@ export const query = graphql`
     }
     relatedPosts: allMdx(
       filter: {
-        frontmatter: {
-          layout: { eq: "project" },
-          tags: { in: [$primaryTag] },
-          draft: { ne: true }
-        }
+        frontmatter: { layout: { eq: "project" }, tags: { in: [$primaryTag] }, draft: { ne: true } }
       }
       limit: 3
     ) {

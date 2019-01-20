@@ -6,6 +6,9 @@ export default styled.span`
   color: ${colors.darkblue};
   position: relative;
   font-weight: 600;
+  width: 200px;
+  overflow: hidden;
+  margin-bottom: 20px;
 
   &.label--blue {
     color: ${colors.darkblue};
@@ -14,11 +17,12 @@ export default styled.span`
       content: ' ';
       display: inline-block;
       background: ${colors.darkblue};
-      width: 50px;
+      width: 100%;
       height: 2px;
-      margin-left: 10px;
-      position: relative;
-      top: -10%;
+      margin-left: 20px;
+      position: absolute;
+      top: 50%;
+      z-index: 2;
     }
   }
 `;
