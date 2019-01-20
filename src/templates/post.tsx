@@ -182,6 +182,7 @@ export interface PageContext {
   timeToRead: number;
   fields: {
     slug: string;
+    layout?: string;
     langKey: string;
   };
   code: {

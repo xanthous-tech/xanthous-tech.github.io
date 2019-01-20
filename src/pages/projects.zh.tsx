@@ -21,7 +21,8 @@ import {
   SiteTitle,
 } from '../styles/shared';
 
-import { PageContext } from '../templates/post';
+import { PageContext } from '../pages/projects';
+import ProjectCard from '../components/ProjectCard';
 
 const HomePosts = css`
   @media (min-width: 795px) {
@@ -155,7 +156,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
               {props.data.allMdx.edges.map(post => {
-                return <PostCard key={post.node.fields.slug} post={post.node} />;
+                return <ProjectCard key={post.node.fields.slug} post={post.node} />;
               })}
             </div>
           </div>
@@ -194,13 +195,8 @@ export const pageQuery = graphql`
       limit: 1000
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
-        fields: {
-          langKey: { eq: "zh" }
-        },
-        frontmatter: {
-          layout: { eq: "project" }
-          draft: { ne: true }
-        }
+        fields: { langKey: { eq: "zh" } }
+        frontmatter: { layout: { eq: "project" }, draft: { ne: true } }
       }
     ) {
       edges {
@@ -225,6 +221,19 @@ export const pageQuery = graphql`
                   ... on ImageSharp {
                     fixed(quality: 100) {
                       src
+                    }
+                  }
+                }
+              }
+            }
+            meta {
+              techstack {
+                id
+                name
+                logo {
+                  childImageSharp {
+                    fixed(quality: 100) {
+                      ...GatsbyImageSharpFixed
                     }
                   }
                 }

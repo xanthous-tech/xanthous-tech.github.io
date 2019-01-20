@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby';
 import React from 'react';
-import styled from '@emotion/styled'
-import { css } from 'emotion'
+import styled from '@emotion/styled';
+import { css } from 'emotion';
 
 import Footer from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
@@ -156,12 +156,18 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={`${author.name} - ${config.title}`} />
         <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
-        {config.twitter && <meta name="twitter:site" content={`@${config.twitter.split('https://twitter.com/')[1]}`} />}
-        {config.twitter &&
-        <meta
-          name="twitter:creator"
-          content={`@${config.twitter.split('https://twitter.com/')[1]}`}
-        />}
+        {config.twitter && (
+          <meta
+            name="twitter:site"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
+        {config.twitter && (
+          <meta
+            name="twitter:creator"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
       </Helmet>
       <Wrapper>
         <header
@@ -252,7 +258,11 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
               {edges.map(({ node }) => {
-                if (node.frontmatter.author && node.frontmatter.author.id === author.id) {
+                if (
+                  node.frontmatter.author &&
+                  node.frontmatter.author.id === author.id &&
+                  node.fields.layout !== 'project'
+                ) {
                   return <PostCard key={node.fields.slug} post={node} />;
                 }
                 return null;
@@ -295,14 +305,9 @@ export const pageQuery = graphql`
       }
     }
     allMdx(
-      limit: 2000,
-      sort: { fields: [frontmatter___date], order: DESC },
-      filter: {
-        frontmatter: {
-          author: { eq: $author }
-          draft: { ne: true }
-        }
-      }
+      limit: 2000
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { author: { eq: $author }, draft: { ne: true } } }
     ) {
       totalCount
       edges {
