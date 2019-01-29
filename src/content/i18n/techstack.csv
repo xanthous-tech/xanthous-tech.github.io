@@ -12,3 +12,4 @@ aws lambda.desc,"AWS Lambda is a core computing unit in the AWS Serverless Stack
 aws appsync.desc,"AWS AppSync","AWS AppSync"
 spring boot.desc,"Spring Boot","Spring Boot"
 reactor.desc,"Reactor",Reactor
+elasticsearch.desc,"Elasticsearch is a distributed document-based search and analytics engine that is capable of processing millions of records of full-text documents. At Xanthous we help a lot of our clients build performant data analytics pipeline and search engine using Elasticsearch and capable of optimizing and managing large Elasticsearch clusters.","Elasticsearch"
