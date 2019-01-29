@@ -117,6 +117,10 @@ export interface HighlightedProjectProps {
 
 
 const HighlightedProject: React.FunctionComponent<HighlightedProjectProps>= ({projects}) => {
+  if (!projects) {
+    return null;
+  }
+
   const highlightedProjects: PageContext[] = projects.edges.map((x) => x.node);
   return (
     <HighlightedProjectContainer>
