@@ -199,7 +199,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
-              {props.data.allMdx.edges.map(post => {
+              {(!props.data.allMdx) ? null : props.data.allMdx.edges.map(post => {
                 return <ProjectCard key={post.node.fields.slug} post={post.node} />;
               })}
             </div>
