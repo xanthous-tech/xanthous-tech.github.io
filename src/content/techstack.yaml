@@ -63,3 +63,8 @@
   website: https://projectreactor.io/
   desc: techstack.reactor.desc
   logo: img/reactor.png
+- id: elasticsearch
+  name: Elasticsearch
+  website: https://www.elastic.co/products/elasticsearch
+  desc: techstack.elasticsearch.desc
+  logo: img/elasticsearch.png
