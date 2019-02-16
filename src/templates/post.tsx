@@ -318,10 +318,12 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
               {/* The big email subscribe modal content */}
               {config.showSubscribe && <Subscribe title={config.title} />}
 
-              <PostFullFooter>
-                <AuthorCard author={post.frontmatter.author} />
-                <PostFullFooterRight authorId={post.frontmatter.author.id} />
-              </PostFullFooter>
+              <div className={`${outer}`}>
+                <PostFullFooter className={`${inner}`}>
+                  <AuthorCard author={post.frontmatter.author} />
+                  <PostFullFooterRight authorId={post.frontmatter.author.id} />
+                </PostFullFooter>
+              </div>
             </article>
           </div>
         </main>
