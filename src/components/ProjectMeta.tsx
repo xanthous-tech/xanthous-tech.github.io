@@ -9,19 +9,17 @@ import XTLabel from './XTLabel';
 const StyledSection = styled.section`
   max-width: 1040px;
   position: relative;
-  margin: 70px auto 0;
+  margin: 0 auto;
   border-bottom: 1px solid #e4eaed;
+  padding-top: 5vw;
 
   .row {
     display: flex;
     flex-flow: column nowrap;
     align-items: flex-start;
-    padding: 10px 0;
-    .label {
-      font-weight: 600;
-    }
+    margin-bottom: 20px;
+
     .content {
-      margin-top: 10px;
       display: flex;
       flex-flow: row wrap;
       flex: 2;
@@ -31,6 +29,10 @@ const StyledSection = styled.section`
   a {
     text-decoration: none;
   }
+
+  @media (max-width: 1170px) {
+    padding: 5vw 7vw 0;
+  }
 `;
 
 const TechItem = styled.div`
@@ -38,8 +40,7 @@ const TechItem = styled.div`
   flex-flow: row nowrap;
   align-items: center;
   justify-content: flex-start;
-  padding: 5px 10px;
-  min-width: 170px;
+  padding: 5px 20px 5px 0px;
 
   .name {
     font-size: 12px;
@@ -48,11 +49,16 @@ const TechItem = styled.div`
   img {
     height: 40px;
     width: auto;
+    padding-right: 10px;
   }
   :hover {
     .name {
       border-bottom: 2px solid ${colors.blue};
     }
+  }
+
+  @media (max-width: 500px) {
+    justify-content: flex-start;
   }
 `;
 
@@ -87,12 +93,12 @@ const ProjectMeta: React.FunctionComponent<ProjectMetaProps> = ({ project }) => 
   return (
     <StyledSection>
       <div className="row">
-        <span className="label">Length</span>
+        <XTLabel className="label--blue">Length</XTLabel>
         <span className="content">{project.length}</span>
       </div>
       <div className="row">
-        <span className="label">Tech Stack</span>
-        <div className="content">
+        <XTLabel className="label--blue">Tech Stack</XTLabel>
+        <span className="content">
           {project.techstack.map(tech => (
             <Link to={`/tech/${_.kebabCase(tech.id)}/`}>
               <TechItem>
@@ -101,7 +107,7 @@ const ProjectMeta: React.FunctionComponent<ProjectMetaProps> = ({ project }) => 
               </TechItem>
             </Link>
           ))}
-        </div>
+        </span>
       </div>
       <div className="row">
         <XTLabel className="label--blue">Project Team</XTLabel>

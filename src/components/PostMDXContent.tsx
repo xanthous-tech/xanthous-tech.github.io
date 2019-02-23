@@ -1,16 +1,15 @@
 // posts-page-layout.js
 import { lighten, setLightness, darken, setSaturation } from 'polished';
-import React from "react";
-import MDXRenderer from "gatsby-mdx/mdx-renderer";
-import { MDXProvider } from "@mdx-js/tag";
-import { preToCodeBlock } from 'mdx-utils'
-import styled from '@emotion/styled'
+import React from 'react';
+import MDXRenderer from 'gatsby-mdx/mdx-renderer';
+import { MDXProvider } from '@mdx-js/tag';
+import { preToCodeBlock } from 'mdx-utils';
+import styled from '@emotion/styled';
 
 import { Image } from './Image';
 
 import { colors } from '../styles/colors';
 import { InlineCode, Code } from './Text/Code';
-
 
 export const PostFullContent = styled.section`
   position: relative;
@@ -28,6 +27,9 @@ export const PostFullContent = styled.section`
   }
   @media (max-width: 800px) {
     font-size: 1.9rem;
+  }
+  @media (max-width: 500px) {
+    padding-left: 20px;
   }
 
   /* :before {
@@ -382,7 +384,7 @@ export const PostFullContent = styled.section`
   }
 
   @media (max-width: 500px) {
-    padding: 0;
+    padding: 5vw 7vw 0;
     :before {
       display: none;
     }
@@ -393,19 +395,22 @@ export const PostFullContent = styled.section`
 `;
 
 const components = {
-  'Image': Image,
-  'InlineCode': InlineCode,
-  pre: (preProps: JSX.IntrinsicAttributes & React.ClassAttributes<HTMLPreElement> & React.HTMLAttributes<HTMLPreElement>) => {
-    const props = preToCodeBlock(preProps)
+  Image: Image,
+  InlineCode: InlineCode,
+  pre: (
+    preProps: JSX.IntrinsicAttributes &
+      React.ClassAttributes<HTMLPreElement> &
+      React.HTMLAttributes<HTMLPreElement>,
+  ) => {
+    const props = preToCodeBlock(preProps);
     // if there's a codeString and some props, we passed the test
     if (props) {
-      return <Code {...props} />
-    } 
+      return <Code {...props} />;
+    }
     // it's possible to have a pre without a code in it
-    return <pre {...preProps} />
+    return <pre {...preProps} />;
   },
-}
-
+};
 
 // tslint:disable-next-line:function-name
 function PostPageTemplate({ body, scope }) {
@@ -416,6 +421,6 @@ function PostPageTemplate({ body, scope }) {
         <MDXRenderer scope={scope}>{body}</MDXRenderer>
       </PostFullContent>
     </MDXProvider>
-  )
+  );
 }
 export default PostPageTemplate;
