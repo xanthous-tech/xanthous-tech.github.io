@@ -502,7 +502,7 @@ const IndexLayout: React.FunctionComponent<IndexProps> = props => {
         <MessengerCustomerChat
           pageId="391138745024240"
           appId="342750623012703"
-          htmlRef={(window) ? window.location.pathname : ''}
+          htmlRef={(typeof window !== 'undefined') && window.location.pathname : ''}
         />
       </div>
     </IntlProvider>
