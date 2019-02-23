@@ -65,6 +65,7 @@
     "react-dom": "16.7.0",
     "react-helmet": "5.2.0",
     "react-intl": "^2.7.2",
+    "react-messenger-customer-chat": "^0.7.2",
     "react-slick": "^0.23.2",
     "refractor": "^2.6.2",
     "rehype": "^7.0.0",

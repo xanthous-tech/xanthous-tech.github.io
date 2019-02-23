@@ -7,6 +7,7 @@ import zh from '../content/i18n/zh_CN';
 
 import { colors } from '../styles/colors';
 import LanguageToggle from '../components/LanguangeToggle';
+import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 const i18n = {
   messages: {
@@ -496,7 +497,14 @@ const IndexLayout: React.FunctionComponent<IndexProps> = props => {
   const langKey: String = props.langKey || 'en';
   return (
     <IntlProvider locale={'en'} messages={i18n.messages[langKey]}>
-      <div className={props.className}>{props.children}</div>
+      <div className={props.className}>
+        {props.children}
+        <MessengerCustomerChat
+          pageId="391138745024240"
+          appId="342750623012703"
+          htmlRef={window.location.pathname}
+        />
+      </div>
     </IntlProvider>
   );
 };
