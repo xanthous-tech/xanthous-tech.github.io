@@ -6,7 +6,7 @@
   "author": "Scott Cooper <scttcper@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "yarn i18n:compile && gatsby build",
+    "build": "export ENV=production && yarn i18n:compile && gatsby build",
     "clean": "rimraf public",
     "dev": "yarn i18n:compile && gatsby develop",
     "lint": "tslint -t stylish -p .",
@@ -17,8 +17,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.5",
-    "@emotion/styled": "^10.0.6",
+    "@emotion/core": "^10.0.7",
+    "@emotion/styled": "^10.0.7",
     "@emotion/styled-base": "^10.0.5",
     "@mdx-js/mdx": "^0.16.6",
     "@mdx-js/tag": "^0.16.6",
@@ -32,7 +32,7 @@
     "gatsby-image": "2.0.25",
     "gatsby-mdx": "^0.3.3",
     "gatsby-plugin-canonical-urls": "2.0.8",
-    "gatsby-plugin-emotion": "4.0.1",
+    "gatsby-plugin-emotion": "^2.0.0-rc.5",
     "gatsby-plugin-feed": "^2.0.11",
     "gatsby-plugin-google-analytics": "^2.0.8",
     "gatsby-plugin-i18n": "^0.4.2",
@@ -78,6 +78,7 @@
     "@types/react": "16.7.18",
     "@types/react-dom": "16.0.11",
     "@types/react-helmet": "5.0.8",
+    "@types/react-intl": "^2.3.17",
     "babel-plugin-styled-components": "1.10.0",
     "prettier": "^1.15.3",
     "rimraf": "2.6.2",

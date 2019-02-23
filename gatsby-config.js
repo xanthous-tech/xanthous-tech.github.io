@@ -11,8 +11,7 @@ module.exports = {
     'Mdx.frontmatter.meta.techstack': 'TechstackYaml',
     'Mdx.frontmatter.meta.teammembers': 'AuthorYaml',
   },
-  plugins: [
-    {
+  plugins: [{
       resolve: 'gatsby-plugin-i18n',
       options: {
         langKeyDefault: 'en',
@@ -31,8 +30,7 @@ module.exports = {
       resolve: `gatsby-mdx`,
       options: {
         extensions: ['.mdx', '.md'],
-        gatsbyRemarkPlugins: [
-          {
+        gatsbyRemarkPlugins: [{
             resolve: 'gatsby-remark-responsive-iframe',
             options: {
               wrapperStyle: 'margin-bottom: 1rem',
@@ -65,7 +63,6 @@ module.exports = {
         siteUrl: 'https://gatsby-casper.netlify.com',
       },
     },
-    'gatsby-plugin-emotion',
     'gatsby-plugin-typescript',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
@@ -86,20 +83,26 @@ module.exports = {
             }
           }
         `,
-        feeds: [
-          {
-            serialize: ({ query: { site, allMdx } }) => {
-              return allMdx.edges.map(edge => {
-                return Object.assign({}, edge.node.frontmatter, {
-                  description: edge.node.excerpt,
-                  date: edge.node.frontmatter.date,
-                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  custom_elements: [{ 'content:encoded': edge.node.html }],
-                });
+        feeds: [{
+          serialize: ({
+            query: {
+              site,
+              allMdx
+            }
+          }) => {
+            return allMdx.edges.map(edge => {
+              return Object.assign({}, edge.node.frontmatter, {
+                description: edge.node.excerpt,
+                date: edge.node.frontmatter.date,
+                url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                custom_elements: [{
+                  'content:encoded': edge.node.html
+                }],
               });
-            },
-            query: `
+            });
+          },
+          query: `
               {
                 allMdx(
                   limit: 1000,
@@ -119,10 +122,9 @@ module.exports = {
                 }
               }
             `,
-            output: '/rss.xml',
-            title: 'Gatsby RSS Feed',
-          },
-        ],
+          output: '/rss.xml',
+          title: 'Gatsby RSS Feed',
+        }, ],
       },
     },
 
@@ -150,5 +152,6 @@ module.exports = {
         siteSpeedSampleRate: 10,
       },
     },
+    'gatsby-plugin-emotion',
   ],
 };

@@ -495,10 +495,7 @@ interface IndexProps {
 const IndexLayout: React.FunctionComponent<IndexProps> = props => {
   const langKey: String = props.langKey || 'en';
   return (
-    <IntlProvider
-      locale={'en'}
-      messages={i18n.messages[langKey]}
-    >
+    <IntlProvider locale={'en'} messages={i18n.messages[langKey]}>
       <div className={props.className}>{props.children}</div>
     </IntlProvider>
   );
