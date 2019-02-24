@@ -499,10 +499,11 @@ const IndexLayout: React.FunctionComponent<IndexProps> = props => {
     <IntlProvider locale={'en'} messages={i18n.messages[langKey]}>
       <div className={props.className}>
         {props.children}
+        {/* this is definetly not the place for this but quick hack */}
         <MessengerCustomerChat
           pageId="391138745024240"
           appId="342750623012703"
-          htmlRef={(typeof window !== 'undefined') && window.location.pathname : ''}
+          htmlRef={(typeof window !== 'undefined') && window.location.pathname}
         />
       </div>
     </IntlProvider>
