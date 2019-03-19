@@ -21,7 +21,7 @@ const PageTemplate = css`
 const About: React.FunctionComponent = () => (
   <IndexLayout langKey="en">
     <Helmet>
-      <title>About</title>
+      <title>About Xanthous Tech</title>
     </Helmet>
     <Wrapper className={`${PageTemplate}`}>
       <header className={`${SiteHeader} ${outer}`}>

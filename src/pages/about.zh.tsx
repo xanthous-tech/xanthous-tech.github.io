@@ -21,7 +21,7 @@ const PageTemplate = css`
 const About: React.FunctionComponent = () => (
   <IndexLayout langKey="zh">
     <Helmet>
-      <title>About</title>
+      <title>关于 Xanthous Tech</title>
     </Helmet>
     <Wrapper className={`${PageTemplate}`}>
       <header className={`${SiteHeader} ${outer}`}>
@@ -32,7 +32,7 @@ const About: React.FunctionComponent = () => (
       <main id="site-main" className={`site-main ${SiteMain} ${outer}`}>
         <article className={`${PostFull} post page ${NoImage}`}>
           <PostFullHeader>
-            <PostFullTitle>About</PostFullTitle>
+            <PostFullTitle>关于我们</PostFullTitle>
           </PostFullHeader>
 
           <PostFullContent className="post-full-content">
