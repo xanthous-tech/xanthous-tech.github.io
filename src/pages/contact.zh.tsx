@@ -18,30 +18,29 @@ const PageTemplate = css`
 `;
 
 
-const About: React.FunctionComponent = () => (
-  <IndexLayout langKey="zh">
+const Contact: React.FunctionComponent = () => (
+  <IndexLayout langKey="en">
     <Helmet>
-      <title>About</title>
+      <title>联系我们 - Xanthous Tech</title>
     </Helmet>
     <Wrapper className={`${PageTemplate}`}>
       <header className={`${SiteHeader} ${outer}`}>
         <div className={`${inner}`}>
-          <SiteNav langKey="zh" slug="/about" />
+          <SiteNav langKey="zh" slug="/contact" />
         </div>
       </header>
       <main id="site-main" className={`site-main ${SiteMain} ${outer}`}>
         <article className={`${PostFull} post page ${NoImage}`}>
           <PostFullHeader>
-            <PostFullTitle>About</PostFullTitle>
+            <PostFullTitle>联系我们</PostFullTitle>
           </PostFullHeader>
 
           <PostFullContent className="post-full-content">
             <div className="post-content">
               <p>
-                我们一开始只是一个自由职业者团队，为全世界范围的团队和公司解决技术难题。
-                我们意识到我们都喜欢（并且很擅长）协助初创企业并获得成功，所以我们在2018年创办了先思科技，和企业共同成长。
+                如果您有想法，或者有挑战性的技术难题，请联系
+                <a href="mailto:hi@x-tech.io">hi@x-tech.io</a>!
               </p>
-              <p>请看我们做过的<a href="/zh/projects">项目</a>，看看我们是如何帮助企业的。</p>
             </div>
           </PostFullContent>
         </article>
@@ -51,4 +50,4 @@ const About: React.FunctionComponent = () => (
   </IndexLayout>
 );
 
-export default About;
+export default Contact;

@@ -121,6 +121,7 @@ const SubscribeButton = styled.a`
 interface SiteNavProps {
   isHome?: boolean;
   langKey: string;
+  slug?: string;
 }
 
 interface SiteNaveState {

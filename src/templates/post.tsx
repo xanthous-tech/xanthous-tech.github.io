@@ -223,7 +223,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
   }
   console.log(props);
   return (
-    <IndexLayout className="post-template">
+    <IndexLayout className="post-template" langKey={props.pathContext.langKey}>
       <Helmet>
         <html lang={config.lang} />
         <title>{post.frontmatter.title}</title>

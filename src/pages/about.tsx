@@ -32,33 +32,24 @@ const About: React.FunctionComponent = () => (
       <main id="site-main" className={`site-main ${SiteMain} ${outer}`}>
         <article className={`${PostFull} post page ${NoImage}`}>
           <PostFullHeader>
-            <PostFullTitle>About</PostFullTitle>
+            <PostFullTitle>About Us</PostFullTitle>
           </PostFullHeader>
 
           <PostFullContent className="post-full-content">
             <div className="post-content">
               <p>
-                Ghost is professional publishing platform designed for modern journalism. This is a
-                demo site of a basic Ghost install to give you a general sense of what a new Ghost
-                site looks like when set up for the first time.
+                We started off as a group of freelancers, to help teams and companies around the world to solve various technical challenges.
+                We realized that we really love to work with startups and to help them succeed. More importantly, we are pretty good at it!
+                So we started Xanthous Tech in 2018 to help more businesses grow.
               </p>
-              <blockquote>
+              <p>Check out our <a href="/projects">projects</a> and see what it is like to work with us!</p>
+              {/* <blockquote>
                 <p>
                   If you'd like to set up a site like this for yourself, head over to{' '}
                   <a href="https://ghost.org">Ghost.org</a> and start a free 14 day trial to give
                   Ghost a try!
                 </p>
-              </blockquote>
-              <p>
-                If you're a developer: Ghost is a completely open source (MIT) Node.js application
-                built on a JSON API with an Ember.js admin client. It works with MySQL and SQLite,
-                and is publicly available <a href="https://github.com/TryGhost/ghost">on Github</a>.
-              </p>
-              <p>
-                If you need help with using Ghost, you'll find a ton of useful articles on{' '}
-                <a href="https://help.ghost.org">our knowledgebase</a>, as well as extensive{' '}
-                <a href="https://docs.ghost.org">developer documentation</a>.
-              </p>
+              </blockquote> */}
             </div>
           </PostFullContent>
         </article>

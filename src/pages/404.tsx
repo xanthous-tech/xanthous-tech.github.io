@@ -62,12 +62,12 @@ const NotFoundPage: React.FunctionComponent<NotFoundTemplateProps> = props => {
   const { edges } = props.data.allMdx;
 
   return (
-    <IndexLayout>
+    <IndexLayout langKey="en">
       <Wrapper>
         <header className={`${SiteHeader} ${outer}`}>
           <div className="inner">
             <SiteNavCenter>
-              <SiteNavLogo />
+              <SiteNavLogo link="/" />
             </SiteNavCenter>
           </div>
         </header>
