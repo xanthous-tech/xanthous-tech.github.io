@@ -41,7 +41,7 @@ const About: React.FunctionComponent = () => (
                 我们一开始只是一个自由职业者团队，为全世界范围的团队和公司解决技术难题。
                 我们意识到我们都喜欢（并且很擅长）协助初创企业并获得成功，所以我们在2018年创办了先思科技，和企业共同成长。
               </p>
-              <p>请看我们做过的<a href="/zh/projects">项目</a>，看看我们是如何帮助企业的。</p>
+              <p>请看我们做过的<a href="/projects">项目</a>，看看我们是如何帮助企业的。</p>
             </div>
           </PostFullContent>
         </article>

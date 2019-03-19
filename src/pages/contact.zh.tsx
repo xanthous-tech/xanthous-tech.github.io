@@ -19,14 +19,14 @@ const PageTemplate = css`
 
 
 const Contact: React.FunctionComponent = () => (
-  <IndexLayout langKey="en">
+  <IndexLayout langKey="zh">
     <Helmet>
       <title>联系我们 - Xanthous Tech</title>
     </Helmet>
     <Wrapper className={`${PageTemplate}`}>
       <header className={`${SiteHeader} ${outer}`}>
         <div className={`${inner}`}>
-          <SiteNav langKey="zh" slug="/contact" />
+          <SiteNav langKey="zh" slug="/zh/contact" />
         </div>
       </header>
       <main id="site-main" className={`site-main ${SiteMain} ${outer}`}>

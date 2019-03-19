@@ -38,8 +38,8 @@ const Contact: React.FunctionComponent = () => (
           <PostFullContent className="post-full-content">
             <div className="post-content">
               <p>
-                If you have an idea, or need help to solve challenging technical problems, please drop us a line at
-                <a href="mailto:hi@x-tech.io">hi@x-tech.io</a>!
+                If you have an idea, or need help to solve challenging technical problems, please drop us a line
+                at&nbsp;<a href="mailto:hi@x-tech.io">hi@x-tech.io</a>!
               </p>
             </div>
           </PostFullContent>
