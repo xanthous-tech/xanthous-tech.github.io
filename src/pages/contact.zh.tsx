@@ -26,7 +26,7 @@ const Contact: React.FunctionComponent = () => (
     <Wrapper className={`${PageTemplate}`}>
       <header className={`${SiteHeader} ${outer}`}>
         <div className={`${inner}`}>
-          <SiteNav langKey="zh" slug="/zh/contact" />
+          <SiteNav langKey="zh" slug="/contact" />
         </div>
       </header>
       <main id="site-main" className={`site-main ${SiteMain} ${outer}`}>
