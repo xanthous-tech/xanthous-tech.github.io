@@ -18,6 +18,18 @@ module.exports = {
         useLangKeyLayout: false,
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Xanthous Tech`,
+        short_name: `X-Tech`,
+        start_url: `/`,
+        // background_color: `#f7f0eb`,
+        // theme_color: `#a2466c`,
+        display: `standalone`,
+        icon: 'src/content/img/x-tech-logo-2.png',
+      },
+    },
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-source-filesystem',

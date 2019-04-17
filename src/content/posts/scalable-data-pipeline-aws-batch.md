@@ -4,7 +4,7 @@ title: "How to Build a Scalable Data Pipeline with AWS Batch"
 author: simonliang
 tags: ["AWS"]
 image: ../img/computer.jpg
-date: "2015-02-02T23:46:37.121Z"
+date: "2019-03-02T23:46:37.121Z"
 draft: false
 ---
 

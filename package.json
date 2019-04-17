@@ -36,6 +36,7 @@
     "gatsby-plugin-feed": "^2.0.11",
     "gatsby-plugin-google-analytics": "^2.0.8",
     "gatsby-plugin-i18n": "^0.4.2",
+    "gatsby-plugin-manifest": "^2.0.29",
     "gatsby-plugin-postcss": "2.0.2",
     "gatsby-plugin-react-helmet": "3.0.5",
     "gatsby-plugin-sharp": "2.0.17",

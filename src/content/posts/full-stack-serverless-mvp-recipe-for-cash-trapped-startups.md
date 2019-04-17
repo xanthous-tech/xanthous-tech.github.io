@@ -4,7 +4,7 @@ title: 'Full-Stack Serverless MVP recipe for cash-trapped Startups.'
 author: Necmttn
 tags: ['Serverless', 'React', 'mvp']
 image: ../img/server.jpg
-date: '2015-02-02T23:46:37.121Z'
+date: '2019-02-02T23:46:37.121Z'
 draft: false
 ---
 
@@ -379,7 +379,7 @@ Netlify comes really handy for MVP deployments. with the quick setup you can add
 
 Every time you open a pull request, or push new changes to a branch, Netlify automatically builds a preview with a unique URL. Like a staging environment for every PR or branch, previews are perfect for testing and collaboration.
 
-With the tools & libraries listed above with the team of 3 developers we have managed to pull off challenging MVP product [AMZ Kungfu - Amazon Seller Ads Automation Platform](https://www.amzkungfu.com/)  
+With the tools & libraries listed above with the team of 3 developers we have managed to pull off challenging MVP product [AMZ Kungfu - Amazon Seller Ads Automation Platform](https://www.amzkungfu.com/)
 Which is made of;
 **16** DynamoDB tables
 **28** Lambda
