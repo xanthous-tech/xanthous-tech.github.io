@@ -1,20 +1,87 @@
 import IndexLayout from '../layouts';
 import Wrapper from '../components/Wrapper';
 import SiteNav from '../components/header/SiteNav';
-import { SiteHeader, outer, inner, SiteMain } from '../styles/shared';
+import { SiteHeader, outer, inner, SiteMain, AuthorProfileImage } from '../styles/shared';
 import * as React from 'react';
 import { css } from 'emotion';
+import t from '../content/i18n';
 
 import { PostFullHeader, PostFullTitle, NoImage, PostFull } from '../templates/post';
 import { PostFullContent } from '../components/PostContent';
 import Footer from '../components/Footer';
 import Helmet from 'react-helmet';
-import { IndexProps } from './team';
+import { graphql, Link } from 'gatsby';
+import * as _ from 'lodash';
 
 const PageTemplate = css`
   .site-main {
     background: #fff;
     padding-bottom: 4vw;
+  }
+
+  .post-content {
+    margin-bottom: 50px;
+  }
+
+  .list {
+    display: block;
+    width: 100%;
+
+    h2 {
+      margin-top: 80px;
+      font-size: 24px;
+    }
+
+    .item {
+      text-align: center;
+      width: 33%;
+      margin: 20px 0;
+      display: inline-block;
+
+      a {
+        text-decoration: none;
+        box-shadow: none;
+      }
+
+      .item-image {
+        width: 80px;
+        display: inline-block;
+      }
+
+      .item-name {
+        margin: 0;
+        padding: 0;
+        font-size: 22px;
+      }
+
+      .item-title {
+        margin: 5px;
+        padding: 0;
+        font-size: 12px;
+        color: #333;
+        font-weight: normal;
+      }
+    }
+  }
+
+  .list--team {
+  }
+
+  .list--stack {
+    .item {
+      width: auto;
+      display: inline-block;
+      margin: 10px 20px;
+
+      .item-image {
+        width: 40px;
+      }
+
+      .item-name {
+        font-size: 12px;
+        font-weight: normal;
+      }
+    }
   }
 `;
 
@@ -23,31 +90,50 @@ export interface IProps {
     langKey: string;
     slug: string;
   };
-  // data: {
-  //   allAuthorYaml: {
-  //     edges: {
-  //       node: {
-  //         id: string;
-  //         name: string;
-  //         bio: string;
-  //         title: string;
-  //         avatar: {
-  //           children: {
-  //             fixed: {
-  //               src: string;
-  //             };
-  //           }[];
-  //         };
-  //       };
-  //     }[];
-  //   };
-  // };
+  data: {
+    allAuthorYaml: {
+      edges: {
+        node: {
+          id: string;
+          name: string;
+          bio: string;
+          title: string;
+          avatar: {
+            children: {
+              fixed: {
+                src: string;
+              };
+            }[];
+          };
+        };
+      }[];
+    };
+    allTechstackYaml: {
+      edges: {
+        node: {
+          id: string;
+          name: string;
+          bio: string;
+          title: string;
+          logo: {
+            childImageSharp: {
+              fixed: {
+                src: string;
+              };
+            };
+          };
+        };
+      }[];
+    };
+  };
 }
 
 export interface II18nData {
   [key: string]: {
     title: string;
     subtitle: string;
+    teamTitle: string;
+    stackTitle: string;
     content: JSX.Element;
   };
 }
@@ -56,6 +142,8 @@ const i18nData: II18nData = {
   en: {
     title: 'About',
     subtitle: 'About Us',
+    teamTitle: 'Team List',
+    stackTitle: 'Tech Stack List',
     content: (
       <>
         <p>
@@ -73,6 +161,8 @@ const i18nData: II18nData = {
   zh: {
     title: '关于',
     subtitle: '关于我们',
+    teamTitle: '团队列表',
+    stackTitle: '技术栈列表',
     content: (
       <>
         <p>
@@ -87,7 +177,7 @@ const i18nData: II18nData = {
   },
 };
 
-const About: React.FunctionComponent<IndexProps> = props => {
+const About: React.FunctionComponent<IProps> = props => {
   const currentData = i18nData[props.pageContext.langKey] || i18nData['en'];
 
   return (
@@ -108,7 +198,52 @@ const About: React.FunctionComponent<IndexProps> = props => {
             </PostFullHeader>
 
             <PostFullContent className="post-full-content">
-              <div className="post-content">{currentData.content}</div>
+              <div className="post-content">
+                <div className="about-text">{currentData.content}</div>
+
+                <div className="list list--team">
+                  <h2>{currentData.teamTitle}</h2>
+
+                  {!props.data.allAuthorYaml
+                    ? null
+                    : props.data.allAuthorYaml.edges.map(author => (
+                        <div className="item" key={author.node.id}>
+                          <Link to={`/author/${_.kebabCase(author.node.id)}/`}>
+                            <img
+                              className={`${AuthorProfileImage} item-image`}
+                              src={author.node.avatar.children[0].fixed.src}
+                              alt={author.node.name}
+                            />
+                          </Link>
+
+                          <h3 className="item-name">{author.node.name}</h3>
+                          {author.node.title && (
+                            <h4 className="item-title">{t[author.node.title]()}</h4>
+                          )}
+                        </div>
+                      ))}
+                </div>
+
+                <div className="list list--stack">
+                  <h2>{currentData.stackTitle}</h2>
+
+                  {!props.data.allTechstackYaml
+                    ? null
+                    : props.data.allTechstackYaml.edges.map(stack => (
+                        <div className="item" key={stack.node.id}>
+                          <Link to={`/tech/${_.kebabCase(stack.node.id)}/`}>
+                            <img
+                              className={`${AuthorProfileImage} item-image`}
+                              src={stack.node.logo.childImageSharp.fixed.src}
+                              alt={stack.node.name}
+                            />
+                          </Link>
+
+                          <h3 className="item-name">{stack.node.name}</h3>
+                        </div>
+                      ))}
+                </div>
+              </div>
             </PostFullContent>
           </article>
         </main>
@@ -119,3 +254,42 @@ const About: React.FunctionComponent<IndexProps> = props => {
 };
 
 export default About;
+
+export const pageQuery = graphql`
+  query {
+    allAuthorYaml {
+      edges {
+        node {
+          id
+          name
+          title
+          bio
+          avatar {
+            children {
+              ... on ImageSharp {
+                fixed(quality: 100) {
+                  src
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    allTechstackYaml {
+      edges {
+        node {
+          id
+          name
+          logo {
+            childImageSharp {
+              fixed(quality: 100) {
+                src
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
