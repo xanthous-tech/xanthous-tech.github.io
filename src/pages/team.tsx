@@ -87,26 +87,26 @@ export interface IndexProps {
 }
 
 const Team: React.FunctionComponent<IndexProps> = props => (
-  <IndexLayout langKey="en">
+  <IndexLayout langKey={props.pageContext.langKey}>
     <Helmet>
-      <title>Team - Xanthous Tech</title>
+      <title>{`${t['page.team.title']()} - Xanthous Tech`}</title>
     </Helmet>
     <Wrapper className={`${PageTemplate}`}>
       <header className={`${SiteHeader} ${outer}`}>
         <div className={`${inner}`}>
-          <SiteNav langKey="en" slug="/contact" />
+          <SiteNav langKey={props.pageContext.langKey} slug="/team" />
         </div>
       </header>
       <main id="site-main" className={`site-main ${SiteMain} ${outer}`}>
         <article className={`${PostFull} post page ${NoImage}`}>
           <PostFullHeader>
-            <PostFullTitle>Team</PostFullTitle>
+            <PostFullTitle>{t['page.team.title']()}</PostFullTitle>
           </PostFullHeader>
 
           <PostFullContent className="post-full-content">
             <div className="post-content">
               <div className="auth-list">
-                <h1>Team List</h1>
+                <h1>{t['page.team.subtitle']()}</h1>
 
                 {!props.data.allAuthorYaml
                   ? null
