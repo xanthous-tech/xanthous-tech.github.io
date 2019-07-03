@@ -86,55 +86,60 @@ export interface IndexProps {
   };
 }
 
-const Team: React.FunctionComponent<IndexProps> = props => (
-  <IndexLayout langKey={props.pageContext.langKey}>
-    <Helmet>
-      <title>{`${t['page.team.title']()} - Xanthous Tech`}</title>
-    </Helmet>
-    <Wrapper className={`${PageTemplate}`}>
-      <header className={`${SiteHeader} ${outer}`}>
-        <div className={`${inner}`}>
-          <SiteNav langKey={props.pageContext.langKey} slug="/team" />
-        </div>
-      </header>
-      <main id="site-main" className={`site-main ${SiteMain} ${outer}`}>
-        <article className={`${PostFull} post page ${NoImage}`}>
-          <PostFullHeader>
-            <PostFullTitle>{t['page.team.title']()}</PostFullTitle>
-          </PostFullHeader>
+const Team: React.FunctionComponent<IndexProps> = props => {
+  // TODO Helmet title can't set a Element
+  const title = props.pageContext.langKey === 'zh' ? '团队' : 'Team';
 
-          <PostFullContent className="post-full-content">
-            <div className="post-content">
-              <div className="auth-list">
-                <h1>{t['page.team.subtitle']()}</h1>
+  return (
+    <IndexLayout langKey={props.pageContext.langKey}>
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
+      <Wrapper className={`${PageTemplate}`}>
+        <header className={`${SiteHeader} ${outer}`}>
+          <div className={`${inner}`}>
+            <SiteNav langKey={props.pageContext.langKey} slug="/team" />
+          </div>
+        </header>
+        <main id="site-main" className={`site-main ${SiteMain} ${outer}`}>
+          <article className={`${PostFull} post page ${NoImage}`}>
+            <PostFullHeader>
+              <PostFullTitle>{t['page.team.title']()}</PostFullTitle>
+            </PostFullHeader>
 
-                {!props.data.allAuthorYaml
-                  ? null
-                  : props.data.allAuthorYaml.edges.map(author => (
-                      <div className="auth-item" key={author.node.id}>
-                        <Link to={`/author/${_.kebabCase(author.node.id)}/`}>
-                          <img
-                            className={`${AuthorProfileImage} auth-item-avatar`}
-                            src={author.node.avatar.children[0].fixed.src}
-                            alt={author.node.name}
-                          />
-                        </Link>
+            <PostFullContent className="post-full-content">
+              <div className="post-content">
+                <div className="auth-list">
+                  <h1>{t['page.team.subtitle']()}</h1>
 
-                        <h2>{author.node.name}</h2>
-                        {author.node.title && (
-                          <h4 className="auth-title">{t[author.node.title]()}</h4>
-                        )}
-                      </div>
-                    ))}
+                  {!props.data.allAuthorYaml
+                    ? null
+                    : props.data.allAuthorYaml.edges.map(author => (
+                        <div className="auth-item" key={author.node.id}>
+                          <Link to={`/author/${_.kebabCase(author.node.id)}/`}>
+                            <img
+                              className={`${AuthorProfileImage} auth-item-avatar`}
+                              src={author.node.avatar.children[0].fixed.src}
+                              alt={author.node.name}
+                            />
+                          </Link>
+
+                          <h2>{author.node.name}</h2>
+                          {author.node.title && (
+                            <h4 className="auth-title">{t[author.node.title]()}</h4>
+                          )}
+                        </div>
+                      ))}
+                </div>
               </div>
-            </div>
-          </PostFullContent>
-        </article>
-      </main>
-      <Footer />
-    </Wrapper>
-  </IndexLayout>
-);
+            </PostFullContent>
+          </article>
+        </main>
+        <Footer />
+      </Wrapper>
+    </IndexLayout>
+  );
+};
 
 export default Team;
 
