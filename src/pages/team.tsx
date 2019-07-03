@@ -19,27 +19,26 @@ const PageTemplate = css`
 
 
 const Contact: React.FunctionComponent = () => (
-  <IndexLayout langKey="zh">
+  <IndexLayout langKey="en">
     <Helmet>
-      <title>联系我们 - Xanthous Tech</title>
+      <title>Team - Xanthous Tech</title>
     </Helmet>
     <Wrapper className={`${PageTemplate}`}>
       <header className={`${SiteHeader} ${outer}`}>
         <div className={`${inner}`}>
-          <SiteNav langKey="zh" slug="/contact" />
+          <SiteNav langKey="en" slug="/contact" />
         </div>
       </header>
       <main id="site-main" className={`site-main ${SiteMain} ${outer}`}>
         <article className={`${PostFull} post page ${NoImage}`}>
           <PostFullHeader>
-            <PostFullTitle>联系我们</PostFullTitle>
+            <PostFullTitle>Team</PostFullTitle>
           </PostFullHeader>
 
           <PostFullContent className="post-full-content">
             <div className="post-content">
               <p>
-                如果您有想法，或者有挑战性的技术难题，请联系
-                <a href="mailto:hi@x-tech.io">hi@x-tech.io</a>!
+                Team List
               </p>
             </div>
           </PostFullContent>

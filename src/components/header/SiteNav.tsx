@@ -164,6 +164,9 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
               <Link to={`${linkPrefix}/projects`}>{t['general.nav.projects']()}</Link>
             </li>
             <li role="menuitem">
+              <Link to={`${linkPrefix}/team`}>{t['general.nav.team']()}</Link>
+            </li>
+            <li role="menuitem">
               <Link to={`${linkPrefix}/contact`}>{t['general.nav.contact']()}</Link>
             </li>
           </ul>

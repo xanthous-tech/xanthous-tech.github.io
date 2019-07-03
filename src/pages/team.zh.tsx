@@ -21,7 +21,7 @@ const PageTemplate = css`
 const Contact: React.FunctionComponent = () => (
   <IndexLayout langKey="zh">
     <Helmet>
-      <title>联系我们 - Xanthous Tech</title>
+      <title>团队 - Xanthous Tech</title>
     </Helmet>
     <Wrapper className={`${PageTemplate}`}>
       <header className={`${SiteHeader} ${outer}`}>
@@ -32,14 +32,13 @@ const Contact: React.FunctionComponent = () => (
       <main id="site-main" className={`site-main ${SiteMain} ${outer}`}>
         <article className={`${PostFull} post page ${NoImage}`}>
           <PostFullHeader>
-            <PostFullTitle>联系我们</PostFullTitle>
+            <PostFullTitle>团队</PostFullTitle>
           </PostFullHeader>
 
           <PostFullContent className="post-full-content">
             <div className="post-content">
               <p>
-                如果您有想法，或者有挑战性的技术难题，请联系
-                <a href="mailto:hi@x-tech.io">hi@x-tech.io</a>!
+                团队列表
               </p>
             </div>
           </PostFullContent>
