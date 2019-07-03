@@ -18,7 +18,7 @@ const PageTemplate = css`
 `;
 
 
-const Contact: React.FunctionComponent = () => (
+const Team: React.FunctionComponent = () => (
   <IndexLayout langKey="zh">
     <Helmet>
       <title>团队 - Xanthous Tech</title>
@@ -49,4 +49,4 @@ const Contact: React.FunctionComponent = () => (
   </IndexLayout>
 );
 
-export default Contact;
+export default Team;
