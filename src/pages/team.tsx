@@ -1,16 +1,17 @@
+import * as _ from 'lodash';
 import IndexLayout from '../layouts';
 import Wrapper from '../components/Wrapper';
 import SiteNav from '../components/header/SiteNav';
 import { SiteHeader, outer, inner, SiteMain, AuthorProfileImage } from '../styles/shared';
 import * as React from 'react';
 import { css } from 'emotion';
+import t from '../content/i18n';
 
 import { PostFullHeader, PostFullTitle, NoImage, PostFull } from '../templates/post';
 import { PostFullContent } from '../components/PostContent';
 import Footer from '../components/Footer';
 import Helmet from 'react-helmet';
 import { graphql, Link } from 'gatsby';
-import * as _ from 'lodash';
 
 const PageTemplate = css`
   .site-main {
@@ -21,11 +22,16 @@ const PageTemplate = css`
   .auth-list {
     display: block;
     width: 100%;
+
+    h1 {
+      font-size: 24px;
+    }
   }
 
   .auth-item {
     text-align: center;
     width: 33%;
+    margin: 20px 0;
     display: inline-block;
 
     a {
@@ -41,13 +47,15 @@ const PageTemplate = css`
     h2 {
       margin: 0;
       padding: 0;
-      font-size: 18px;
+      font-size: 22px;
     }
 
-    h4 {
-      margin: 0;
+    .auth-title {
+      margin: 5px;
       padding: 0;
-      font-size: 14px;
+      font-size: 12px;
+      color: #333;
+      font-weight: normal;
     }
   }
 `;
@@ -64,6 +72,7 @@ export interface IndexProps {
           id: string;
           name: string;
           bio: string;
+          title: string;
           avatar: {
             children: {
               fixed: {
@@ -112,7 +121,9 @@ const Team: React.FunctionComponent<IndexProps> = props => (
                         </Link>
 
                         <h2>{author.node.name}</h2>
-                        <h4>{author.node.bio}</h4>
+                        {author.node.title && (
+                          <h4 className="auth-title">{t[author.node.title]()}</h4>
+                        )}
                       </div>
                     ))}
               </div>
