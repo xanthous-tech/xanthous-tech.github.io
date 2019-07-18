@@ -22,7 +22,7 @@ async function getDatafromCSV(pathTo, prefix = 'general') {
   return new Promise((res, rej) => {
     stream.on('end', () => {
       console.log(prefix, 'compiled i18n csv into json');
-      res() 
+      res()
     });
     stream.on('error', (err) => {
       console.log(prefix, 'EROOROR', err);
@@ -37,6 +37,7 @@ async function init() {
     await getDatafromCSV('./authors.csv', 'author');
     await getDatafromCSV('./techstack.csv', 'techstack');
     await getDatafromCSV('./general.csv', 'general');
+    await getDatafromCSV('./pages.csv', 'page');
 
     fs.writeFileSync(
       path.resolve(__dirname, 'data.json'),
