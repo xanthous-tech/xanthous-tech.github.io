@@ -6,8 +6,6 @@ import en from '../content/i18n/en_US';
 import zh from '../content/i18n/zh_CN';
 
 import { colors } from '../styles/colors';
-import LanguageToggle from '../components/LanguangeToggle';
-import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 const i18n = {
   messages: {
@@ -195,9 +193,9 @@ input,
 optgroup,
 select,
 textarea {
-  margin: 0; 
-  color: inherit; 
-  font: inherit; 
+  margin: 0;
+  color: inherit;
+  font: inherit;
 }
 button {
   overflow: visible;
@@ -212,9 +210,9 @@ html input[type="button"],
 
 input[type="reset"],
 input[type="submit"] {
-  cursor: pointer; 
+  cursor: pointer;
 
-  -webkit-appearance: button; 
+  -webkit-appearance: button;
 }
 button[disabled],
 html input[disabled] {
@@ -233,25 +231,25 @@ input:focus {
 }
 input[type="checkbox"],
 input[type="radio"] {
-  box-sizing: border-box; 
-  padding: 0; 
+  box-sizing: border-box;
+  padding: 0;
 }
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
 input[type="search"] {
-  box-sizing: content-box; 
+  box-sizing: content-box;
 
-  -webkit-appearance: textfield; 
+  -webkit-appearance: textfield;
 }
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 legend {
-  padding: 0; 
-  border: 0; 
+  padding: 0;
+  border: 0;
 }
 textarea {
   overflow: auto;
@@ -499,12 +497,6 @@ const IndexLayout: React.FunctionComponent<IndexProps> = props => {
     <IntlProvider locale={'en'} messages={i18n.messages[langKey]}>
       <div className={props.className}>
         {props.children}
-        {/* this is definetly not the place for this but quick hack */}
-        <MessengerCustomerChat
-          pageId="391138745024240"
-          appId="342750623012703"
-          htmlRef={(typeof window !== 'undefined') && window.location.pathname}
-        />
       </div>
     </IntlProvider>
   );

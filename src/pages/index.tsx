@@ -2,6 +2,7 @@ import { graphql } from 'gatsby';
 import * as React from 'react';
 import { css } from 'emotion'
 import Helmet from 'react-helmet';
+import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 import Footer from '../components/Footer';
 import PostCard from '../components/PostCard';
@@ -179,6 +180,13 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
           </div>
         </main>
         {props.children}
+        <MessengerCustomerChat
+          pageId="391138745024240"
+          appId="342750623012703"
+          htmlRef={(typeof window !== 'undefined') && window.location.pathname}
+          loggedInGreeting="Hey! If you have any questions, please drop us a note with your contact info!"
+          loggedOutGreeting="Hey! If you have any questions, please drop us a note with your contact info!"
+        />
         <Footer />
       </Wrapper>
     </IndexLayout>

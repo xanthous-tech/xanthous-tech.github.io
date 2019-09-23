@@ -38,10 +38,3 @@
   bio: author.simonliang.bio
   location: country.china
   profile_image: img/speeches-cover.jpg
-- id: chrischen
-  name: Chris Chen
-  avatar: avatars/alex.jpeg
-  title: author.chrischen.title
-  bio: author.chrischen.bio
-  location: country.china
-  profile_image: img/alex-knight-326705-unsplash.jpg
