@@ -70,7 +70,7 @@ const StyledSplash = styled.section`
     top: 388px;
     left: 103px;
     height: 96px;
-    //TODO
+    /* //TODO font-family sarala */
     font-family: Sarala, sans-serif;
     font-size: 26px;
     line-height: 42px;

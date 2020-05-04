@@ -1,5 +1,4 @@
 import { Link } from 'gatsby';
-import { setLightness } from 'polished';
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { css } from 'emotion';
@@ -14,8 +13,6 @@ import Twitter from './icons/twitter';
 import Medium from './icons/medium';
 import GitHub from './icons/github';
 import RSS from './icons/rss';
-
-import t from '../content/i18n';
 
 const SiteFooter = css`
   position: relative;
@@ -88,61 +85,11 @@ const Footer: React.FunctionComponent = () => {
         </section>
         <SiteFooterNav>
           <SocialLinks>
-            {config.facebook && (
-              <a
-                className={`${SocialLink}`}
-                href={config.facebook}
-                target="_blank"
-                title="Facebook"
-                rel="noopener noreferrer"
-              >
-                <Facebook />
-              </a>
-            )}
-            {config.twitter && (
-              <a
-                className={`${SocialLink}`}
-                href={config.twitter}
-                title="Twitter"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Twitter />
-              </a>
-            )}
-            {config.medium && (
-              <a
-                className={`${SocialLink}`}
-                href={config.medium}
-                title="Medium"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Medium />
-              </a>
-            )}
-            {config.github && (
-              <a
-                className={`${SocialLink}`}
-                href={config.github}
-                title="GitHub"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <GitHub />
-              </a>
-            )}
-            {config.rss && (
-              <a
-                className={`${SocialLink}`}
-                href={config.rss}
-                title="RSS"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <RSS />
-              </a>
-            )}
+            <SocialLinkItem path={config.facebook} title="Facebook" svg={<Facebook />} />
+            <SocialLinkItem path={config.twitter} title="Twitter" svg={<Twitter />} />
+            <SocialLinkItem path={config.medium} title="Medium" svg={<Medium />} />
+            <SocialLinkItem path={config.github} title="GitHub" svg={<GitHub />} />
+            <SocialLinkItem path={config.rss} title="RSS" svg={<RSS />} />
           </SocialLinks>
         </SiteFooterNav>
       </div>
@@ -152,25 +99,20 @@ const Footer: React.FunctionComponent = () => {
 
 export default Footer;
 
-/*
-          {config.facebook && (
-            <a href={config.facebook} target="_blank" rel="noopener noreferrer">
-              Facebook
-            </a>
-          )}
-          {config.twitter && (
-            <a href={config.twitter} target="_blank" rel="noopener noreferrer">
-              Twitter
-            </a>
-          )}
-          {config.medium && (
-            <a href={config.medium} title="Medium" target="_blank" rel="noopener noreferrer">
-              Medium
-            </a>
-          )}
-          {config.github && (
-            <a href={config.github} title="GitHub" target="_blank" rel="noopener noreferrer">
-              GitHub
-            </a>
-          )}
-*/
+const SocialLinkItem: React.FC<{
+  path: string | undefined;
+  title: string;
+  svg: React.ReactElement<any>;
+}> = ({ path, title, svg }) => {
+  return path ? (
+    <a
+      className={`${SocialLink}`}
+      href={path}
+      title={title}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {svg}
+    </a>
+  ) : null;
+};
