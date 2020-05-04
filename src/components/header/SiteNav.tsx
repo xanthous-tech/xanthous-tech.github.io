@@ -62,15 +62,22 @@ const NavStyles = css`
   li a {
     display: block;
     margin: 0;
-    padding-left: 40px;
+    padding-left: 60px;
     color: #fff;
-    opacity: 0.8;
+    opacity: 0.85;
+    font-family: Saira;
+    font-size: 16px;
+    line-height: 12px;
   }
 
   li a:hover {
     text-decoration: none;
     opacity: 1;
   }
+`;
+
+const bold = css`
+  font-weight: 800;
 `;
 
 const SiteNavRight = styled.div`
@@ -127,6 +134,7 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
   render() {
     const { isHome = false } = this.props;
     const linkPrefix = this.props.langKey === 'en' ? '' : this.props.langKey;
+
     console.log(this.props);
     return (
       <header className={`${SiteHeader} ${outer}`}>
@@ -135,22 +143,11 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
             <SiteNavLeft>{!isHome && <SiteNavLogo link={`${linkPrefix}/`} />}</SiteNavLeft>
             <SiteNavRight>
               <ul className={`${NavStyles}`} role="menu">
-                {/* TODO: mark current nav item - add class nav-current */}
-                <li role="menuitem">
-                  <Link to={`${linkPrefix}/`}>{t['general.nav.home']()}</Link>
-                </li>
-                <li role="menuitem">
-                  <Link to={`${linkPrefix}/about`}>{t['general.nav.about']()}</Link>
-                </li>
-                <li role="menuitem">
-                  <Link to={`${linkPrefix}/blog`}>{t['general.nav.blog']()}</Link>
-                </li>
-                <li role="menuitem">
-                  <Link to={`${linkPrefix}/projects`}>{t['general.nav.projects']()}</Link>
-                </li>
-                <li role="menuitem">
-                  <Link to={`${linkPrefix}/contact`}>{t['general.nav.contact']()}</Link>
-                </li>
+                <SiteNavItem exact={true} path={`${linkPrefix}/`} label={t['general.nav.home']()} />
+                <SiteNavItem path={`${linkPrefix}/about`} label={t['general.nav.about']()} />
+                <SiteNavItem path={`${linkPrefix}/projects`} label={t['general.nav.projects']()} />
+                <SiteNavItem path={`${linkPrefix}/blog`} label={t['general.nav.blog']()} />
+                <SiteNavItem path={`${linkPrefix}/contact`} label={t['general.nav.contact']()} />
               </ul>
             </SiteNavRight>
           </nav>
@@ -159,6 +156,26 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
     );
   }
 }
+
+const SiteNavItem: React.FC<{ path: string; label: string; exact?: boolean }> = ({
+  label,
+  path,
+  exact,
+}) => {
+  const currentSlug = () => {
+    if (exact) {
+      return window.location.pathname === path ? `${bold}` : '';
+    }
+
+    return window.location.pathname.startsWith(path) ? `${bold}` : '';
+  };
+
+  return (
+    <li className={currentSlug()} role="menuitem">
+      <Link to={path}>{label}</Link>
+    </li>
+  );
+};
 
 export default SiteNav;
 

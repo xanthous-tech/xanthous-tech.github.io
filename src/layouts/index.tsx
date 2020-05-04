@@ -274,7 +274,7 @@ body {
   overflow-x: hidden;
   /* color: color(var(--midgrey) l(-25%)); */
   color: ${darken('0.25', colors.midgrey)};
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Saira, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1.5rem;
   line-height: 1.6em;
   font-weight: 400;
@@ -495,9 +495,7 @@ const IndexLayout: React.FunctionComponent<IndexProps> = props => {
   const langKey: String = props.langKey || 'en';
   return (
     <IntlProvider locale={'en'} messages={i18n.messages[langKey]}>
-      <div className={props.className}>
-        {props.children}
-      </div>
+      <div className={props.className}>{props.children}</div>
     </IntlProvider>
   );
 };

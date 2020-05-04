@@ -11,7 +11,8 @@ module.exports = {
     'Mdx.frontmatter.meta.techstack': 'TechstackYaml',
     'Mdx.frontmatter.meta.teammembers': 'AuthorYaml',
   },
-  plugins: [{
+  plugins: [
+    {
       resolve: 'gatsby-plugin-i18n',
       options: {
         langKeyDefault: 'en',
@@ -42,7 +43,8 @@ module.exports = {
       resolve: `gatsby-mdx`,
       options: {
         extensions: ['.mdx', '.md'],
-        gatsbyRemarkPlugins: [{
+        gatsbyRemarkPlugins: [
+          {
             resolve: 'gatsby-remark-responsive-iframe',
             options: {
               wrapperStyle: 'margin-bottom: 1rem',
@@ -95,26 +97,24 @@ module.exports = {
             }
           }
         `,
-        feeds: [{
-          serialize: ({
-            query: {
-              site,
-              allMdx
-            }
-          }) => {
-            return allMdx.edges.map(edge => {
-              return Object.assign({}, edge.node.frontmatter, {
-                description: edge.node.excerpt,
-                date: edge.node.frontmatter.date,
-                url: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                custom_elements: [{
-                  'content:encoded': edge.node.html
-                }],
+        feeds: [
+          {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.edges.map(edge => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.excerpt,
+                  date: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  custom_elements: [
+                    {
+                      'content:encoded': edge.node.html,
+                    },
+                  ],
+                });
               });
-            });
-          },
-          query: `
+            },
+            query: `
               {
                 allMdx(
                   limit: 1000,
@@ -134,9 +134,10 @@ module.exports = {
                 }
               }
             `,
-          output: '/rss.xml',
-          title: 'Gatsby RSS Feed',
-        }, ],
+            output: '/rss.xml',
+            title: 'Gatsby RSS Feed',
+          },
+        ],
       },
     },
 
@@ -146,6 +147,18 @@ module.exports = {
         postCssPlugins: [require('postcss-color-function'), require('cssnano')()],
       },
     },
+
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `saira\:100,200,300,400,500,600,700,800,900`,
+          // you can also specify font weights and styles
+        ],
+        display: 'swap',
+      },
+    },
+
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
