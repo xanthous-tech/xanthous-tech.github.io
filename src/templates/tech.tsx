@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby';
 import React from 'react';
-import styled from '@emotion/styled'
-import { css } from 'emotion'
+import styled from '@emotion/styled';
+import { css } from 'emotion';
 
 import Footer from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
@@ -129,55 +129,64 @@ const Tech: React.FunctionComponent<TechTemplateProps> = props => {
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={`${tech.name} - ${config.title}`} />
         <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
-        {config.twitter && <meta name="twitter:site" content={`@${config.twitter.split('https://twitter.com/')[1]}`} />}
-        {config.twitter &&
-        <meta
-          name="twitter:creator"
-          content={`@${config.twitter.split('https://twitter.com/')[1]}`}
-        />}
+        {config.twitter && (
+          <meta
+            name="twitter:site"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
+        {config.twitter && (
+          <meta
+            name="twitter:creator"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
       </Helmet>
       <Wrapper>
-        <header
+        {/*  <header
           className={`${SiteHeader} ${outer} no-cover`}
         >
-          <div className={`${inner}`}>
-            <SiteNav isHome={false} {...props.pathContext} />
-            <SiteHeaderContent>
-              <img
-                className={`${AuthorProfileBioImage} ${AuthorProfileImage}`}
-                src={props.data.techstackYaml.logo.childImageSharp.fluid.src}
-                alt={tech.name}
-              />
-              <SiteTitle>{tech.name}</SiteTitle>
-              {tech.desc && <AuthorBio>{t[tech.desc]()}</AuthorBio>}
-              <AuthorMeta>
-                <div className={`${HiddenMobile}`}>
-                  {totalCount > 1 && `${totalCount} posts`}
-                  {totalCount === 1 && `1 post`}
-                  {totalCount === 0 && `No posts`} <Bull>•</Bull>
-                </div>
-                {tech.website && (
-                  <div>
-                    <a
-                      className={`${SocialLink} social-link-wb`}
-                      href={tech.website}
-                      title="Website"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Website />
-                    </a>
-                  </div>
-                )}
-              </AuthorMeta>
-            </SiteHeaderContent>
-          </div>
-        </header>
+          <div className={`${inner}`}> */}
+        <SiteNav isHome={false} {...props.pathContext} />
+        <SiteHeaderContent>
+          <img
+            className={`${AuthorProfileBioImage} ${AuthorProfileImage}`}
+            src={props.data.techstackYaml.logo.childImageSharp.fluid.src}
+            alt={tech.name}
+          />
+          <SiteTitle>{tech.name}</SiteTitle>
+          {tech.desc && <AuthorBio>{t[tech.desc]()}</AuthorBio>}
+          <AuthorMeta>
+            <div className={`${HiddenMobile}`}>
+              {totalCount > 1 && `${totalCount} posts`}
+              {totalCount === 1 && `1 post`}
+              {totalCount === 0 && `No posts`} <Bull>•</Bull>
+            </div>
+            {tech.website && (
+              <div>
+                <a
+                  className={`${SocialLink} social-link-wb`}
+                  href={tech.website}
+                  title="Website"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Website />
+                </a>
+              </div>
+            )}
+          </AuthorMeta>
+        </SiteHeaderContent>
+        {/* </div>
+        </header> */}
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
               {edges.map(({ node }) => {
-                if (node.frontmatter.meta.techstack && node.frontmatter.meta.techstack.map(t => t.id).includes(tech.id)) {
+                if (
+                  node.frontmatter.meta.techstack &&
+                  node.frontmatter.meta.techstack.map(t => t.id).includes(tech.id)
+                ) {
                   return <ProjectCard key={node.fields.slug} post={node} />;
                 }
                 return null;
@@ -209,15 +218,10 @@ export const pageQuery = graphql`
       }
     }
     allMdx(
-      limit: 2000,
+      limit: 2000
       filter: {
-        frontmatter: {
-          layout: { eq: "project"}
-          draft: { ne: true }
-        },
-        fields: {
-          langKey: { eq: $lang }
-        }
+        frontmatter: { layout: { eq: "project" }, draft: { ne: true } }
+        fields: { langKey: { eq: $lang } }
       }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {

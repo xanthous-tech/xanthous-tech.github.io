@@ -17,18 +17,13 @@ const PageTemplate = css`
   }
 `;
 
-
 const Contact: React.FunctionComponent = () => (
   <IndexLayout langKey="en">
     <Helmet>
       <title>Contact Us - Xanthous Tech</title>
     </Helmet>
     <Wrapper className={`${PageTemplate}`}>
-      <header className={`${SiteHeader} ${outer}`}>
-        <div className={`${inner}`}>
-          <SiteNav langKey="en" slug="/contact" />
-        </div>
-      </header>
+      <SiteNav langKey="en" slug="/contact" />
       <main id="site-main" className={`site-main ${SiteMain} ${outer}`}>
         <article className={`${PostFull} post page ${NoImage}`}>
           <PostFullHeader>
@@ -38,8 +33,8 @@ const Contact: React.FunctionComponent = () => (
           <PostFullContent className="post-full-content">
             <div className="post-content">
               <p>
-                If you have an idea, or need help to solve challenging technical problems, please drop us a line
-                at&nbsp;<a href="mailto:hi@x-tech.io">hi@x-tech.io</a>!
+                If you have an idea, or need help to solve challenging technical problems, please
+                drop us a line at&nbsp;<a href="mailto:hi@x-tech.io">hi@x-tech.io</a>!
               </p>
             </div>
           </PostFullContent>

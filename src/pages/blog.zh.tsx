@@ -127,36 +127,38 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <meta property="og:image:height" content={height} />
       </Helmet>
       <Wrapper>
-        <header
+        {/* <header
           className={`${SiteHeader} ${outer}`}
           style={{
             backgroundImage: `url('${props.data.header.childImageSharp.fluid.src}')`,
           }}
         >
-          <div className={`${inner}`}>
-            <SiteHeaderContent>
-              <SiteTitle>
-                {props.data.logo ? (
-                  <img
-                    style={{ maxHeight: '120px' }}
-                    src={props.data.logo.childImageSharp.fixed.src}
-                    alt={config.title}
-                  />
-                ) : (
-                  config.title
-                )}
-              </SiteTitle>
-              <SiteDescription>{config.description}</SiteDescription>
-            </SiteHeaderContent>
-            <SiteNav {...props.pageContext} isHome slug="/blog" />
-          </div>
-        </header>
+          <div className={`${inner}`}> */}
+        <SiteHeaderContent>
+          <SiteTitle>
+            {props.data.logo ? (
+              <img
+                style={{ maxHeight: '120px' }}
+                src={props.data.logo.childImageSharp.fixed.src}
+                alt={config.title}
+              />
+            ) : (
+              config.title
+            )}
+          </SiteTitle>
+          <SiteDescription>{config.description}</SiteDescription>
+        </SiteHeaderContent>
+        <SiteNav {...props.pageContext} slug="/blog" />
+        {/* </div>
+        </header> */}
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
-              {(!props.data.allMdx) ? null : props.data.allMdx.edges.map(post => {
-                return <PostCard key={post.node.fields.slug} post={post.node} />;
-              })}
+              {!props.data.allMdx
+                ? null
+                : props.data.allMdx.edges.map(post => {
+                    return <PostCard key={post.node.fields.slug} post={post.node} />;
+                  })}
             </div>
           </div>
         </main>
@@ -194,13 +196,8 @@ export const pageQuery = graphql`
       limit: 1000
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
-        fields: {
-          langKey: { eq: "zh" }
-        },
-        frontmatter: {
-          layout: { eq: "post" }
-          draft: { ne: true }
-        }
+        fields: { langKey: { eq: "zh" } }
+        frontmatter: { layout: { eq: "post" }, draft: { ne: true } }
       }
     ) {
       edges {

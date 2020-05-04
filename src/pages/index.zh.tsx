@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 import * as React from 'react';
-import { css } from 'emotion'
+import { css } from 'emotion';
 import Helmet from 'react-helmet';
 
 import Footer from '../components/Footer';
@@ -11,14 +11,7 @@ import Faq from '../components/Faq';
 import Introduce from '../components/Introduce/Introduce';
 import IndexLayout from '../layouts';
 import config from '../website-config';
-import {
-  inner,
-  outer,
-  PostFeed,
-  PostFeedRaise,
-  SiteHeader,
-  SiteMain,
-} from '../styles/shared';
+import { inner, outer, PostFeed, PostFeedRaise, SiteHeader, SiteMain } from '../styles/shared';
 import Testimonial from '../components/Testimonial';
 
 // tslint:disable-next-line:no-import-side-effect
@@ -74,7 +67,7 @@ const HomePosts = css`
 const IndexPage: React.FunctionComponent<IndexProps> = props => {
   const width = props.data.header.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
   const height = String(Number(width) / props.data.header.childImageSharp.fluid.aspectRatio);
-  console.log(props)
+  console.log(props);
   return (
     <IndexLayout langKey="zh" className={`${HomePosts}`}>
       <Helmet>
@@ -86,7 +79,10 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <meta property="og:title" content={config.title} />
         <meta property="og:description" content={config.description} />
         <meta property="og:url" content={config.siteUrl} />
-        <meta property="og:image" content={config.siteUrl + props.data.header.childImageSharp.fluid.src} />
+        <meta
+          property="og:image"
+          content={config.siteUrl + props.data.header.childImageSharp.fluid.src}
+        />
         {config.facebook && <meta property="article:publisher" content={config.facebook} />}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={config.title} />
@@ -96,24 +92,28 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
           name="twitter:image"
           content={config.siteUrl + props.data.header.childImageSharp.fluid.src}
         />
-        {config.twitter && <meta name="twitter:site" content={`@${config.twitter.split('https://twitter.com/')[1]}`} />}
+        {config.twitter && (
+          <meta
+            name="twitter:site"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
         <meta property="og:image:width" content={width} />
         <meta property="og:image:height" content={height} />
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <meta
+          name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        />
       </Helmet>
       <Wrapper>
-        <header
-          className={`${SiteHeader} ${outer}`}
-        >
-          <SiteNav {...props.pageContext} slug="/"/>
-        </header>
+        <SiteNav {...props.pageContext} slug="/" />
         <Splash bg={props.data.bg_intro.childImageSharp.fluid.src} />
         <Introduce />
-        <div style={{backgroundColor: '#ffffff'}}>
+        <div style={{ backgroundColor: '#ffffff' }}>
           <HighlightedProject projects={props.data.projects} />
         </div>
         <Faq />
-        <div style={{backgroundColor: '#ffffff'}}>
+        <div style={{ backgroundColor: '#ffffff' }}>
           <Testimonial />
         </div>
         <main id="site-main" className={`${SiteMain} ${outer}`}>
@@ -169,16 +169,11 @@ export const pageQuery = graphql`
       }
     }
     posts: allMdx(
-      limit: 4,
+      limit: 4
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
-        fields: {
-          langKey: {eq: "zh"}
-        }
-        frontmatter: {
-          layout: {eq: "post"}
-          draft: { ne: true }
-        }
+        fields: { langKey: { eq: "zh" } }
+        frontmatter: { layout: { eq: "post" }, draft: { ne: true } }
       }
     ) {
       edges {
@@ -219,17 +214,11 @@ export const pageQuery = graphql`
       }
     }
     projects: allMdx(
-      limit: 4,
+      limit: 4
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
-        fields: {
-          langKey: {eq: "zh"}
-        }
-        frontmatter: {
-          layout: {eq: "project"}
-          highlighted: { eq: true }
-          draft: { ne: true }
-        }
+        fields: { langKey: { eq: "zh" } }
+        frontmatter: { layout: { eq: "project" }, highlighted: { eq: true }, draft: { ne: true } }
       }
     ) {
       edges {

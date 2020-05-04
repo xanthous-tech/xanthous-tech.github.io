@@ -279,11 +279,8 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
         {height && <meta property="og:image:height" content={height} />}
       </Helmet>
       <Wrapper className={`${PostTemplate}`}>
-        <header className={`${SiteHeader} ${outer}`}>
-          <div className={`${inner}`}>
-            <SiteNav {...props.pathContext} />
-          </div>
-        </header>
+        <SiteNav {...props.pathContext} />
+
         <main id="site-main" className={`site-main ${SiteMain}`}>
           <div>
             {/* TODO: no-image css tag? */}

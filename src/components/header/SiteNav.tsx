@@ -12,9 +12,9 @@ import t from '../../content/i18n';
 const HomeNavRaise = css`
   @media (min-width: 900px) {
     position: relative;
-    top: -70px;
   }
 `;
+//    top: -70px;
 
 const SiteNavStyles = css`
   position: relative;
@@ -29,12 +29,12 @@ const SiteNavStyles = css`
 
 const SiteNavLeft = styled.div`
   display: flex;
+  z-index: 900;
   align-items: center;
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   margin-right: 10px;
-  padding-bottom: 80px;
   letter-spacing: 0.4px;
   white-space: nowrap;
 
@@ -62,7 +62,7 @@ const NavStyles = css`
   li a {
     display: block;
     margin: 0;
-    padding: 0 12px;
+    padding-left: 40px;
     color: #fff;
     opacity: 0.8;
   }
@@ -131,7 +131,7 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
     return (
       <header className={`${SiteHeader} ${outer}`}>
         <div className={`${inner}`}>
-          <nav className={`${isHome ? HomeNavRaise : ''} ${SiteNavStyles}`}>
+          <nav className={`${SiteNavStyles}`}>
             <SiteNavLeft>{!isHome && <SiteNavLogo link={`${linkPrefix}/`} />}</SiteNavLeft>
             <SiteNavRight>
               <ul className={`${NavStyles}`} role="menu">

@@ -19,8 +19,7 @@ import t from '../content/i18n';
 
 const SiteFooter = css`
   position: relative;
-  padding-top: 20px;
-  padding-bottom: 60px;
+  padding: 43px 95px;
   color: #fff;
   background: ${colors.backgroundgray};
 `;
@@ -78,9 +77,6 @@ const SocialLinks = styled.div`
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  a:last-of-type {
-    padding-right: 20px;
-  }
 `;
 
 const Footer: React.FunctionComponent = () => {
@@ -148,8 +144,6 @@ const Footer: React.FunctionComponent = () => {
               </a>
             )}
           </SocialLinks>
-
-          <Link to="/rss.xml">RSS</Link>
         </SiteFooterNav>
       </div>
     </footer>

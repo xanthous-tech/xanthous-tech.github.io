@@ -87,7 +87,7 @@ const Tags: React.FunctionComponent<TagTemplateProps> = props => {
         )}
       </Helmet>
       <Wrapper>
-        <header
+        {/* <header
           className={`${SiteHeader} ${outer} ${tagData && tagData.node.image ? '' : 'no-cover'}`}
           style={{
             backgroundImage:
@@ -96,24 +96,24 @@ const Tags: React.FunctionComponent<TagTemplateProps> = props => {
                 : '',
           }}
         >
-          <div className={`${inner}`}>
-            <SiteNav {...props.pageContext} isHome={false} />
-            <SiteHeaderContent>
-              <SiteTitle>{tag}</SiteTitle>
-              <SiteDescription>
-                {tagData && tagData.node.description ? (
-                  tagData.node.description
-                ) : (
-                  <>
-                    A collection of {totalCount > 1 && `${totalCount} posts`}
-                    {totalCount === 1 && `1 post`}
-                    {totalCount === 0 && `No posts`}
-                  </>
-                )}
-              </SiteDescription>
-            </SiteHeaderContent>
-          </div>
-        </header>
+          <div className={`${inner}`}> */}
+        <SiteNav {...props.pageContext} isHome={false} />
+        <SiteHeaderContent>
+          <SiteTitle>{tag}</SiteTitle>
+          <SiteDescription>
+            {tagData && tagData.node.description ? (
+              tagData.node.description
+            ) : (
+              <>
+                A collection of {totalCount > 1 && `${totalCount} posts`}
+                {totalCount === 1 && `1 post`}
+                {totalCount === 0 && `No posts`}
+              </>
+            )}
+          </SiteDescription>
+        </SiteHeaderContent>
+        {/* </div>
+        </header> */}
         <main id="site-main" className={`${SiteMain} ${outer}`}>
           <div className={`${inner}`}>
             <div className={`${PostFeed} ${PostFeedRaise}`}>
@@ -154,12 +154,7 @@ export const pageQuery = graphql`
     allMdx(
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: {
-        frontmatter: {
-          tags: { in: [$tag] }
-          draft: { ne: true }
-        }
-      }
+      filter: { frontmatter: { tags: { in: [$tag] }, draft: { ne: true } } }
     ) {
       totalCount
       edges {

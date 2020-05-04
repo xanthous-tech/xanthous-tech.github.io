@@ -11,9 +11,9 @@ export const outer = css`
 // Centered content container blocks
 export const inner = css`
   margin: 0 auto;
-  max-width: 1040px;
   width: 100%;
 `;
+//  max-width: 1040px;
 
 export const SiteMain = css`
   z-index: 100;
@@ -58,7 +58,7 @@ export const SocialLink = css`
   justify-content: center;
   align-items: center;
   margin: 0;
-  padding: 10px;
+  padding: 0;
   color: #474747;
   opacity: 0.8;
 
