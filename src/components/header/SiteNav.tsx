@@ -3,18 +3,10 @@ import { Link } from 'gatsby';
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { css } from 'emotion';
+import { SiteHeader, outer, inner } from '../../styles/shared';
 
-import { SocialLink } from '../../styles/shared';
-import config from '../../website-config';
 import SubscribeModal from '../subsribe/SubscribeOverlay';
 import SiteNavLogo from './SiteNavLogo';
-import LanguageToggle from '../LanguangeToggle';
-
-import Facebook from '../icons/facebook';
-import Twitter from '../icons/twitter';
-import Medium from '../icons/medium';
-import GitHub from '../icons/github';
-
 import t from '../../content/i18n';
 
 const HomeNavRaise = css`
@@ -31,7 +23,7 @@ const SiteNavStyles = css`
   justify-content: space-between;
   align-items: flex-start;
   overflow-y: hidden;
-  height: 40px;
+  height: 30px;
   font-size: 1.2rem;
 `;
 
@@ -70,7 +62,7 @@ const NavStyles = css`
   li a {
     display: block;
     margin: 0;
-    padding: 10px 12px;
+    padding: 0 12px;
     color: #fff;
     opacity: 0.8;
   }
@@ -85,19 +77,10 @@ const SiteNavRight = styled.div`
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  height: 40px;
+  height: 24px;
 
   @media (max-width: 700px) {
     display: none;
-  }
-`;
-
-const SocialLinks = styled.div`
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  a:last-of-type {
-    padding-right: 20px;
   }
 `;
 
@@ -146,29 +129,40 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
     const linkPrefix = this.props.langKey === 'en' ? '' : this.props.langKey;
     console.log(this.props);
     return (
-      <nav className={`${isHome ? HomeNavRaise : ''} ${SiteNavStyles}`}>
-        <SiteNavLeft>
-          {!isHome && <SiteNavLogo link={`${linkPrefix}/`} />}
-          <ul className={`${NavStyles}`} role="menu">
-            {/* TODO: mark current nav item - add class nav-current */}
-            <li role="menuitem">
-              <Link to={`${linkPrefix}/`}>{t['general.nav.home']()}</Link>
-            </li>
-            <li role="menuitem">
-              <Link to={`${linkPrefix}/about`}>{t['general.nav.about']()}</Link>
-            </li>
-            <li role="menuitem">
-              <Link to={`${linkPrefix}/blog`}>{t['general.nav.blog']()}</Link>
-            </li>
-            <li role="menuitem">
-              <Link to={`${linkPrefix}/projects`}>{t['general.nav.projects']()}</Link>
-            </li>
-            <li role="menuitem">
-              <Link to={`${linkPrefix}/contact`}>{t['general.nav.contact']()}</Link>
-            </li>
-          </ul>
-        </SiteNavLeft>
-        <SiteNavRight>
+      <header className={`${SiteHeader} ${outer}`}>
+        <div className={`${inner}`}>
+          <nav className={`${isHome ? HomeNavRaise : ''} ${SiteNavStyles}`}>
+            <SiteNavLeft>{!isHome && <SiteNavLogo link={`${linkPrefix}/`} />}</SiteNavLeft>
+            <SiteNavRight>
+              <ul className={`${NavStyles}`} role="menu">
+                {/* TODO: mark current nav item - add class nav-current */}
+                <li role="menuitem">
+                  <Link to={`${linkPrefix}/`}>{t['general.nav.home']()}</Link>
+                </li>
+                <li role="menuitem">
+                  <Link to={`${linkPrefix}/about`}>{t['general.nav.about']()}</Link>
+                </li>
+                <li role="menuitem">
+                  <Link to={`${linkPrefix}/blog`}>{t['general.nav.blog']()}</Link>
+                </li>
+                <li role="menuitem">
+                  <Link to={`${linkPrefix}/projects`}>{t['general.nav.projects']()}</Link>
+                </li>
+                <li role="menuitem">
+                  <Link to={`${linkPrefix}/contact`}>{t['general.nav.contact']()}</Link>
+                </li>
+              </ul>
+            </SiteNavRight>
+          </nav>
+        </div>
+      </header>
+    );
+  }
+}
+
+export default SiteNav;
+
+/* 
           <SocialLinks>
             {config.facebook && (
               <a
@@ -215,15 +209,9 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
               </a>
             )}
           </SocialLinks>
-          {config.showSubscribe && (
+                    {config.showSubscribe && (
             <SubscribeButton onClick={this.openModal}>Subscribe</SubscribeButton>
           )}
           {config.showSubscribe && <SubscribeModal ref={this.subscribe} />}
           <LanguageToggle {...this.props} />
-        </SiteNavRight>
-      </nav>
-    );
-  }
-}
-
-export default SiteNav;
+*/

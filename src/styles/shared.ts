@@ -1,5 +1,5 @@
 import { css } from 'emotion';
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 import { colors } from './colors';
 import { darken, lighten } from 'polished';
 
@@ -59,7 +59,7 @@ export const SocialLink = css`
   align-items: center;
   margin: 0;
   padding: 10px;
-  color: #fff;
+  color: #474747;
   opacity: 0.8;
 
   :hover {
@@ -74,11 +74,11 @@ export const SocialLink = css`
 
 export const SiteHeader = css`
   position: relative;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding: 12px 72px;
   color: #fff;
+  height: 50px;
   /* background: color(var(--darkgrey) l(-5%)) no-repeat center center; */
-  background: ${darken('0.05', colors.midgrey)} no-repeat center center;
+  background: ${darken('0.05', colors.gray)} no-repeat center center;
 
   background-size: cover;
 `;

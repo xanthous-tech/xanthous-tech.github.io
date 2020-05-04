@@ -11,4 +11,6 @@ export const colors = {
   whitegrey: '#e5eff5',
   pink: '#fa3a57',
   brown: '#a3821a',
+  gray: '#272727',
+  backgroundgray: '#F8F8F8',
 };

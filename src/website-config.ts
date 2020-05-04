@@ -16,6 +16,7 @@ export interface WebsiteConfig {
   twitter?: string;
   medium?: string;
   github?: string;
+  rss?: string;
   /**
    * hide or show all email subscribe boxes
    */
@@ -41,6 +42,7 @@ const config: WebsiteConfig = {
   twitter: 'https://twitter.com/XanthousTech',
   medium: 'https://medium.com/xanthous',
   github: 'https://github.com/xanthous-tech',
+  rss: '/rss.xml',
   showSubscribe: true,
   mailchimpAction:
     'https://twitter.us19.list-manage.com/subscribe/post?u=a89b6987ac248c81b0b7f3a0f&amp;id=7d777b7d75',
