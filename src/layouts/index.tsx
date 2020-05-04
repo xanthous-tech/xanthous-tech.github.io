@@ -274,7 +274,7 @@ body {
   overflow-x: hidden;
   /* color: color(var(--midgrey) l(-25%)); */
   color: ${darken('0.25', colors.midgrey)};
-  font-family: -apple-system, BlinkMacSystemFont, Saira, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: Sarala, Saira, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1.5rem;
   line-height: 1.6em;
   font-weight: 400;
@@ -433,7 +433,7 @@ h6 {
 
 h1 {
   margin: 0 0 0.5em 0;
-  font-size: 5rem;
+  font-size: 6.6rem;
   font-weight: 700;
 }
 @media (max-width: 500px) {
@@ -484,6 +484,17 @@ h6 {
 body {
   background: #f4f8fb;
 }
+
+/* Custom Stylesheet */
+
+h1.bold {
+  font-weight: 600;
+}
+
+a.saira {
+  font-family: Saira;
+}
+
 `;
 
 interface IndexProps {

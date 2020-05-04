@@ -153,6 +153,7 @@ module.exports = {
       options: {
         fonts: [
           `saira\:100,200,300,400,500,600,700,800,900`,
+          `sarala\:400,700`,
           // you can also specify font weights and styles
         ],
         display: 'swap',

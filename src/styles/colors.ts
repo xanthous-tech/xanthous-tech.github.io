@@ -13,4 +13,5 @@ export const colors = {
   brown: '#a3821a',
   gray: '#272727',
   backgroundgray: '#F8F8F8',
+  darkyellow: '#735D13',
 };

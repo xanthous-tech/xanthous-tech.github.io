@@ -6,6 +6,7 @@ import { css } from 'emotion';
 import { SiteHeader, outer, inner } from '../../styles/shared';
 
 import SubscribeModal from '../subsribe/SubscribeOverlay';
+import LanguageToggle from '../LanguangeToggle';
 import SiteNavLogo from './SiteNavLogo';
 import t from '../../content/i18n';
 
@@ -149,6 +150,7 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
                 <SiteNavItem path={`${linkPrefix}/blog`} label={t['general.nav.blog']()} />
                 <SiteNavItem path={`${linkPrefix}/contact`} label={t['general.nav.contact']()} />
               </ul>
+              <LanguageToggle {...this.props} />
             </SiteNavRight>
           </nav>
         </div>
@@ -230,5 +232,5 @@ export default SiteNav;
             <SubscribeButton onClick={this.openModal}>Subscribe</SubscribeButton>
           )}
           {config.showSubscribe && <SubscribeModal ref={this.subscribe} />}
-          <LanguageToggle {...this.props} />
+          
 */

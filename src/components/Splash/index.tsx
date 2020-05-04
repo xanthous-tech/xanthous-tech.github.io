@@ -1,8 +1,10 @@
-import * as React from "react";
-import { Link } from "gatsby";
-import styled from "@emotion/styled";
+import * as React from 'react';
+import { Link } from 'gatsby';
+import styled from '@emotion/styled';
 import logo from '../../content/img/x-tech-logo.svg';
-import t from '../../content/i18n'
+import t from '../../content/i18n';
+import { Button } from '../Button';
+import { colors } from '../../styles/colors';
 
 const StyledSplash = styled.section`
   position: relative;
@@ -28,13 +30,14 @@ const StyledSplash = styled.section`
 
   .intro > .intro-title {
     position: absolute;
-    top: 242px;
+    top: 130px;
     left: 96px;
-    font-family: Cabin;
-    font-size: 64px;
-    font-weight: bold;
+    font-family: Saira;
     letter-spacing: 1px;
+    color: black;
+    line-height: 84px;
     margin-bottom: 0;
+    position: absolute;
   }
 
   .intro-title > div {
@@ -47,36 +50,41 @@ const StyledSplash = styled.section`
     z-index: 2;
   }
 
-  .intro-title .ghost {
+  .intro > .intro-quote {
     position: absolute;
-    width: 100%;
-    height: 25px;
-    background-color: #ffcd38;
-    opacity: 0.4;
-    left: 0;
-    bottom: 0;
-    z-index: 1;
+    width: 133px;
+    height: 154px;
+    left: 45px;
+    top: 32px;
+    font-family: Saira;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 300px;
+    line-height: 300px;
+    color: ${colors.whitegrey};
   }
 
   .intro > .intro-text {
     position: absolute;
-    width: 50%;
-    top: 428px;
+    width: 689px;
+    top: 388px;
     left: 103px;
-    font-family: PingFangHK-Regular;
-    font-size: 18px;
-    line-height: 24px;
+    height: 96px;
+    //TODO
+    font-family: Sarala, sans-serif;
+    font-size: 26px;
+    line-height: 42px;
     letter-spacing: 0.8px;
   }
 
   .intro > .intro-invitation {
     position: absolute;
-    width: 223px;
-    height: 64px;
+    width: 200px;
+    height: 83px;
     top: 553px;
     left: 103px;
-    background-color: #ffcc33;
-    border-radius: 64px;
+    background: #ffce27;
+    border-radius: 7px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -84,49 +92,43 @@ const StyledSplash = styled.section`
   }
 
   .intro-invitation > a {
-    font-family: Cabin;
+    color: ${colors.darkyellow};
+    font-family: Saira;
+    font-weight: 600;
     font-size: 30px;
-    color: #fff;
+    line-height: 56px;
   }
-  @media (min-width:376px) and (max-width:425px){
-  .intro-invitation {
-    margin-top: 100px;
+
+  @media (min-width: 376px) and (max-width: 425px) {
+    .intro-invitation {
+      margin-top: 100px;
+    }
   }
-}
-@media (min-device-width : 375px) and (max-device-width : 667px) and (-webkit-min-device-pixel-ratio : 2){
-  .intro-invitation {
-    margin-top: 100px;
+  @media (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+    .intro-invitation {
+      margin-top: 100px;
+    }
   }
-}
 `;
 
 export interface SplashProps {
-  bg: String
+  bg: String;
 }
 
 const Splash: React.FunctionComponent<SplashProps> = ({ bg }) => (
   <StyledSplash>
-    <div className="intro" style={{ backgroundImage: `url(${bg})` }} >
-      <div className="logo">
-        <img src={logo} />
-      </div>
+    <div className="intro" style={{ backgroundImage: `url(${bg})` }}>
+      <div className="intro-quote">“</div>
       <div className="intro-title">
-        <div>
-          <h1>{t["general.splash.title1"]()}</h1>
-          <div className="ghost" />
-        </div>
-        <div>
-          <h1>{t["general.splash.title2"]()}</h1>
-          <div className="ghost" />
-        </div>
+        <h1 className="bold">
+          {t['general.splash.title1']()}
+          <br />
+          {t['general.splash.title2']()}
+        </h1>
       </div>
-      <p className="intro-text">
-        {t["general.splash.intro-text"]()}
-      </p>
+      <p className="intro-text">{t['general.splash.intro-text']()}</p>
       <div className="intro-invitation">
-        <Link to="/contact">
-          {t["general.splash.lets-chat"]()}
-        </Link>
+        <Link to="/contact">{t['general.splash.lets-chat']()}</Link>
       </div>
     </div>
   </StyledSplash>
