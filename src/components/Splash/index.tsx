@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
-import logo from '../../content/img/x-tech-logo.svg';
 import t from '../../content/i18n';
-import { Button } from '../Button';
 import { colors } from '../../styles/colors';
 
 const StyledSplash = styled.section`
@@ -66,10 +64,9 @@ const StyledSplash = styled.section`
   .intro > .intro-text {
     position: absolute;
     width: 689px;
-    top: 388px;
+    top: 350px;
     left: 103px;
     height: 96px;
-    /* //TODO font-family sarala */
     font-family: Sarala, sans-serif;
     font-size: 26px;
     line-height: 42px;
@@ -80,7 +77,7 @@ const StyledSplash = styled.section`
     position: absolute;
     width: 200px;
     height: 83px;
-    top: 553px;
+    top: 540px;
     left: 103px;
     background: ${colors.yellow};
     border-radius: 7px;

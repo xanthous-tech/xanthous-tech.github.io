@@ -10,14 +10,33 @@ import { colors } from '../../styles/colors';
 const StyledDiv = styled.div`
   background-color: #ffffff;
   width: 100%;
-  padding: 70px 250px;
+  padding: 60px 230px;
   display: grid;
+  @media (max-width: 800px) {
+    padding: 60px 100px;
+  }
+  @media (max-width: 500px) {
+    padding: 60px 50px;
+  }
 `;
 
 const ClientsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  flex-wrap: wrap;
+
+  .client {
+    width: 16%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  @media (max-width: 1300px) {
+    .client {
+      width: 30%;
+    }
+  }
 `;
 
 const title = css`
@@ -26,7 +45,6 @@ const title = css`
   justify-self: center;
   line-height: 42px;
   font-size: 30px;
-  color: ${colors.textcolor};
 `;
 
 const Clients: React.FC<{}> = ({}) => {
@@ -34,11 +52,24 @@ const Clients: React.FC<{}> = ({}) => {
     <StyledDiv>
       <h1 className={`${title}`}>Our clients</h1>
       <ClientsWrapper>
-        <Koch />
-        <Koch />
-        <Koch />
-        <Koch />
-        <Koch />
+        <div className="client">
+          <Koch />
+        </div>
+        <div className="client">
+          <Koch />
+        </div>
+        <div className="client">
+          <Koch />
+        </div>
+        <div className="client">
+          <Koch />
+        </div>
+        <div className="client">
+          <Koch />
+        </div>
+        <div className="client">
+          <Koch />
+        </div>
       </ClientsWrapper>
     </StyledDiv>
   );

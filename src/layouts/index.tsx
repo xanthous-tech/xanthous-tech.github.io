@@ -273,7 +273,7 @@ html {
 body {
   overflow-x: hidden;
   /* color: color(var(--midgrey) l(-25%)); */
-  color: ${darken('0.25', colors.midgrey)};
+  color: ${colors.midgrey};
   font-family: Sarala, Saira, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1.5rem;
   line-height: 1.6em;

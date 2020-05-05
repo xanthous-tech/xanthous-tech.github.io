@@ -7,7 +7,7 @@ export const colors = {
   fadedyellow: '#FFDB60',
   red: '#f05230',
   darkgrey: '#15171A',
-  midgrey: '#738a94',
+  midgrey: '#474747',
   lightgrey: '#c5d2d9',
   whitegrey: '#e5eff5',
   pink: '#fa3a57',
@@ -15,5 +15,4 @@ export const colors = {
   gray: '#272727',
   backgroundgray: '#F8F8F8',
   darkyellow: '#735D13',
-  textcolor: '#474747',
 };
