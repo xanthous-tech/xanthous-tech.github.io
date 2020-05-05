@@ -9,6 +9,7 @@ import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import Splash from '../components/Splash';
 import Faq from '../components/Faq';
+import Clients from '../components/Clients';
 import Introduce from '../components/Introduce/Introduce';
 import IndexLayout from '../layouts';
 import config from '../website-config';
@@ -164,6 +165,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <SiteNav {...props.pageContext} />
 
         <Splash bg={props.data.bg_intro.childImageSharp.fluid.src} />
+        <Clients />
         <Introduce />
         <div style={{ backgroundColor: '#ffffff' }}>
           <HighlightedProject projects={props.data.projects} />

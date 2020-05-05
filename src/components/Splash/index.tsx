@@ -10,7 +10,6 @@ const StyledSplash = styled.section`
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 70px;
   width: auto;
   background-color: #ffffff;
 
@@ -21,7 +20,7 @@ const StyledSplash = styled.section`
 
   .intro {
     width: 100vw;
-    min-height: 802px;
+    min-height: 650px;
     background-size: auto;
     background-repeat: no-repeat;
     background-position: right;
@@ -83,12 +82,16 @@ const StyledSplash = styled.section`
     height: 83px;
     top: 553px;
     left: 103px;
-    background: #ffce27;
+    background: ${colors.yellow};
     border-radius: 7px;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 7px 13px 18px 6px rgba(255 205 54, 0.17);
+  }
+
+  .intro-invitation:hover {
+    background: ${colors.fadedyellow};
   }
 
   .intro-invitation > a {
@@ -97,6 +100,7 @@ const StyledSplash = styled.section`
     font-weight: 600;
     font-size: 30px;
     line-height: 56px;
+    text-decoration: none;
   }
 
   @media (min-width: 376px) and (max-width: 425px) {
