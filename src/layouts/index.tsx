@@ -444,17 +444,17 @@ h1 {
 
 h2 {
   margin: 1.5em 0 0.5em 0;
-  font-size: 2rem;
+  font-size: 5rem;
 }
 @media (max-width: 500px) {
   h2 {
-      font-size: 1.8rem;
+      font-size: 2rem;
   }
 }
 
 h3 {
   margin: 1.5em 0 0.5em 0;
-  font-size: 1.8rem;
+  font-size: 4rem;
   font-weight: 500;
 }
 @media (max-width: 500px) {
@@ -465,7 +465,7 @@ h3 {
 
 h4 {
   margin: 1.5em 0 0.5em 0;
-  font-size: 1.6rem;
+  font-size: 3rem;
   font-weight: 500;
 }
 

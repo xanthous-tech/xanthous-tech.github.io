@@ -54,7 +54,6 @@ const StyledSplash = styled.section`
     left: 45px;
     top: 32px;
     font-family: Saira;
-    font-style: normal;
     font-weight: 500;
     font-size: 300px;
     line-height: 300px;
