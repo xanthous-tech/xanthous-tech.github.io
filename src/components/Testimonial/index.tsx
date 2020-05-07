@@ -21,7 +21,6 @@ const TestimonialContainer = styled.div`
     color: black;
     line-height: 84px;
     font-family: Saira;
-    font-weight: 600 !important;
     font-size: 66px;
     line-height: 84px;
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='black' stroke-width='2' stroke-dasharray='10' stroke-dashoffset='23' stroke-linecap='square'/%3e%3c/svg%3e");
@@ -191,7 +190,13 @@ const renderTestimonial = (data: any): React.ReactNode => {
   return (
     <TestimonialContainer>
       <div className="title">
-        <h1>What people say</h1>
+        <h1>
+          What
+          <br />
+          the people
+          <br />
+          say
+        </h1>
         <div className="quote">“</div>
       </div>
 
