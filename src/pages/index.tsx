@@ -26,6 +26,7 @@ import {
 } from '../styles/shared';
 import { PageContext } from '../templates/post';
 import Testimonial from '../components/Testimonial';
+import Arrow from '../components/icons/arrow';
 
 // tslint:disable-next-line:no-import-side-effect
 import 'slick-carousel/slick/slick.css';
@@ -35,7 +36,7 @@ import HighlightedProject from '../components/HighlightedProject';
 import SiteNav from '../components/header/SiteNav';
 
 const HomePosts = css`
-  @media (min-width: 795px) {
+  /* @media (min-width: 795px) {
     .post-card:nth-child(6n + 1):not(.no-image) {
       flex: 1 1 100%;
       flex-direction: row;
@@ -73,7 +74,7 @@ const HomePosts = css`
     .post-card:nth-child(6n + 1):not(.no-image) .post-card-meta {
       padding: 0 40px 30px;
     }
-  }
+  } */
 `;
 
 export interface IndexProps {
@@ -185,6 +186,12 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
               {props.data.posts.edges.map(post => {
                 return <PostCard key={post.node.fields.slug} post={post.node} />;
               })}
+              <div>
+                <h1>Get more out of Xanthous</h1>
+                <a href="#">
+                  LEARN MORE <Arrow />
+                </a>
+              </div>
             </div>
           </div>
         </main>
