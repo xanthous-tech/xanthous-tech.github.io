@@ -165,6 +165,10 @@ const SiteNavItem: React.FC<{ path: string; label: string; exact?: boolean }> = 
   exact,
 }) => {
   const currentSlug = () => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
     if (exact) {
       return window.location.pathname === path ? `${bold}` : '';
     }
