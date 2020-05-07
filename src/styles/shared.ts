@@ -42,13 +42,13 @@ export const PostFeed = css`
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -20px;
+  margin: 20px;
   padding: 40px 0 0 0;
 `;
 
 export const PostFeedRaise = css`
   @media (min-width: 900px) {
-    margin-top: -70px;
+    /* margin-top: -70px; */
     padding-top: 0;
   }
 `;

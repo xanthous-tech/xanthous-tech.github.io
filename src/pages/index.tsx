@@ -75,6 +75,30 @@ const HomePosts = css`
       padding: 0 40px 30px;
     }
   } */
+  .getMore_container {
+    max-width: 300px;
+    margin-left: 70px;
+    max-width: 300px;
+    margin-left: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-height: 410px;
+  }
+
+  .getMore_title {
+    font-family: Saira;
+    text-align: right;
+    color: black;
+  }
+
+  .getMore_link {
+    align-self: flex-end;
+    font-size: 30px;
+    line-height: 44px;
+    color: #474747;
+    font-weight: bold;
+  }
 `;
 
 export interface IndexProps {
@@ -186,9 +210,9 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
               {props.data.posts.edges.map(post => {
                 return <PostCard key={post.node.fields.slug} post={post.node} />;
               })}
-              <div>
-                <h1>Get more out of Xanthous</h1>
-                <a href="#">
+              <div className="getMore_container">
+                <h1 className="getMore_title">Get more out of Xanthous</h1>
+                <a href="#" className="getMore_link">
                   LEARN MORE <Arrow />
                 </a>
               </div>
