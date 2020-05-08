@@ -9,6 +9,13 @@ import { settings } from 'cluster';
 
 const HighlightedProjectContainer = styled.div`
   align-content: center;
+
+  .heading {
+    font-family: Saira;
+    margin-bottom: 15px;
+    color: black;
+  }
+
   .slider-01 {
     padding-top: 70px;
     width: 100%;
@@ -17,8 +24,16 @@ const HighlightedProjectContainer = styled.div`
   }
 
   .slider-01__title_box {
-    text-align: center;
+    text-align: start;
     margin-bottom: 30px;
+    margin: 0 90px;
+  }
+
+  .slider-01__title_box p {
+    font-family: Sarala;
+    font-size: 26px;
+    line-height: 36px;
+    margin: 0;
   }
 
   @media (max-width: 1275px) {
@@ -30,39 +45,53 @@ const HighlightedProjectContainer = styled.div`
   .slider__box {
     padding: 0;
     margin: 0;
-    width: 100vw;
-    margin-left: 100px;
+    width: 1570px;
+    margin-left: 90px;
     list-style: none;
     height: 450px;
   }
 
-  .slick-slide {
+  /* .slick-slide {
     outline: none;
     width: 500px;
-  }
+  } */
   .slick-list {
     box-shadow: 0 0 0 0 transparent !important;
   }
 
   .slider__img {
     width: 100%;
-    height: 300px;
+    height: 100%;
+  }
+
+  .slider__item_to_bottom {
+    position: relative;
+    height: 450px;
   }
 
   .slick-current .slider__item_box {
-    transform: scale(1.2);
-    transform-origin: bottom right;
-    transition-delay: 0.1s;
-    transition-duration: 0.4s;
-    padding-left: 63px;
+    left: 0;
+    transform: translateX(0) scale(1.2);
   }
 
   .slider__item_box {
-    margin: 50px 0 0 50px;
-    padding: 80px 0 0 0;
-    transform-origin: bottom right;
+    position: absolute;
+    bottom: 0;
+
+    left: 100%;
+    transform: translateX(-100%) scale(1);
+
+    height: 350px;
+    width: 450px;
+
+    transition-property: all justify-content;
+    transform-origin: bottom left;
     transition-delay: 0.1s;
     transition-duration: 0.4s;
+  }
+
+  .slider__item {
+    height: 85%;
   }
 
   .slick-dots {
@@ -90,6 +119,11 @@ export interface HighlightedProjectItemProps {
         fluid: any;
       };
     };
+    smallImage: {
+      childImageSharp: {
+        fixed: any;
+      };
+    };
   };
   fields: {
     langKey: string;
@@ -98,15 +132,17 @@ export interface HighlightedProjectItemProps {
 }
 
 const ProjectCard: React.FunctionComponent<HighlightedProjectItemProps> = props => (
-  <div className="slider__item_box">
-    <div className="slider__item">
-      <Link
-        to={`/${props.fields.langKey === 'en' ? '' : props.fields.langKey}${props.fields.slug}`}
-      >
-        <Img className="slider__img" fixed={props.frontmatter.smallImage.childImageSharp.fixed} />
-      </Link>
+  <div className="slider__item_to_bottom">
+    <div className="slider__item_box">
+      <div className="slider__item">
+        <Link
+          to={`/${props.fields.langKey === 'en' ? '' : props.fields.langKey}${props.fields.slug}`}
+        >
+          <Img className="slider__img" fixed={props.frontmatter.smallImage.childImageSharp.fixed} />
+        </Link>
+      </div>
+      <div className="slider__item_title">{props.frontmatter.title}</div>
     </div>
-    <div>{props.frontmatter.title}</div>
   </div>
 );
 
