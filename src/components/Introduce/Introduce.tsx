@@ -9,7 +9,7 @@ const StyledDiv = styled.section`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 40px 103px;
+  padding: 40px 90px;
   overflow: hidden;
   @media (max-width: 600px) {
     padding: 40px 20px;

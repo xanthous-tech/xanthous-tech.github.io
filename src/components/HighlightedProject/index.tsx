@@ -15,46 +15,12 @@ const HighlightedProjectContainer = styled.div`
     margin: 0 auto;
     padding-bottom: 100px;
   }
-  /* .slider-01 .slick-list {
-    height: 100%;
-  } */
-  /* .slider-01 .slick-prev {
-    left: 50px;
-    z-index: 99;
-    &::before {
-      color: #333;
-    }
-  }
-  .slider-01 .slick-next {
-    right: 50px;
-    z-index: 99;
-    &::before {
-      color: #333;
-    }
-  } */
 
   .slider-01__title_box {
     text-align: center;
     margin-bottom: 30px;
   }
 
-  /* .slider-01__container {
-    text-align: center;
-    height: 500px;
-  } */
-
-  /* .slider__arrow {
-    position: absolute;
-    z-index: 10;
-    top: 50%;
-    transform: translateY(-50%);
-  } */
-  /* .slider__arrow--prev {
-    left: 0;
-  }
-  .slider__arrow--next {
-    right: 0;
-  } */
   @media (max-width: 1275px) {
     .slider__arrow {
       display: none;
@@ -72,6 +38,7 @@ const HighlightedProjectContainer = styled.div`
 
   .slick-slide {
     outline: none;
+    width: 500px;
   }
   .slick-list {
     box-shadow: 0 0 0 0 transparent !important;
@@ -83,24 +50,32 @@ const HighlightedProjectContainer = styled.div`
   }
 
   .slick-current .slider__item_box {
-    /* transform: scale(1.4); */
+    transform: scale(1.2);
+    transform-origin: bottom right;
     transition-delay: 0.1s;
     transition-duration: 0.4s;
-    padding: 0;
-    margin: 0;
-    height: 450px;
-    width: 600px;
+    padding-left: 63px;
   }
 
   .slider__item_box {
     margin: 50px 0 0 50px;
-    padding: 50px 0 0 0;
+    padding: 80px 0 0 0;
+    transform-origin: bottom right;
+    transition-delay: 0.1s;
+    transition-duration: 0.4s;
   }
 
-  /* .slick-list {
-    padding: 45px 60px !important;
-    margin-left: 30px !important;
-  } */
+  .slick-dots {
+    bottom: -60px;
+    width: 100%;
+    list-style: none;
+    text-align: center;
+    max-width: 1260px;
+  }
+
+  .slick-dots li {
+    margin: 0;
+  }
 `;
 
 export interface TestimonialProps {
@@ -128,7 +103,7 @@ const ProjectCard: React.FunctionComponent<HighlightedProjectItemProps> = props 
       <Link
         to={`/${props.fields.langKey === 'en' ? '' : props.fields.langKey}${props.fields.slug}`}
       >
-        <Img className="slider__img" fluid={props.frontmatter.image.childImageSharp.fluid} />
+        <Img className="slider__img" fixed={props.frontmatter.smallImage.childImageSharp.fixed} />
       </Link>
     </div>
     <div>{props.frontmatter.title}</div>
@@ -167,6 +142,7 @@ const HighlightedProject: React.FunctionComponent<HighlightedProjectProps> = ({ 
         autoplay={false}
         autoplaySpeed={3000}
         infinite={true}
+        swipeToSlide={true}
       >
         {highlightedProjects.concat(highlightedProjects).map(highlightedProject => (
           <ProjectCard key={highlightedProject.id} {...highlightedProject} />

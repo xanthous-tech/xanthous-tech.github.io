@@ -179,7 +179,7 @@ svg:not(:root) {
   overflow: hidden;
 }
 mark {
-  background-color: #fdffb6;
+  background-color: #ffffff;
 }
 code,
 kbd,
@@ -291,7 +291,7 @@ body {
 ::selection {
   text-shadow: none;
   /* background: color(var(--blue) lightness(+30%)); */
-  background: ${lighten('0.3', colors.blue)};
+  background: #fff;
 }
 
 hr {
@@ -482,7 +482,7 @@ h6 {
 }
 
 body {
-  background: #f4f8fb;
+  background: #ffffff;
 }
 
 /* Custom Stylesheet */

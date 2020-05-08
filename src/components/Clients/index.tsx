@@ -10,7 +10,7 @@ import { colors } from '../../styles/colors';
 const StyledDiv = styled.div`
   background-color: #ffffff;
   width: 100%;
-  padding: 60px 230px;
+  padding: 65px 215px;
   display: grid;
   @media (max-width: 800px) {
     padding: 60px 100px;

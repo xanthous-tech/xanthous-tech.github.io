@@ -15,17 +15,14 @@ const HomeNavRaise = css`
     position: relative;
   }
 `;
-//    top: -70px;
 
 const SiteNavStyles = css`
   position: relative;
-  z-index: 300;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  overflow-y: hidden;
-  height: 30px;
-  font-size: 1.2rem;
+  max-width: 1440px;
+  margin: auto;
+  padding: 0 60px;
 `;
 
 const SiteNavLeft = styled.div`
@@ -139,21 +136,21 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
     console.log(this.props);
     return (
       <header className={`${SiteHeader} ${outer}`}>
-        <div className={`${inner}`}>
-          <nav className={`${SiteNavStyles}`}>
-            <SiteNavLeft>{!isHome && <SiteNavLogo link={`${linkPrefix}/`} />}</SiteNavLeft>
-            <SiteNavRight>
-              <ul className={`${NavStyles}`} role="menu">
-                <SiteNavItem exact={true} path={`${linkPrefix}/`} label={t['general.nav.home']()} />
-                <SiteNavItem path={`${linkPrefix}/about`} label={t['general.nav.about']()} />
-                <SiteNavItem path={`${linkPrefix}/projects`} label={t['general.nav.projects']()} />
-                <SiteNavItem path={`${linkPrefix}/blog`} label={t['general.nav.blog']()} />
-                <SiteNavItem path={`${linkPrefix}/contact`} label={t['general.nav.contact']()} />
-              </ul>
-              <LanguageToggle {...this.props} />
-            </SiteNavRight>
-          </nav>
-        </div>
+        {/* <div className={`${inner}`}> */}
+        <nav className={`${SiteNavStyles}`}>
+          <SiteNavLeft>{!isHome && <SiteNavLogo link={`${linkPrefix}/`} />}</SiteNavLeft>
+          <SiteNavRight>
+            <ul className={`${NavStyles}`} role="menu">
+              <SiteNavItem exact={true} path={`${linkPrefix}/`} label={t['general.nav.home']()} />
+              <SiteNavItem path={`${linkPrefix}/about`} label={t['general.nav.about']()} />
+              <SiteNavItem path={`${linkPrefix}/projects`} label={t['general.nav.projects']()} />
+              <SiteNavItem path={`${linkPrefix}/blog`} label={t['general.nav.blog']()} />
+              <SiteNavItem path={`${linkPrefix}/contact`} label={t['general.nav.contact']()} />
+            </ul>
+            <LanguageToggle {...this.props} />
+          </SiteNavRight>
+        </nav>
+        {/* </div> */}
       </header>
     );
   }

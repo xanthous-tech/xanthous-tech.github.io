@@ -17,7 +17,7 @@ import RSS from './icons/rss';
 const SiteFooter = css`
   position: relative;
   padding: 43px 95px;
-  color: #fff;
+  /* color: #fff; */
   background: ${colors.backgroundgray};
 `;
 
@@ -28,6 +28,8 @@ const SiteFooterContent = css`
   align-items: center;
   color: #474747;
   font-size: 1.3rem;
+  max-width: 1440px;
+  margin: auto;
   a {
     color: #474747;
   }

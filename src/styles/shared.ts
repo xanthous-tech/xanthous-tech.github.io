@@ -5,7 +5,7 @@ import { darken, lighten } from 'polished';
 
 export const outer = css`
   position: relative;
-  padding: 0 4vw;
+  padding: 65px 90px;
 `;
 
 // Centered content container blocks
@@ -77,9 +77,7 @@ export const SiteHeader = css`
   padding: 12px 72px;
   color: #fff;
   height: 50px;
-  /* background: color(var(--darkgrey) l(-5%)) no-repeat center center; */
   background: ${darken('0.05', colors.gray)} no-repeat center center;
-
   background-size: cover;
 `;
 

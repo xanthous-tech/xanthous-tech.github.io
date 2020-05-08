@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 
 const Wrapper = styled.div`
   display: block;
-  padding: 4px 10px;
   color: #fff;
   border-radius: 10px;
   opacity: 0.8;

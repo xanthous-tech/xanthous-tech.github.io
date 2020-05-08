@@ -75,6 +75,7 @@ const HomePosts = css`
       padding: 0 40px 30px;
     }
   } */
+
   .getMore_container {
     max-width: 300px;
     margin-left: 70px;
@@ -98,6 +99,12 @@ const HomePosts = css`
     line-height: 44px;
     color: #474747;
     font-weight: bold;
+  }
+
+  .arrow {
+    display: inline-block;
+    margin-left: 30px;
+    /* background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='2' stroke-dasharray='10' stroke-dashoffset='5' stroke-linecap='square'/%3e%3c/svg%3e"); */
   }
 `;
 
@@ -186,9 +193,9 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
         />
       </Helmet>
-      <Wrapper>
-        <SiteNav {...props.pageContext} />
 
+      <SiteNav {...props.pageContext} />
+      <Wrapper>
         <Splash bg={props.data.bg_intro.childImageSharp.fluid.src} />
         <Clients />
         <Introduce />
@@ -213,7 +220,10 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
               <div className="getMore_container">
                 <h1 className="getMore_title">Get more out of Xanthous</h1>
                 <a href="#" className="getMore_link">
-                  LEARN MORE <Arrow />
+                  LEARN MORE
+                  <div className="arrow">
+                    <Arrow />
+                  </div>
                 </a>
               </div>
             </div>
@@ -227,8 +237,8 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
           loggedInGreeting="Hey! If you have any questions, please drop us a note with your contact info!"
           loggedOutGreeting="Hey! If you have any questions, please drop us a note with your contact info!"
         />
-        <Footer />
       </Wrapper>
+      <Footer />
     </IndexLayout>
   );
 };
@@ -329,6 +339,13 @@ export const pageQuery = graphql`
               childImageSharp {
                 fluid(maxWidth: 3720) {
                   ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            smallImage: image {
+              childImageSharp {
+                fixed(width: 450, height: 300) {
+                  ...GatsbyImageSharpFixed
                 }
               }
             }
