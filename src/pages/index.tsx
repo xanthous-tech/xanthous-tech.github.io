@@ -202,7 +202,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <div style={{ backgroundColor: '#ffffff' }}>
           <HighlightedProject projects={props.data.projects} />
         </div>
-        <Faq />
+        {/* <Faq /> */}
         <div style={{ backgroundColor: '#ffffff' }}>
           <Testimonial />
         </div>
