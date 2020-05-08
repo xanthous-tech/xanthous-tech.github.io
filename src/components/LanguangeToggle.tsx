@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
+import DoubleArrows from './icons/doubleArrows';
 
 const Wrapper = styled.div`
   display: block;
@@ -33,7 +34,10 @@ const LanguageToggle: React.FunctionComponent<LanguageToggleProps> = props => {
   console.log('$$$$', props);
   return (
     <Link to={`${props.langKey === 'en' ? '/zh' : ''}/${props.slug}`}>
-      <Wrapper>{props.langKey === 'en' ? '中文' : 'English'}</Wrapper>
+      <Wrapper>
+        {props.langKey === 'en' ? '中文' : 'English'}
+        <DoubleArrows />
+      </Wrapper>
     </Link>
   );
 };

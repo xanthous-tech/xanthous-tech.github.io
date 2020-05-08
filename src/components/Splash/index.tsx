@@ -24,6 +24,24 @@ const StyledSplash = styled.section`
     position: relative;
   }
 
+  .intro > .dashed {
+    position: absolute;
+    height: 554px;
+    width: 95px;
+    top: 65px;
+    left: -7px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' stroke-dasharray='5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  }
+
+  .intro > .dashed-pic-border {
+    position: absolute;
+    height: 554px;
+    width: 554px;
+    top: 65px;
+    left: 800px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' stroke-dasharray='5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  }
+
   .intro > .intro-title {
     position: absolute;
     top: 130px;
@@ -117,7 +135,9 @@ export interface SplashProps {
 const Splash: React.FunctionComponent<SplashProps> = ({ bg }) => (
   <StyledSplash>
     <div className="intro" style={{ backgroundImage: `url(${bg})` }}>
+      <div className="dashed" />
       <div className="intro-quote">“</div>
+      <div className="dashed-pic-border" />
       <div className="intro-title">
         <h1 className="bold">
           {t['general.splash.title1']()}
