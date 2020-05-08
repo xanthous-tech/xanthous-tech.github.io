@@ -10,13 +10,13 @@ import { colors } from '../../styles/colors';
 const StyledDiv = styled.div`
   background-color: #ffffff;
   width: 100%;
-  padding: 65px 215px;
+  padding: 65px 130px;
   display: grid;
   @media (max-width: 800px) {
-    padding: 60px 100px;
+    padding: 60px 50px;
   }
   @media (max-width: 500px) {
-    padding: 60px 50px;
+    padding: 60px 20px;
   }
 `;
 

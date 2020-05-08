@@ -16,7 +16,7 @@ import RSS from './icons/rss';
 
 const SiteFooter = css`
   position: relative;
-  padding: 43px 95px;
+  padding: 43px 20px;
   /* color: #fff; */
   background: ${colors.backgroundgray};
 `;
@@ -28,7 +28,7 @@ const SiteFooterContent = css`
   align-items: center;
   color: #474747;
   font-size: 1.3rem;
-  max-width: 1440px;
+  max-width: 1300px;
   margin: auto;
   a {
     color: #474747;
@@ -80,7 +80,7 @@ const SocialLinks = styled.div`
 
 const Footer: React.FunctionComponent = () => {
   return (
-    <footer className={`${outer} ${SiteFooter}`}>
+    <footer className={`${SiteFooter}`}>
       <div className={`${inner} ${SiteFooterContent}`}>
         <section className="copyright">
           <Link to="/">{config.title}</Link> &copy; {new Date().getFullYear()}

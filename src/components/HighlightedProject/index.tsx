@@ -26,7 +26,7 @@ const HighlightedProjectContainer = styled.div`
   .slider-01__title_box {
     text-align: start;
     margin-bottom: 30px;
-    margin: 0 90px;
+    margin: 0 20px;
   }
 
   .slider-01__title_box p {
@@ -46,7 +46,7 @@ const HighlightedProjectContainer = styled.div`
     padding: 0;
     margin: 0;
     width: 1570px;
-    margin-left: 90px;
+    margin-left: 20px;
     list-style: none;
     height: 450px;
   }

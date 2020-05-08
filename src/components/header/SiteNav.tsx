@@ -20,9 +20,9 @@ const SiteNavStyles = css`
   position: relative;
   display: flex;
   justify-content: space-between;
-  max-width: 1440px;
+  max-width: 1300px;
   margin: auto;
-  padding: 0 60px;
+  padding: 0 20px;
 `;
 
 const SiteNavLeft = styled.div`
@@ -66,6 +66,9 @@ const NavStyles = css`
     font-family: Saira;
     font-size: 16px;
     line-height: 12px;
+    @media (max-width: 1000px) {
+      padding-left: 30px;
+    }
   }
 
   li a:hover {

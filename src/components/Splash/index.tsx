@@ -28,7 +28,7 @@ const StyledSplash = styled.section`
   .intro > .intro-title {
     position: absolute;
     top: 130px;
-    left: 90px;
+    left: 20px;
     font-family: Saira;
     letter-spacing: 1px;
     color: black;
@@ -51,7 +51,7 @@ const StyledSplash = styled.section`
     position: absolute;
     width: 133px;
     height: 154px;
-    left: 45px;
+    left: -25px;
     top: 30px;
     font-family: Saira;
     font-weight: 500;
@@ -64,7 +64,7 @@ const StyledSplash = styled.section`
     position: absolute;
     width: 689px;
     top: 350px;
-    left: 90px;
+    left: 20px;
     height: 96px;
     font-family: Sarala, sans-serif;
     font-size: 26px;
@@ -77,7 +77,7 @@ const StyledSplash = styled.section`
     width: 200px;
     height: 83px;
     top: 540px;
-    left: 90px;
+    left: 20px;
     background: ${colors.yellow};
     border-radius: 7px;
     display: flex;

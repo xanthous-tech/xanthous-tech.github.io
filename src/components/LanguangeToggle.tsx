@@ -12,6 +12,9 @@ const Wrapper = styled.div`
   font-weight: normal;
   font-size: 16px;
   line-height: 12px;
+  @media (max-width: 1000px) {
+    margin-left: 30px;
+  }
   /* or 75% */
 
   :hover {

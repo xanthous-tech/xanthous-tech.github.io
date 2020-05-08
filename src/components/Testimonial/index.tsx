@@ -8,7 +8,7 @@ import Koch from '../icons/clients/koch';
 const TestimonialContainer = styled.div`
   position: relative;
   display: flex;
-  padding: 90px;
+  padding: 90px 20px;
   width: auto;
   background-color: #ffffff;
   min-height: 650px;

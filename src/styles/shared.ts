@@ -5,7 +5,7 @@ import { darken, lighten } from 'polished';
 
 export const outer = css`
   position: relative;
-  padding: 65px 90px;
+  padding: 65px 0;
 `;
 
 // Centered content container blocks
@@ -74,7 +74,7 @@ export const SocialLink = css`
 
 export const SiteHeader = css`
   position: relative;
-  padding: 12px 72px;
+  padding: 12px 0;
   color: #fff;
   height: 50px;
   background: ${darken('0.05', colors.gray)} no-repeat center center;
