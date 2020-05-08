@@ -28,14 +28,10 @@ const SiteFooterContent = css`
   align-items: center;
   color: #474747;
   font-size: 1.3rem;
-  max-width: 1300px;
+  max-width: 1260px;
   margin: auto;
   a {
     color: #474747;
-  }
-  a:hover {
-    color: rgba(255, 255, 255, 1);
-    text-decoration: none;
   }
   @media (max-width: 650px) {
     flex-direction: column;
@@ -70,6 +66,10 @@ const SiteFooterNav = styled.nav`
       margin-left: 0;
     }
   }
+
+  .copyright {
+    text-decoration: none;
+  }
 `;
 
 const SocialLinks = styled.div`
@@ -82,7 +82,7 @@ const Footer: React.FunctionComponent = () => {
   return (
     <footer className={`${SiteFooter}`}>
       <div className={`${inner} ${SiteFooterContent}`}>
-        <section className="copyright">
+        <section>
           <Link to="/">{config.title}</Link> &copy; {new Date().getFullYear()}
         </section>
         <SiteFooterNav>

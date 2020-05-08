@@ -155,7 +155,7 @@ export interface IndexProps {
 const IndexPage: React.FunctionComponent<IndexProps> = props => {
   const width = props.data.header.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
   const height = String(Number(width) / props.data.header.childImageSharp.fluid.aspectRatio);
-  console.log(props);
+  const linkPrefix = props.langKey === 'en' ? '' : props.langKey;
   return (
     <IndexLayout langKey="en" className={`${HomePosts}`}>
       <Helmet>
@@ -219,7 +219,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
               })}
               <div className="getMore_container">
                 <h1 className="getMore_title">Get more out of Xanthous</h1>
-                <a href="#" className="getMore_link">
+                <a href="/blog" className="getMore_link">
                   LEARN MORE
                   <div className="arrow">
                     <Arrow />

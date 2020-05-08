@@ -17,7 +17,6 @@ const StyledSplash = styled.section`
   }
 
   .intro {
-    width: 100vw;
     min-height: 650px;
     background-size: auto;
     background-repeat: no-repeat;
