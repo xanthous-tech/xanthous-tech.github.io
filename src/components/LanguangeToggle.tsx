@@ -27,13 +27,12 @@ const Wrapper = styled.div`
 
 export interface LanguageToggleProps {
   langKey: string;
-  slug: string;
+  slug?: string;
 }
 
 const LanguageToggle: React.FunctionComponent<LanguageToggleProps> = props => {
-  console.log('$$$$', props);
   return (
-    <Link to={`${props.langKey === 'en' ? '/zh' : ''}/${props.slug}`}>
+    <Link to={`${props.langKey === 'en' ? '/zh' : ''}/${props.slug || ''}`}>
       <Wrapper>
         {props.langKey === 'en' ? '中文' : 'English'}
         <DoubleArrows />

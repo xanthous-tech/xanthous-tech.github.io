@@ -22,8 +22,8 @@ const Contact: React.FunctionComponent = () => (
     <Helmet>
       <title>Contact Us - Xanthous Tech</title>
     </Helmet>
+    <SiteNav langKey="en" slug="/contact" />
     <Wrapper className={`${PageTemplate}`}>
-      <SiteNav langKey="en" slug="/contact" />
       <main id="site-main" className={`site-main ${SiteMain} ${outer}`}>
         <article className={`${PostFull} post page ${NoImage}`}>
           <PostFullHeader>
@@ -40,8 +40,8 @@ const Contact: React.FunctionComponent = () => (
           </PostFullContent>
         </article>
       </main>
-      <Footer />
     </Wrapper>
+    <Footer />
   </IndexLayout>
 );
 

@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import Slider from 'react-slick';
 import { colors } from '../../styles/colors';
 import { StaticQuery, graphql } from 'gatsby';
-import Img from 'gatsby-image';
 
 const TestimonialContainer = styled.div`
   position: relative;
@@ -52,10 +51,6 @@ const TestimonialContainer = styled.div`
   }
 
   @media (max-width: 800px) {
-    & {src={props.image}
-      flex-direction: column;
-    }
-
     .title {
       max-width: 100%;
       width: 100%;

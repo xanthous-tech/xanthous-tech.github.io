@@ -184,10 +184,9 @@ const About: React.FunctionComponent<IProps> = props => {
     <IndexLayout langKey={props.pageContext.langKey}>
       <Helmet>
         <title>{currentData.title} Xanthous Tech</title>
-      </Helmet>
+      </Helmet>{' '}
+      <SiteNav langKey={props.pageContext.langKey} slug="/about" />
       <Wrapper className={`${PageTemplate}`}>
-        <SiteNav langKey={props.pageContext.langKey} slug="/about" />
-
         <main id="site-main" className={`site-main ${SiteMain} ${outer}`}>
           <article className={`${PostFull} post page ${NoImage}`}>
             <PostFullHeader>
@@ -244,8 +243,8 @@ const About: React.FunctionComponent<IProps> = props => {
             </PostFullContent>
           </article>
         </main>
-        <Footer />
-      </Wrapper>
+      </Wrapper>{' '}
+      <Footer />
     </IndexLayout>
   );
 };

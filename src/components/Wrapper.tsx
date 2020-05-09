@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 const StyledWrapper = styled.div`
   max-width: 1300px;
   margin: auto;
+  min-height: 800px;
 `;
 
 interface WrapperProps {

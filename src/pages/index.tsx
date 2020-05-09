@@ -3,37 +3,27 @@ import * as React from 'react';
 import { css } from 'emotion';
 import Helmet from 'react-helmet';
 import MessengerCustomerChat from 'react-messenger-customer-chat';
-
-import Footer from '../components/Footer';
-import PostCard from '../components/PostCard';
-import Wrapper from '../components/Wrapper';
-import Splash from '../components/Splash';
-import Faq from '../components/Faq';
-import Clients from '../components/Clients';
-import Introduce from '../components/Introduce/Introduce';
-import IndexLayout from '../layouts';
-import config from '../website-config';
-import {
-  inner,
-  outer,
-  PostFeed,
-  PostFeedRaise,
-  SiteDescription,
-  SiteHeader,
-  SiteHeaderContent,
-  SiteMain,
-  SiteTitle,
-} from '../styles/shared';
-import { PageContext } from '../templates/post';
-import Testimonial from '../components/Testimonial';
-import Arrow from '../components/icons/arrow';
-
 // tslint:disable-next-line:no-import-side-effect
 import 'slick-carousel/slick/slick.css';
 // tslint:disable-next-line:no-import-side-effect
 import 'slick-carousel/slick/slick-theme.css';
-import HighlightedProject from '../components/HighlightedProject';
+
+import config from '../website-config';
+import IndexLayout from '../layouts';
+import Wrapper from '../components/Wrapper';
+
 import SiteNav from '../components/header/SiteNav';
+import Footer from '../components/Footer';
+import Splash from '../components/Splash';
+import Clients from '../components/Clients';
+import Introduce from '../components/Introduce/Introduce';
+import { PageContext } from '../templates/post';
+import HighlightedProject from '../components/HighlightedProject';
+import Testimonial from '../components/Testimonial';
+import PostCard from '../components/PostCard';
+
+import Arrow from '../components/icons/arrow';
+import { inner, outer, PostFeed, PostFeedRaise, SiteMain } from '../styles/shared';
 
 const HomePosts = css`
   /* @media (min-width: 795px) {

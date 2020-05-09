@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { css } from 'emotion';
-import { SiteHeader, outer, inner } from '../../styles/shared';
+import { SiteHeader, outer } from '../../styles/shared';
 
 import SubscribeModal from '../subsribe/SubscribeOverlay';
 import LanguageToggle from '../LanguangeToggle';
@@ -140,7 +140,6 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
     console.log(this.props);
     return (
       <header className={`${SiteHeader} ${outer}`}>
-        {/* <div className={`${inner}`}> */}
         <nav className={`${SiteNavStyles}`}>
           <SiteNavLeft>{!isHome && <SiteNavLogo link={`${linkPrefix}/`} />}</SiteNavLeft>
           <SiteNavRight>
@@ -154,7 +153,6 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
             <LanguageToggle {...this.props} />
           </SiteNavRight>
         </nav>
-        {/* </div> */}
       </header>
     );
   }
@@ -174,7 +172,7 @@ const SiteNavItem: React.FC<{ path: string; label: string; exact?: boolean }> = 
       return window.location.pathname === path ? `${bold}` : '';
     }
 
-    return window.location.pathname.startsWith(path) ? `${bold}` : '';
+    return window.location.pathname.includes(path) ? `${bold}` : '';
   };
 
   return (

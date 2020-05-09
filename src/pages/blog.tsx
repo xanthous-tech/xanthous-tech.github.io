@@ -126,6 +126,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <meta property="og:image:width" content={width} />
         <meta property="og:image:height" content={height} />
       </Helmet>
+      <SiteNav {...props.pageContext} slug="/blog" />
       <Wrapper>
         {/* <header
           className={`${SiteHeader} ${outer}`}
@@ -134,7 +135,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
           }}
         >
           <div className={`${inner}`}> */}
-        <SiteNav {...props.pageContext} slug="/blog" />
+
         <SiteHeaderContent>
           <SiteTitle>
             {props.data.logo ? (
@@ -164,9 +165,8 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
           </div>
         </main>
         {props.children}
-
-        <Footer />
       </Wrapper>
+      <Footer />
     </IndexLayout>
   );
 };

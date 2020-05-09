@@ -1,10 +1,6 @@
 import * as React from 'react';
-import { useIntl } from 'react-intl';
 import styled from '@emotion/styled';
 import { css } from 'emotion';
-import { StaticQuery, graphql } from 'gatsby';
-
-import { colors } from '../../styles/colors';
 
 import koch from '../../content/clients/koch.svg';
 import amz from '../../content/clients/amz.svg';
@@ -12,6 +8,7 @@ import dynamite from '../../content/clients/dynamite.svg';
 import initialView from '../../content/clients/initialView.svg';
 import ingclass from '../../content/clients/ingclass.svg';
 import caminer from '../../content/clients/caminer.svg';
+
 const StyledDiv = styled.div`
   background-color: #ffffff;
   width: 100%;
