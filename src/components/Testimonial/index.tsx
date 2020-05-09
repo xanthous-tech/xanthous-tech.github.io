@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Slider from 'react-slick';
 import { colors } from '../../styles/colors';
 import { StaticQuery, graphql } from 'gatsby';
-import Koch from '../icons/clients/koch';
+import Img from 'gatsby-image';
 
 const TestimonialContainer = styled.div`
   position: relative;
@@ -28,8 +28,8 @@ const TestimonialContainer = styled.div`
 
   .quote {
     position: absolute;
-    width: 133px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
     right: 30px;
     bottom: 100px;
     font-family: Saira;
@@ -52,7 +52,7 @@ const TestimonialContainer = styled.div`
   }
 
   @media (max-width: 800px) {
-    & {
+    & {src={props.image}
       flex-direction: column;
     }
 
@@ -63,7 +63,7 @@ const TestimonialContainer = styled.div`
 
     .quote {
       bottom: 0;
-      right: -95px;
+      right: -0;
     }
 
     .testimonials-container {
@@ -164,6 +164,8 @@ export interface TestimonialCardProps {
   id: string;
   name: string;
   title: string;
+  image: any;
+  testimonialTitle: string;
   testimonial: string;
 }
 
@@ -172,9 +174,9 @@ const TestimonialCard: React.FunctionComponent<TestimonialCardProps> = (
 ) => (
   <div className="testimonials-01__item">
     <div className="testimonials-01__logo">
-      <Koch />
+      <img src={props.image.publicURL} />
     </div>
-    <h3 className="testimonial_title">Testimonial title</h3>
+    <h3 className="testimonial_title">{props.testimonialTitle}</h3>
     <p className="testimonials-01__text">{props.testimonial}</p>
 
     <div className="testimonials-01__author">
@@ -187,6 +189,7 @@ const TestimonialCard: React.FunctionComponent<TestimonialCardProps> = (
 
 const renderTestimonial = (data: any): React.ReactNode => {
   const testimonials: any[] = data.allTestimonialYaml.edges.map((x: any): any => x.node);
+  console.log(testimonials);
   return (
     <TestimonialContainer>
       <div className="title">
@@ -235,6 +238,10 @@ class Testimonial extends React.Component {
                   id
                   name
                   title
+                  image {
+                    publicURL
+                  }
+                  testimonialTitle
                   testimonial
                 }
               }

@@ -3,10 +3,15 @@ import { useIntl } from 'react-intl';
 import styled from '@emotion/styled';
 import { css } from 'emotion';
 import { StaticQuery, graphql } from 'gatsby';
-import Koch from '../icons/clients/koch';
-import InitialView from '../icons/clients/initialView';
+
 import { colors } from '../../styles/colors';
 
+import koch from '../../content/clients/koch.svg';
+import amz from '../../content/clients/amz.svg';
+import dynamite from '../../content/clients/dynamite.svg';
+import initialView from '../../content/clients/initialView.svg';
+import ingclass from '../../content/clients/ingclass.svg';
+import caminer from '../../content/clients/caminer.svg';
 const StyledDiv = styled.div`
   background-color: #ffffff;
   width: 100%;
@@ -24,6 +29,7 @@ const ClientsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  align-items: center;
 
   .client {
     width: 16%;
@@ -53,22 +59,22 @@ const Clients: React.FC<{}> = ({}) => {
       <h1 className={`${title}`}>Our clients</h1>
       <ClientsWrapper>
         <div className="client">
-          <Koch />
+          <img src={koch} />
         </div>
         <div className="client">
-          <Koch />
+          <img src={initialView} />
         </div>
         <div className="client">
-          <Koch />
+          <img src={amz} />
         </div>
         <div className="client">
-          <Koch />
+          <img src={dynamite} />
         </div>
         <div className="client">
-          <Koch />
+          <img src={ingclass} />
         </div>
         <div className="client">
-          <Koch />
+          <img src={caminer} />
         </div>
       </ClientsWrapper>
     </StyledDiv>

@@ -29,7 +29,7 @@ const StyledSplash = styled.section`
     height: 554px;
     width: 95px;
     top: 65px;
-    left: -7px;
+    left: 13px;
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' stroke-dasharray='5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
   }
 
@@ -45,13 +45,20 @@ const StyledSplash = styled.section`
   .intro > .intro-title {
     position: absolute;
     top: 130px;
-    left: 20px;
+    left: 40px;
     font-family: Saira;
     letter-spacing: 1px;
     color: black;
     line-height: 84px;
     margin-bottom: 0;
     position: absolute;
+  }
+
+  @media (max-width: 769px) {
+    .intro > .intro-title {
+      font-size: 48px;
+      line-height: 72px;
+    }
   }
 
   .intro-title > div {
@@ -68,7 +75,7 @@ const StyledSplash = styled.section`
     position: absolute;
     width: 133px;
     height: 154px;
-    left: -25px;
+    left: -5px;
     top: 30px;
     font-family: Saira;
     font-weight: 500;
@@ -81,7 +88,7 @@ const StyledSplash = styled.section`
     position: absolute;
     width: 689px;
     top: 350px;
-    left: 20px;
+    left: 40px;
     height: 96px;
     font-family: Sarala, sans-serif;
     font-size: 26px;
@@ -94,7 +101,7 @@ const StyledSplash = styled.section`
     width: 200px;
     height: 83px;
     top: 540px;
-    left: 20px;
+    left: 40px;
     background: ${colors.yellow};
     border-radius: 7px;
     display: flex;

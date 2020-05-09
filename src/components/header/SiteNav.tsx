@@ -39,10 +39,10 @@ const SiteNavLeft = styled.div`
 
   -ms-overflow-scrolling: touch;
 
-  @media (max-width: 700px) {
+  /* @media (max-width: 700px) {
     margin-right: 0;
     padding-left: 4vw;
-  }
+  } */
 `;
 
 const NavStyles = css`

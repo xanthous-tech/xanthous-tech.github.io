@@ -1,12 +1,20 @@
 - name: Zack Franklin
   title: Founder & CEO, AMZKungFu
+  image: clients/amz.svg
+  testimonialTitle: Some title
   testimonial: Simon and his team at Xanthous Tech have raised the bar for a development firm. They consistently deliver incredible results and at lightning speeds. They're also a joy to work with. Unlike other development firms, you have complete transparency into their process, and can see every code commit and track every minute. They have deep experience with Serverless framework, React, Next.JS, GatsbyJS, APIs and Modern DevOps that I haven't found anywhere else. I've almost wanted to keep them a secret because they're that good. You can stop looking for developers, Xanthous is the best you'll find anywhere.
-- name: ""
-  title: ""
+- name: 'some name'
+  title: 'some title'
+  image: clients/koch.svg
+  testimonialTitle: Some testimonial title
   testimonial: Excellent Job. Not only does he work towards the problem description he also thinks of possible improvements or the viability of what he's working on. Would recommend.
-- name: "Sean Strickling"
-  title: "CEO"
+- name: 'Sean Strickling'
+  title: 'CEO'
+  image: clients/amz.svg
+  testimonialTitle: 'Some title'
   testimonial: Xanthous Tech is rare find - their level and ability to communicate are those of highly skilled professionals, their ability to duplicate the task at hand and move it into action are skills that get the job done on time, on scope and within budget and in addition to these qualities, they are truly passionate about what he does and real pleasure to work with.
 - name: Nathan Keyes
   title: CTO, InitialView
+  image: clients/initialView.svg
+  testimonialTitle: 'Some big title'
   testimonial: Simon and his team at Xanthous Tech have been phenomenal for us. He has quality people who have top-level skills and are available at the drop of a hat. I've enjoyed getting to know Haoran and having him work on everything from complex aspects of our multi-cloud architecture to the minutiae of bugs in a difficult legacy UI framework. Highly recommended for anyone who needs top-quality work across the stack done quickly!
