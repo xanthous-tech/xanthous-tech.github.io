@@ -14,7 +14,7 @@ const Card = styled.div`
   display: flex;
   background: ${colors.backgroundgray};
   padding: 53px 20px;
-  margin: 36px 0;
+  margin-top: 36px;
   width: 48%;
   max-height: 440px;
   @media (max-width: 950px) {

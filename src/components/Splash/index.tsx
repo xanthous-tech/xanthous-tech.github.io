@@ -125,6 +125,7 @@ const StyledSplash = styled.section`
 
   @media (max-width: 1025px) {
     .intro {
+      min-height: 550px;
       background-size: 400px;
     }
     .intro > .intro-quote {

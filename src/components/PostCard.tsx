@@ -29,7 +29,7 @@ const PostCardStyles = css`
     transform: translate3D(0, -1px, 0) scale(1.02);
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1355px) {
     :nth-child(3) {
       display: none;
     }

@@ -9,6 +9,7 @@ import { settings } from 'cluster';
 
 const HighlightedProjectContainer = styled.div`
   align-content: center;
+  padding: 60px 0;
 
   .heading {
     font-family: Saira;
@@ -109,7 +110,7 @@ const HighlightedProjectContainer = styled.div`
   }
 
   .slick-dots {
-    bottom: -60px;
+    bottom: -20px;
     width: 100%;
     list-style: none;
     text-align: center;

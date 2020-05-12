@@ -7,12 +7,14 @@ import { StaticQuery, graphql } from 'gatsby';
 const TestimonialContainer = styled.div`
   position: relative;
   display: flex;
-  padding: 90px 20px;
+  padding: 60px 30px;
   width: auto;
   background-color: #ffffff;
   min-height: 650px;
   flex-direction: row;
-
+  @media (max-width: 900px) {
+    padding: 60px 70px;
+  }
   .title {
     position: relative;
     display: flex;

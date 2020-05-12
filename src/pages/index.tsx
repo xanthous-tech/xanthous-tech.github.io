@@ -20,10 +20,7 @@ import Introduce from '../components/Introduce/Introduce';
 import { PageContext } from '../templates/post';
 import HighlightedProject from '../components/HighlightedProject';
 import Testimonial from '../components/Testimonial';
-import PostCard from '../components/PostCard';
-
-import Arrow from '../components/icons/arrow';
-import { inner, outer, PostFeed, PostFeedRaise, SiteMain } from '../styles/shared';
+import PostFeed from '../components/PostFeed';
 
 const HomePosts = css`
   /* @media (min-width: 795px) {
@@ -65,59 +62,6 @@ const HomePosts = css`
       padding: 0 40px 30px;
     }
   } */
-
-  .getMore_container {
-    max-width: 300px;
-    margin-left: 70px;
-    max-width: 300px;
-    margin-left: 70px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    max-height: 410px;
-  }
-
-  .getMore_title {
-    font-family: Saira;
-    text-align: right;
-    color: black;
-  }
-
-  .getMore_link {
-    align-self: flex-end;
-    font-size: 30px;
-    line-height: 44px;
-    color: #474747;
-    font-weight: bold;
-  }
-
-  .arrow {
-    display: inline-block;
-    margin-left: 30px;
-    height: 45px;
-    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' stroke-dasharray='5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
-  }
-
-  @media (max-width: 900px) {
-    .getMore_container {
-      display: none;
-    }
-
-    .getMore_link {
-      position: absolute;
-      right: 70px;
-      font-size: 20px;
-      line-height: 30px;
-      font-weight: bold;
-    }
-
-    .arrow {
-      display: inline-block;
-      margin-left: 20px;
-      height: 35px;
-      background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' stroke-dasharray='5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
-    }
-  }
 `;
 
 export interface IndexProps {
@@ -167,7 +111,7 @@ export interface IndexProps {
 const IndexPage: React.FunctionComponent<IndexProps> = props => {
   const width = props.data.header.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
   const height = String(Number(width) / props.data.header.childImageSharp.fluid.aspectRatio);
-  const linkPrefix = props.langKey === 'en' ? '' : props.langKey;
+  // const linkPrefix = props.langKey === 'en' ? '' : props.langKey;
   return (
     <IndexLayout langKey="en" className={`${HomePosts}`}>
       <Helmet>
@@ -211,42 +155,11 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <Splash bg={props.data.bg_intro.childImageSharp.fluid.src} />
         <Clients />
         <Introduce />
-        <div style={{ backgroundColor: '#ffffff' }}>
-          <HighlightedProject projects={props.data.projects} />
-        </div>
+        <HighlightedProject projects={props.data.projects} />
+
         {/* <Faq /> */}
-        <div style={{ backgroundColor: '#ffffff' }}>
-          <Testimonial />
-        </div>
-        <main id="site-main" className={`${SiteMain} ${outer}`}>
-          <div className={`${inner}`}>
-            {/* <div className={`${PostFeed} ${PostFeedRaise}`}>
-              {props.data.projects.edges.map(post => {
-                return <PostCard key={post.node.fields.slug} post={post.node} />;
-              })}
-            </div> */}
-            <div className={`${PostFeed} ${PostFeedRaise}`}>
-              {props.data.posts.edges.slice(0, 3).map(post => {
-                return <PostCard key={post.node.fields.slug} post={post.node} />;
-              })}
-              <div className="getMore_container">
-                <h1 className="getMore_title">Get more out of Xanthous</h1>
-                <a href="/blog" className="getMore_link">
-                  LEARN MORE
-                  <div className="arrow">
-                    <Arrow />
-                  </div>
-                </a>
-              </div>
-            </div>
-            <a href="/blog" className="getMore_link">
-              LEARN MORE
-              <div className="arrow">
-                <Arrow />
-              </div>
-            </a>
-          </div>
-        </main>
+        <Testimonial />
+        <PostFeed posts={props.data.posts} />
         {props.children}
         <MessengerCustomerChat
           pageId="391138745024240"
