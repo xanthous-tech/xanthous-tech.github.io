@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 
 const StyledWrapper = styled.div`
-  max-width: 1300px;
+  max-width: 1290px;
   margin: auto;
   min-height: 800px;
 `;

@@ -27,6 +27,9 @@ const HighlightedProjectContainer = styled.div`
     text-align: start;
     margin-bottom: 30px;
     margin: 0 20px;
+    @media (max-width: 900px) {
+      text-align: center;
+    }
   }
 
   .slider-01__title_box p {
@@ -77,17 +80,28 @@ const HighlightedProjectContainer = styled.div`
   .slider__item_box {
     position: absolute;
     bottom: 0;
-
     left: 100%;
     transform: translateX(-100%) scale(1);
-
     height: 350px;
     width: 450px;
-
     transition-property: all justify-content;
     transform-origin: bottom left;
     transition-delay: 0.1s;
     transition-duration: 0.4s;
+  }
+  @media (max-width: 900px) {
+    .slick-current .slider__item_box {
+      left: 0;
+      transform: translateX(0) scale(1.2);
+    }
+
+    .slider__item_box {
+      bottom: 0;
+      transition-property: all justify-content;
+      transform-origin: bottom center;
+    }
+  }
+  .slider__box {
   }
 
   .slider__item {
@@ -104,6 +118,15 @@ const HighlightedProjectContainer = styled.div`
 
   .slick-dots li {
     margin: 0;
+  }
+  .center .slick-current .slick-center h3 {
+    color: #e67e22;
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  .center h3 {
+    opacity: 0.8;
+    transition: all 300ms ease;
   }
 `;
 
@@ -158,7 +181,24 @@ const HighlightedProject: React.FunctionComponent<HighlightedProjectProps> = ({ 
   if (!projects) {
     return null;
   }
-
+  const settings = {
+    className: 'slider__box',
+    dots: true,
+    slidesToShow: 3,
+    arrows: true,
+    autoplay: false,
+    autoplaySpeed: 3000,
+    infinite: true,
+    swipeToSlide: true,
+    // responsive: {
+    //   breakpoint: 1024,
+    //   settings: {
+    //     className: 'center',
+    //     centerMode: true,
+    //     centerPadding: '60px',
+    //   },
+    // },
+  };
   const highlightedProjects: PageContext[] = projects.edges.map(x => x.node);
   return (
     <HighlightedProjectContainer>
@@ -170,16 +210,7 @@ const HighlightedProject: React.FunctionComponent<HighlightedProjectProps> = ({ 
         </div>
       </div>
 
-      <Slider
-        className="slider__box"
-        dots={true}
-        slidesToShow={3}
-        arrows={true}
-        autoplay={true}
-        autoplaySpeed={3000}
-        infinite={true}
-        swipeToSlide={true}
-      >
+      <Slider {...settings}>
         {highlightedProjects.concat(highlightedProjects).map(highlightedProject => (
           <ProjectCard key={highlightedProject.id} {...highlightedProject} />
         ))}

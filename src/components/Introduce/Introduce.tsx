@@ -9,11 +9,8 @@ const StyledDiv = styled.section`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 40px 20px;
+  padding: 40px 30px;
   overflow: hidden;
-  @media (max-width: 600px) {
-    padding: 40px 20px;
-  }
 `;
 
 const renderAsk = (data: any, f: any): React.ReactNode => {

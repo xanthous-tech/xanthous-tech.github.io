@@ -48,7 +48,6 @@ export const PostFeed = css`
 
 export const PostFeedRaise = css`
   @media (min-width: 900px) {
-    /* margin-top: -70px; */
     padding-top: 0;
   }
 `;

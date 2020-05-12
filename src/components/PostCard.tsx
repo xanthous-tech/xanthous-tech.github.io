@@ -28,6 +28,12 @@ const PostCardStyles = css`
     transition: all 0.4s ease;
     transform: translate3D(0, -1px, 0) scale(1.02);
   }
+
+  @media (max-width: 900px) {
+    :nth-child(3) {
+      display: none;
+    }
+  }
 `;
 
 const PostCardImageLink = css`

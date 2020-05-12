@@ -16,7 +16,7 @@ import RSS from './icons/rss';
 
 const SiteFooter = css`
   position: relative;
-  padding: 43px 20px;
+  padding: 43px 30px;
   /* color: #fff; */
   background: ${colors.backgroundgray};
 `;

@@ -15,6 +15,7 @@ const TestimonialContainer = styled.div`
 
   .title {
     position: relative;
+    display: flex;
     max-width: 350px;
     width: 100%;
     color: black;
@@ -42,28 +43,29 @@ const TestimonialContainer = styled.div`
   .testimonials-container {
     width: 65%;
     flex: 1;
-
     background-color: ${colors.backgroundgray};
+  }
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    .title {
+      max-width: 100%;
+      width: 100%;
+      height: 130px;
+      justify-content: center;
+      align-items: center;
+    }
+    .quote {
+      right: 20px;
+      bottom: 0;
+    }
+    .testimonials-container {
+      width: 100%;
+    }
   }
 
   .slick-dots {
     text-align: end;
-  }
-
-  @media (max-width: 800px) {
-    .title {
-      max-width: 100%;
-      width: 100%;
-    }
-
-    .quote {
-      bottom: 0;
-      right: -0;
-    }
-
-    .testimonials-container {
-      width: 100%;
-    }
   }
 
   .testimonials-01 .slick-prev {
@@ -122,17 +124,17 @@ const TestimonialContainer = styled.div`
     }
   }
 
-  .testimonials-01__item {
+  .testimonials_item {
     position: relative;
     margin-bottom: 20px;
     text-align: left;
     padding: 40px;
   }
 
-  .testimonials-01__logo {
+  .testimonials_logo {
     float: right;
   }
-  .testimonials-01__logo--round {
+  .testimonials_logo--round {
     border-radius: 50%;
     box-shadow: 0 5px 15px 0 rgba(37, 44, 97, 0.15);
   }
@@ -144,7 +146,7 @@ const TestimonialContainer = styled.div`
     color: black;
   }
 
-  .testimonials-01__text {
+  .testimonials_text {
     color: #636363;
     font-size: 20px;
     line-height: 36px;
@@ -167,14 +169,14 @@ export interface TestimonialCardProps {
 const TestimonialCard: React.FunctionComponent<TestimonialCardProps> = (
   props: TestimonialCardProps,
 ) => (
-  <div className="testimonials-01__item">
-    <div className="testimonials-01__logo">
+  <div className="testimonials_item">
+    <div className="testimonials_logo">
       <img src={props.image.publicURL} />
     </div>
     <h3 className="testimonial_title">{props.testimonialTitle}</h3>
-    <p className="testimonials-01__text">{props.testimonial}</p>
+    <p className="testimonials_text">{props.testimonial}</p>
 
-    <div className="testimonials-01__author">
+    <div className="testimonials_author">
       {props.name}
       <br />
       {props.title}
@@ -188,13 +190,7 @@ const renderTestimonial = (data: any): React.ReactNode => {
   return (
     <TestimonialContainer>
       <div className="title">
-        <h1>
-          What
-          <br />
-          the people
-          <br />
-          say
-        </h1>
+        <h1 style={{ zIndex: '1' }}>What the people say</h1>
         <div className="quote">“</div>
       </div>
 

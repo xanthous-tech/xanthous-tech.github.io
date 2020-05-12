@@ -20,6 +20,7 @@ const Card = styled.div`
   @media (max-width: 950px) {
     flex-direction: column;
     width: 100%;
+    margin: 30px 50px;
   }
   /* @media (max-width: 1270px) {
     max-width: 400px;

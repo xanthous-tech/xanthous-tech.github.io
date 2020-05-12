@@ -29,7 +29,7 @@ const StyledSplash = styled.section`
     height: 554px;
     width: 95px;
     top: 65px;
-    left: 13px;
+    left: 18px;
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' stroke-dasharray='5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
   }
 
@@ -46,7 +46,7 @@ const StyledSplash = styled.section`
   .intro > .intro-title {
     position: absolute;
     top: 130px;
-    left: 40px;
+    left: 50px;
     font-family: Saira;
     letter-spacing: 1px;
     color: black;
@@ -67,16 +67,15 @@ const StyledSplash = styled.section`
     position: relative;
   }
 
-  .intro-title h1 {
+  /* .intro-title h1 {
     position: relative;
     z-index: 2;
-  }
+  } */
 
   .intro > .intro-quote {
     position: absolute;
     width: 133px;
     height: 154px;
-    left: -5px;
     top: 30px;
     font-family: Saira;
     font-weight: 500;
@@ -89,7 +88,7 @@ const StyledSplash = styled.section`
     position: absolute;
     width: 689px;
     top: 350px;
-    left: 40px;
+    left: 50px;
     height: 96px;
     font-family: Sarala, sans-serif;
     font-size: 26px;
@@ -102,7 +101,7 @@ const StyledSplash = styled.section`
     width: 200px;
     height: 83px;
     top: 540px;
-    left: 40px;
+    left: 50px;
     background: ${colors.yellow};
     border-radius: 7px;
     display: flex;
@@ -122,6 +121,27 @@ const StyledSplash = styled.section`
     font-size: 30px;
     line-height: 56px;
     text-decoration: none;
+  }
+
+  @media (max-width: 1025px) {
+    .intro {
+      background-size: 400px;
+    }
+    .intro > .intro-quote {
+      top: -20px;
+      left: 10px;
+    }
+    .intro > .intro-title {
+      top: 70px;
+    }
+    .intro > .intro-text {
+      top: 210px;
+      font-size: 20px;
+      width: 340px;
+    }
+    .intro > .intro-invitation {
+      top: 445px;
+    }
   }
 
   @media (min-width: 376px) and (max-width: 425px) {

@@ -23,7 +23,7 @@ const SiteNavStyles = css`
   justify-content: space-between;
   max-width: 1300px;
   margin: auto;
-  padding: 0 20px;
+  padding: 0 30px;
 `;
 
 const SiteNavLeft = styled.div`

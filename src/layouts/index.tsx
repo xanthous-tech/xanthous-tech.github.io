@@ -436,6 +436,11 @@ h1 {
   font-size: 6.6rem;
   font-weight: 600;
 }
+@media (max-width: 1025px) {
+  h1 {
+      font-size: 4.8rem;
+  }
+}
 @media (max-width: 500px) {
   h1 {
       font-size: 2.2rem;

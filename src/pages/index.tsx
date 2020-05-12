@@ -97,6 +97,27 @@ const HomePosts = css`
     height: 45px;
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' stroke-dasharray='5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
   }
+
+  @media (max-width: 900px) {
+    .getMore_container {
+      display: none;
+    }
+
+    .getMore_link {
+      position: absolute;
+      right: 70px;
+      font-size: 20px;
+      line-height: 30px;
+      font-weight: bold;
+    }
+
+    .arrow {
+      display: inline-block;
+      margin-left: 20px;
+      height: 35px;
+      background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' stroke-dasharray='5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+    }
+  }
 `;
 
 export interface IndexProps {
@@ -205,7 +226,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
               })}
             </div> */}
             <div className={`${PostFeed} ${PostFeedRaise}`}>
-              {props.data.posts.edges.map(post => {
+              {props.data.posts.edges.slice(0, 3).map(post => {
                 return <PostCard key={post.node.fields.slug} post={post.node} />;
               })}
               <div className="getMore_container">
@@ -218,6 +239,12 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
                 </a>
               </div>
             </div>
+            <a href="/blog" className="getMore_link">
+              LEARN MORE
+              <div className="arrow">
+                <Arrow />
+              </div>
+            </a>
           </div>
         </main>
         {props.children}
