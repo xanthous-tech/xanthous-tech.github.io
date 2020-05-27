@@ -6,7 +6,7 @@ import Arrow from '../icons/arrow';
 
 const PostFeedContainer = styled.div`
   align-content: center;
-  padding: 60px 30px;
+  padding: 60px 70px;
 
   .getMore_container {
     max-width: 300px;
@@ -23,6 +23,9 @@ const PostFeedContainer = styled.div`
     font-family: Saira;
     text-align: right;
     color: black;
+    @media (max-width: 1440px) {
+      text-align: center;
+    }
   }
 
   .getMore_link {
@@ -67,9 +70,6 @@ const PostsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 20px;
-  @media (max-width: 900px) {
-    padding: 0 70px;
-  }
 `;
 
 const PostFeedTitle = styled.div`

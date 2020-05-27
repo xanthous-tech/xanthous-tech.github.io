@@ -436,12 +436,12 @@ h1 {
   font-size: 6.6rem;
   font-weight: 600;
 }
-@media (max-width: 1025px) {
+@media (max-width: 1440px) {
   h1 {
       font-size: 4.8rem;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   h1 {
       font-size: 2.2rem;
   }
@@ -451,7 +451,12 @@ h2 {
   margin: 1.5em 0 0.5em 0;
   font-size: 5rem;
 }
-@media (max-width: 500px) {
+@media (max-width: 1440px) {
+  h2 {
+      font-size: 4rem;
+  }
+}
+@media (max-width: 600px) {
   h2 {
       font-size: 2rem;
   }
@@ -471,7 +476,7 @@ h3 {
 h4 {
   margin: 1.5em 0 0.5em 0;
   font-size: 3rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 h5 {

@@ -9,7 +9,7 @@ const StyledDiv = styled.section`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 40px 30px;
+  padding: 40px 70px;
   overflow: hidden;
 `;
 

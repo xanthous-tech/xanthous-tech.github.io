@@ -47,13 +47,12 @@ const title = css`
   align-self: center;
   justify-self: center;
   line-height: 42px;
-  font-size: 30px;
 `;
 
 const Clients: React.FC<{}> = ({}) => {
   return (
     <StyledDiv>
-      <h1 className={`${title}`}>Our clients</h1>
+      <h4 className={`${title}`}>Our clients</h4>
       <ClientsWrapper>
         <div className="client">
           <img src={koch} />

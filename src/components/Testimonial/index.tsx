@@ -131,10 +131,16 @@ const TestimonialContainer = styled.div`
     margin-bottom: 20px;
     text-align: left;
     padding: 40px;
+    @media (max-width: 900px) {
+      padding: 40px 0;
+    }
   }
 
   .testimonials_logo {
     float: right;
+    @media (max-width: 900px) {
+      padding: 0 20px;
+    }
   }
   .testimonials_logo--round {
     border-radius: 50%;

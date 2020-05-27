@@ -55,7 +55,7 @@ const StyledSplash = styled.section`
     position: absolute;
   }
 
-  @media (max-width: 769px) {
+  @media (max-width: 1200px) {
     .intro > .intro-title {
       font-size: 48px;
       line-height: 72px;
@@ -123,7 +123,7 @@ const StyledSplash = styled.section`
     text-decoration: none;
   }
 
-  @media (max-width: 1025px) {
+  @media (max-width: 1200px) {
     .intro {
       min-height: 550px;
       background-size: 400px;
@@ -134,14 +134,24 @@ const StyledSplash = styled.section`
     }
     .intro > .intro-title {
       top: 70px;
+      left: 70px;
     }
     .intro > .intro-text {
       top: 210px;
       font-size: 20px;
       width: 340px;
+      left: 70px;
     }
     .intro > .intro-invitation {
       top: 445px;
+      left: 70px;
+    }
+    .intro > .dashed {
+      display: none;
+    }
+
+    .intro > .dashed-pic-border {
+      display: none;
     }
   }
 
