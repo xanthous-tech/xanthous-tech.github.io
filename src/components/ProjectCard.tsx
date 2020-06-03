@@ -16,8 +16,9 @@ const ProjectCardStyles = css`
   flex-direction: column;
   overflow: hidden;
   margin: 0 20px 40px;
-  min-height: 300px;
-  background: #fff center center;
+  height: 222px;
+  width: 242px;
+  background: #f8f8f8;
   background-size: cover;
   border-radius: 5px;
   box-shadow: rgba(39, 44, 49, 0.06) 8px 14px 38px, rgba(39, 44, 49, 0.03) 1px 3px 8px;
@@ -27,6 +28,10 @@ const ProjectCardStyles = css`
     box-shadow: rgba(39, 44, 49, 0.07) 8px 28px 50px, rgba(39, 44, 49, 0.04) 1px 6px 12px;
     transition: all 0.4s ease;
     transform: translate3D(0, -1px, 0) scale(1.02);
+  }
+
+  .slick-track {
+    margin: 0 !important;
   }
 `;
 
@@ -39,7 +44,7 @@ const ProjectCardImageLink = css`
 
 const ProjectCardImage = styled.div`
   width: auto;
-  height: 200px;
+  height: 125px;
   background: ${colors.lightgrey} no-repeat center center;
   background-size: cover;
 `;
@@ -55,7 +60,7 @@ const ProjectCardContentLink = css`
   position: relative;
   flex-grow: 1;
   display: block;
-  padding: 25px 25px 0;
+  padding: 12px;
   color: ${colors.darkgrey};
 
   :hover {
@@ -63,8 +68,11 @@ const ProjectCardContentLink = css`
   }
 `;
 
-const ProjectCardTitle = styled.h2`
-  margin-top: 0;
+const ProjectCardTitle = styled.p`
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 20px;
+  margin-bottom: 5px;
 `;
 
 const ProjectCardExcerpt = styled.section`
@@ -80,9 +88,9 @@ const ProjectCardMeta = styled.footer`
 
 const TechList = styled.ul`
   display: flex;
-  flex-wrap: wrap-reverse;
-  margin: 0;
-  padding: 0;
+  position: absolute;
+  top: 105px;
+  right: 10px;
   list-style: none;
 `;
 
@@ -132,8 +140,8 @@ const StaticAvatar = css`
   display: block;
   overflow: hidden;
   margin: 0 0px;
-  width: 34px;
-  height: 34px;
+  width: 25px;
+  height: 25px;
   border: #fff 2px solid;
   border-radius: 100%;
 `;
@@ -177,8 +185,7 @@ export interface ProjectCardProps {
 
 const ProjectCard: React.FunctionComponent<ProjectCardProps> = ({ post }) => {
   const { meta } = post.frontmatter;
-  console.log(post);
-  console.log(meta);
+  console.log('postname', post.frontmatter.meta.techstack);
   return (
     <article
       className={`post-card ${ProjectCardStyles} ${!post.frontmatter.image ? 'no-image' : ''}`}
@@ -199,6 +206,31 @@ const ProjectCard: React.FunctionComponent<ProjectCardProps> = ({ post }) => {
           </ProjectCardImage>
         </Link>
       )}
+      <TechList>
+        {meta.techstack.map((tech, idx) => {
+          // if (idx < 3) {
+          return (
+            <TechListItem>
+              <TechNameTooltip className="tech-name-tooltip">{tech.name}</TechNameTooltip>
+              <Link className={`${StaticAvatar}`} to={`/tech/${_.kebabCase(tech.id)}/`}>
+                <img
+                  className={`${TechImage}`}
+                  srcSet={tech.logo.childImageSharp.fixed.srcSet}
+                  alt={tech.id}
+                />
+              </Link>
+            </TechListItem>
+          );
+          // }
+          // if (idx === 3) {
+          //   return (
+          //     <div className={`${StaticAvatar}`}>
+          //       <img src={MoreButton} className={`${TechImage}`} alt={tech.id} />
+          //     </div>
+          //   );
+          // }
+        })}
+      </TechList>
       <ProjectCardContent className="post-card-content">
         <Link
           className={`${ProjectCardContentLink} post-card-content-link`}
@@ -207,11 +239,11 @@ const ProjectCard: React.FunctionComponent<ProjectCardProps> = ({ post }) => {
           <header className="post-card-header">
             <ProjectCardTitle>{post.frontmatter.title}</ProjectCardTitle>
           </header>
-          <ProjectCardExcerpt>
+          {/* <ProjectCardExcerpt>
             <p>{post.excerpt}</p>
-          </ProjectCardExcerpt>
+          </ProjectCardExcerpt> */}
         </Link>
-        <ProjectCardMeta className="post-card-meta">
+        {/* <ProjectCardMeta className="post-card-meta">
           {meta && meta.techstack && (
             <div className="tech-stack">
               <h6>Tech Stack</h6>
@@ -242,7 +274,7 @@ const ProjectCard: React.FunctionComponent<ProjectCardProps> = ({ post }) => {
               </TechList>
             </div>
           )}
-        </ProjectCardMeta>
+        </ProjectCardMeta> */}
       </ProjectCardContent>
     </article>
   );
