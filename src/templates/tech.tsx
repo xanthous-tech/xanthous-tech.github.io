@@ -1,5 +1,6 @@
 import { graphql } from 'gatsby';
 import React, { Component } from 'react';
+import { Link } from 'gatsby';
 import Slider from 'react-slick';
 import styled from '@emotion/styled';
 import { css } from 'emotion';
@@ -149,7 +150,10 @@ const Tech: React.FunctionComponent<TechTemplateProps> = props => {
             <ContactUsText>
               Have a project you want to buld with {props.data.techstackYaml.name}?
             </ContactUsText>
-            <Button>Talk to us</Button>
+            <Button href="/contact">
+              {t['general.button.talkToUs']()}
+              {/* <Link </Link> */}
+            </Button>
           </ContactUsWrapper>
         </MainContentWrapper>
       </Wrapper>

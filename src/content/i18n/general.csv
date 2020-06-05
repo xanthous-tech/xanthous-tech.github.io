@@ -23,3 +23,4 @@ faq.tools.question,"How do we collaborate during the development phase?",在开�
 faq.tools.answer,"We use modern tools to ensure transparency (tasks and progress via Trello, IM via Slack/Wechat, source code via GitHub/GitLab, but most importantly, a *working* demo at all times, so you can constantly visualize the progress), and fluidity (being able to visualize progress meaning that we can cater to some amount of change on a weekly basis) during the entire development process. We do whatever it takes to keep this remote collaboration smooth, and make it to the timeline we want. Time is essence in the startup world.",我们使用自研的项目管理软件，并结合微信，每周制定工作计划，同步沟通项目进度，并且会有可运行的demo，确保项目进行有条不紊，并按时交付。
 faq.button.email-support,Email Support,Email
 faq.button.live-support,Live Support,实时聊天
+button.talkToUs,Talk to us,联系我们

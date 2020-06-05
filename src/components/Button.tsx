@@ -16,6 +16,7 @@ const Button = styled.a`
   font-weight: 600;
   font-size: 30px;
   line-height: 56px;
+  text-decoration: none;
 
   :hover {
     background: ${colors.fadedyellow};
