@@ -15,7 +15,7 @@ const ProjectCardStyles = css`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  margin: 0 20px 40px;
+  margin-right: 40px;
   height: 222px;
   width: 242px;
   background: #f8f8f8;
@@ -29,10 +29,6 @@ const ProjectCardStyles = css`
     transition: all 0.4s ease;
     transform: translate3D(0, -1px, 0) scale(1.02);
   }
-
-  .slick-track {
-    margin: 0 !important;
-  }
 `;
 
 const ProjectCardImageLink = css`
@@ -44,7 +40,7 @@ const ProjectCardImageLink = css`
 
 const ProjectCardImage = styled.div`
   width: auto;
-  height: 125px;
+  height: 120px;
   background: ${colors.lightgrey} no-repeat center center;
   background-size: cover;
 `;
@@ -54,6 +50,8 @@ const ProjectCardContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: ${colors.backgroundgray};
+  height: 105px;
 `;
 
 const ProjectCardContentLink = css`
@@ -61,6 +59,7 @@ const ProjectCardContentLink = css`
   flex-grow: 1;
   display: block;
   padding: 12px;
+  top: -16px;
   color: ${colors.darkgrey};
 
   :hover {
@@ -88,9 +87,12 @@ const ProjectCardMeta = styled.footer`
 
 const TechList = styled.ul`
   display: flex;
-  position: absolute;
-  top: 105px;
-  right: 10px;
+  position: relative;
+  top: -13px;
+  z-index: 10;
+  margin: 0;
+  padding: 0 10px;
+  justify-content: flex-end;
   list-style: none;
 `;
 
@@ -140,9 +142,11 @@ const StaticAvatar = css`
   display: block;
   overflow: hidden;
   margin: 0 0px;
-  width: 25px;
-  height: 25px;
-  border: #fff 2px solid;
+  width: 26px;
+  height: 26px;
+  margin: 0 2px;
+  border: 1px solid white;
+  background-color: white;
   border-radius: 100%;
 `;
 
@@ -206,32 +210,33 @@ const ProjectCard: React.FunctionComponent<ProjectCardProps> = ({ post }) => {
           </ProjectCardImage>
         </Link>
       )}
-      <TechList>
-        {meta.techstack.map((tech, idx) => {
-          // if (idx < 3) {
-          return (
-            <TechListItem>
-              <TechNameTooltip className="tech-name-tooltip">{tech.name}</TechNameTooltip>
-              <Link className={`${StaticAvatar}`} to={`/tech/${_.kebabCase(tech.id)}/`}>
-                <img
-                  className={`${TechImage}`}
-                  srcSet={tech.logo.childImageSharp.fixed.srcSet}
-                  alt={tech.id}
-                />
-              </Link>
-            </TechListItem>
-          );
-          // }
-          // if (idx === 3) {
-          //   return (
-          //     <div className={`${StaticAvatar}`}>
-          //       <img src={MoreButton} className={`${TechImage}`} alt={tech.id} />
-          //     </div>
-          //   );
-          // }
-        })}
-      </TechList>
+
       <ProjectCardContent className="post-card-content">
+        <TechList>
+          {meta.techstack.map((tech, idx) => {
+            // if (idx < 3) {
+            return (
+              <TechListItem>
+                {/* <TechNameTooltip className="tech-name-tooltip">{tech.name}</TechNameTooltip> */}
+                <Link className={`${StaticAvatar}`} to={`/tech/${_.kebabCase(tech.id)}/`}>
+                  <img
+                    className={`${TechImage}`}
+                    srcSet={tech.logo.childImageSharp.fixed.srcSet}
+                    alt={tech.id}
+                  />
+                </Link>
+              </TechListItem>
+            );
+            // }
+            // if (idx === 3) {
+            //   return (
+            //     <div className={`${StaticAvatar}`}>
+            //       <img src={MoreButton} className={`${TechImage}`} alt={tech.id} />
+            //     </div>
+            //   );
+            // }
+          })}
+        </TechList>
         <Link
           className={`${ProjectCardContentLink} post-card-content-link`}
           to={`/${post.fields.langKey === 'en' ? '' : post.fields.langKey}${post.fields.slug}`}

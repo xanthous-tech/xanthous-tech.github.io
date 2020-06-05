@@ -13,6 +13,7 @@ import { PageContext } from './post';
 import Helmet from 'react-helmet';
 import config from '../website-config';
 import t from '../content/i18n';
+import Button from '../components/Button';
 
 const MainContentWrapper = styled.div`
   display: flex;
@@ -24,6 +25,7 @@ const MainContentWrapper = styled.div`
 
 const TechStackLogo = css`
   position: absolute;
+  max-height: 55px;
 `;
 
 const CaseStudiesTitle = styled.div`
@@ -39,6 +41,25 @@ const AuthorBio = styled.p`
   line-height: 29px;
   letter-spacing: 0.5px;
   opacity: 0.8;
+`;
+
+const SliderStyles = css`
+  .slick-track {
+    width: 100%;
+    margin: 0;
+  }
+`;
+const ContactUsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 80px;
+`;
+
+const ContactUsText = styled.div`
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 36px;
 `;
 
 interface TechTemplateProps {
@@ -124,6 +145,12 @@ const Tech: React.FunctionComponent<TechTemplateProps> = props => {
 
           <CaseStudiesTitle>Case studies</CaseStudiesTitle>
           <Responsive tech={tech} data={props.data} />
+          <ContactUsWrapper>
+            <ContactUsText>
+              Have a project you want to buld with {props.data.techstackYaml.name}?
+            </ContactUsText>
+            <Button>Talk to us</Button>
+          </ContactUsWrapper>
         </MainContentWrapper>
       </Wrapper>
       <Footer />
@@ -137,7 +164,7 @@ class Responsive extends Component<{ data: any; tech: { id: string } }> {
     const { tech } = this.props;
     // Carousel settings
     const settings = {
-      className: 'slider',
+      className: `${SliderStyles}`,
       dots: true,
       infinite: false,
       speed: 500,
