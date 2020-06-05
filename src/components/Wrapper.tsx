@@ -1,10 +1,10 @@
 import * as React from 'react';
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 const StyledWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  max-width: 1290px;
+  margin: auto;
+  min-height: 800px;
 `;
 
 interface WrapperProps {

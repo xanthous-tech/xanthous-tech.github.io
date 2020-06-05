@@ -1,7 +1,7 @@
 import { graphql, Link, StaticQuery } from 'gatsby';
 import * as React from 'react';
 import { css } from 'emotion';
-import logo from '../../content/img/xanthouslogo.svg';
+import logo from '../../content/img/logo.svg';
 
 import config from '../../website-config';
 
@@ -9,7 +9,7 @@ const SiteNavLogoStyles = css`
   flex-shrink: 0;
   display: block;
   margin-right: 24px;
-  padding: 11px 0;
+  padding: 5px 0;
   color: #fff;
   font-size: 1.7rem;
   line-height: 1em;
@@ -22,8 +22,10 @@ const SiteNavLogoStyles = css`
 
   img {
     display: block;
-    width: auto;
-    height: 36px;
+    width: 100px;
+    height: 18.8px;
+    left: 0px;
+    top: 2px;
   }
 `;
 

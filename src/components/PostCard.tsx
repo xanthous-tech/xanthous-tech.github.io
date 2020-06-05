@@ -5,17 +5,18 @@ import { lighten } from 'polished';
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { css } from 'emotion';
+import { Tag } from './Tag';
 
 import { colors } from '../styles/colors';
 import { PageContext } from '../templates/post';
 
 const PostCardStyles = css`
-  flex: 1 1 300px;
+  flex: 1;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  margin: 0 20px 40px;
-  min-height: 300px;
+  margin: 0 10px 40px;
+  max-height: 420px;
   background: #fff center center;
   background-size: cover;
   border-radius: 5px;
@@ -27,17 +28,22 @@ const PostCardStyles = css`
     transition: all 0.4s ease;
     transform: translate3D(0, -1px, 0) scale(1.02);
   }
+
+  @media (max-width: 1355px) {
+    :nth-child(3) {
+      display: none;
+    }
+  }
 `;
 
 const PostCardImageLink = css`
   position: relative;
   display: block;
-  overflow: hidden;
   border-radius: 5px 5px 0 0;
 `;
 
 const PostCardImage = styled.div`
-  width: auto;
+  width: 100%;
   height: 200px;
   background: ${colors.lightgrey} no-repeat center center;
   background-size: cover;
@@ -54,7 +60,7 @@ const PostCardContentLink = css`
   position: relative;
   flex-grow: 1;
   display: block;
-  padding: 25px 25px 0;
+  padding: 10px 16px;
   color: ${colors.darkgrey};
 
   :hover {
@@ -62,19 +68,16 @@ const PostCardContentLink = css`
   }
 `;
 
-const PostCardTags = styled.span`
-  display: block;
-  margin-bottom: 4px;
-  color: ${colors.midgrey};
-  font-size: 1.2rem;
-  line-height: 1.15em;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+const TagList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 const PostCardTitle = styled.h2`
-  margin-top: 0;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 44px;
 `;
 
 const PostCardExcerpt = styled.section`
@@ -198,13 +201,13 @@ export interface PostCardProps {
 
 const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
   return (
-    <article className={`post-card ${PostCardStyles} ${!post.frontmatter.image ? 'no-image' : ''}`}>
+    <article className={`${PostCardStyles} ${!post.frontmatter.image ? 'no-image' : ''}`}>
       {post.frontmatter.image && (
         <Link
-          className={`${PostCardImageLink} post-card-image-link`}
+          className={`${PostCardImageLink} `}
           to={`/${post.fields.langKey === 'en' ? '' : post.fields.langKey}${post.fields.slug}`}
         >
-          <PostCardImage className="post-card-image">
+          <PostCardImage>
             {post.frontmatter.image && post.frontmatter.image.childImageSharp.fluid && (
               <Img
                 alt={`${post.frontmatter.title} cover image`}
@@ -215,25 +218,24 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
           </PostCardImage>
         </Link>
       )}
-      <PostCardContent className="post-card-content">
+      <PostCardContent>
         <Link
           className={`${PostCardContentLink} post-card-content-link`}
           to={`/${post.fields.langKey === 'en' ? '' : post.fields.langKey}${post.fields.slug}`}
         >
-          <header className="post-card-header">
-            {post.frontmatter.tags && <PostCardTags>{post.frontmatter.tags[0]}</PostCardTags>}
-            <PostCardTitle>{post.frontmatter.title}</PostCardTitle>
-          </header>
-          <PostCardExcerpt>
+          <TagList>
+            {post.frontmatter.tags && post.frontmatter.tags.map(tag => <Tag name={tag}>{tag}</Tag>)}
+          </TagList>
+          <PostCardTitle>{post.frontmatter.title}</PostCardTitle>
+
+          {/* <PostCardExcerpt>
             <p>{post.excerpt}</p>
-          </PostCardExcerpt>
+          </PostCardExcerpt> */}
         </Link>
-        <PostCardMeta className="post-card-meta">
+        {/* <PostCardMeta>
           <AuthorList>
             <AuthorListItem>
-              <AuthorNameTooltip className="author-name-tooltip">
-                {post.frontmatter.author.name}
-              </AuthorNameTooltip>
+              <AuthorNameTooltip>{post.frontmatter.author.name}</AuthorNameTooltip>
               <Link
                 className={`${StaticAvatar}`}
                 to={`/author/${_.kebabCase(post.frontmatter.author.id)}/`}
@@ -247,7 +249,7 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
             </AuthorListItem>
           </AuthorList>
           <ReadingTime>{post.timeToRead} min read</ReadingTime>
-        </PostCardMeta>
+        </PostCardMeta> */}
       </PostCardContent>
     </article>
   );

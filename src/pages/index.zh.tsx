@@ -1,36 +1,31 @@
 import { graphql } from 'gatsby';
 import * as React from 'react';
-import { css } from 'emotion'
+import { css } from 'emotion';
 import Helmet from 'react-helmet';
-
-import Footer from '../components/Footer';
-import PostCard from '../components/PostCard';
-import Wrapper from '../components/Wrapper';
-import Splash from '../components/Splash';
-import Faq from '../components/Faq';
-import Introduce from '../components/Introduce/Introduce';
-import IndexLayout from '../layouts';
-import config from '../website-config';
-import {
-  inner,
-  outer,
-  PostFeed,
-  PostFeedRaise,
-  SiteHeader,
-  SiteMain,
-} from '../styles/shared';
-import Testimonial from '../components/Testimonial';
-
-// tslint:disable-next-line:no-import-side-effect
 import 'slick-carousel/slick/slick.css';
-// tslint:disable-next-line:no-import-side-effect
 import 'slick-carousel/slick/slick-theme.css';
-import HighlightedProject from '../components/HighlightedProject';
+
+import config from '../website-config';
+import IndexLayout from '../layouts';
+import Wrapper from '../components/Wrapper';
+
 import SiteNav from '../components/header/SiteNav';
+import Footer from '../components/Footer';
+import Splash from '../components/Splash';
+import Clients from '../components/Clients';
+import Introduce from '../components/Introduce/Introduce';
+import HighlightedProject from '../components/HighlightedProject';
+import Testimonial from '../components/Testimonial';
+import PostCard from '../components/PostCard';
+// import Faq from '../components/Faq';
+
+import Arrow from '../components/icons/arrow';
+import { inner, outer, PostFeed, PostFeedRaise, SiteMain } from '../styles/shared';
+
 import { IndexProps } from '.';
 
 const HomePosts = css`
-  @media (min-width: 795px) {
+  /* @media (min-width: 795px) {
     .post-card:nth-child(6n + 1):not(.no-image) {
       flex: 1 1 100%;
       flex-direction: row;
@@ -68,13 +63,44 @@ const HomePosts = css`
     .post-card:nth-child(6n + 1):not(.no-image) .post-card-meta {
       padding: 0 40px 30px;
     }
+  } */
+  .getMore_container {
+    max-width: 300px;
+    margin-left: 70px;
+    max-width: 300px;
+    margin-left: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-height: 410px;
+  }
+
+  .getMore_title {
+    font-family: Saira;
+    text-align: right;
+    color: black;
+  }
+
+  .getMore_link {
+    align-self: flex-end;
+    font-size: 30px;
+    line-height: 44px;
+    color: #474747;
+    font-weight: bold;
+  }
+
+  .arrow {
+    display: inline-block;
+    margin-left: 30px;
+    height: 45px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' stroke-dasharray='5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
   }
 `;
 
 const IndexPage: React.FunctionComponent<IndexProps> = props => {
   const width = props.data.header.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
   const height = String(Number(width) / props.data.header.childImageSharp.fluid.aspectRatio);
-  console.log(props)
+  console.log(props);
   return (
     <IndexLayout langKey="zh" className={`${HomePosts}`}>
       <Helmet>
@@ -86,7 +112,10 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <meta property="og:title" content={config.title} />
         <meta property="og:description" content={config.description} />
         <meta property="og:url" content={config.siteUrl} />
-        <meta property="og:image" content={config.siteUrl + props.data.header.childImageSharp.fluid.src} />
+        <meta
+          property="og:image"
+          content={config.siteUrl + props.data.header.childImageSharp.fluid.src}
+        />
         {config.facebook && <meta property="article:publisher" content={config.facebook} />}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={config.title} />
@@ -96,24 +125,28 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
           name="twitter:image"
           content={config.siteUrl + props.data.header.childImageSharp.fluid.src}
         />
-        {config.twitter && <meta name="twitter:site" content={`@${config.twitter.split('https://twitter.com/')[1]}`} />}
+        {config.twitter && (
+          <meta
+            name="twitter:site"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
         <meta property="og:image:width" content={width} />
         <meta property="og:image:height" content={height} />
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <meta
+          name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        />
       </Helmet>
+      <SiteNav {...props.pageContext} slug="/" />
       <Wrapper>
-        <header
-          className={`${SiteHeader} ${outer}`}
-        >
-          <SiteNav {...props.pageContext} slug="/"/>
-        </header>
         <Splash bg={props.data.bg_intro.childImageSharp.fluid.src} />
+        <Clients />
         <Introduce />
-        <div style={{backgroundColor: '#ffffff'}}>
+        <div style={{ backgroundColor: '#ffffff' }}>
           <HighlightedProject projects={props.data.projects} />
         </div>
-        <Faq />
-        <div style={{backgroundColor: '#ffffff'}}>
+        <div style={{ backgroundColor: '#ffffff' }}>
           <Testimonial />
         </div>
         <main id="site-main" className={`${SiteMain} ${outer}`}>
@@ -127,12 +160,21 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
               {props.data.posts.edges.map(post => {
                 return <PostCard key={post.node.fields.slug} post={post.node} />;
               })}
+              <div className="getMore_container">
+                <h1 className="getMore_title">ZHGet more out of Xanthous</h1>
+                <a href="/zh/blog" className="getMore_link">
+                  ZHLEARN MORE
+                  <div className="arrow">
+                    <Arrow />
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </main>
         {props.children}
-        <Footer />
-      </Wrapper>
+      </Wrapper>{' '}
+      <Footer />
     </IndexLayout>
   );
 };
@@ -169,16 +211,11 @@ export const pageQuery = graphql`
       }
     }
     posts: allMdx(
-      limit: 4,
+      limit: 4
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
-        fields: {
-          langKey: {eq: "zh"}
-        }
-        frontmatter: {
-          layout: {eq: "post"}
-          draft: { ne: true }
-        }
+        fields: { langKey: { eq: "zh" } }
+        frontmatter: { layout: { eq: "post" }, draft: { ne: true } }
       }
     ) {
       edges {
@@ -219,17 +256,11 @@ export const pageQuery = graphql`
       }
     }
     projects: allMdx(
-      limit: 4,
+      limit: 4
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
-        fields: {
-          langKey: {eq: "zh"}
-        }
-        frontmatter: {
-          layout: {eq: "project"}
-          highlighted: { eq: true }
-          draft: { ne: true }
-        }
+        fields: { langKey: { eq: "zh" } }
+        frontmatter: { layout: { eq: "project" }, highlighted: { eq: true }, draft: { ne: true } }
       }
     ) {
       edges {

@@ -2,8 +2,11 @@
 import * as React from 'react';
 
 const Facebook: React.FunctionComponent = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style={{ height: '1.5rem' }}>
-    <path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z" />
+  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M21.7001 15.8V10.3H17.1001V7C17.1001 7 17.1001 5.5 18.8001 5.5C20.5001 5.5 23.3001 5.5 23.3001 5.5V0H16.1001C11.1001 0 10.7001 5.9 10.7001 5.9V10.2H6.70007V15.7H10.7001V30H17.0001V15.8H21.7001Z"
+      fill="#474747"
+    />
   </svg>
 );
 export default Facebook;

@@ -179,7 +179,7 @@ svg:not(:root) {
   overflow: hidden;
 }
 mark {
-  background-color: #fdffb6;
+  background-color: #ffffff;
 }
 code,
 kbd,
@@ -273,8 +273,8 @@ html {
 body {
   overflow-x: hidden;
   /* color: color(var(--midgrey) l(-25%)); */
-  color: ${darken('0.25', colors.midgrey)};
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: ${colors.midgrey};
+  font-family: Sarala, Saira, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1.5rem;
   line-height: 1.6em;
   font-weight: 400;
@@ -291,7 +291,7 @@ body {
 ::selection {
   text-shadow: none;
   /* background: color(var(--blue) lightness(+30%)); */
-  background: ${lighten('0.3', colors.blue)};
+  background: #fff;
 }
 
 hr {
@@ -427,16 +427,21 @@ h5,
 h6 {
   margin-top: 0;
   line-height: 1.15;
-  font-weight: 700;
+  font-weight: 600;
   text-rendering: optimizeLegibility;
 }
 
 h1 {
   margin: 0 0 0.5em 0;
-  font-size: 5rem;
-  font-weight: 700;
+  font-size: 6.6rem;
+  font-weight: 600;
 }
-@media (max-width: 500px) {
+@media (max-width: 1440px) {
+  h1 {
+      font-size: 4.8rem;
+  }
+}
+@media (max-width: 600px) {
   h1 {
       font-size: 2.2rem;
   }
@@ -444,17 +449,22 @@ h1 {
 
 h2 {
   margin: 1.5em 0 0.5em 0;
-  font-size: 2rem;
+  font-size: 5rem;
 }
-@media (max-width: 500px) {
+@media (max-width: 1440px) {
   h2 {
-      font-size: 1.8rem;
+      font-size: 4rem;
+  }
+}
+@media (max-width: 600px) {
+  h2 {
+      font-size: 2rem;
   }
 }
 
 h3 {
   margin: 1.5em 0 0.5em 0;
-  font-size: 1.8rem;
+  font-size: 4rem;
   font-weight: 500;
 }
 @media (max-width: 500px) {
@@ -465,8 +475,8 @@ h3 {
 
 h4 {
   margin: 1.5em 0 0.5em 0;
-  font-size: 1.6rem;
-  font-weight: 500;
+  font-size: 3rem;
+  font-weight: 600;
 }
 
 h5 {
@@ -482,8 +492,19 @@ h6 {
 }
 
 body {
-  background: #f4f8fb;
+  background: #ffffff;
 }
+
+/* Custom Stylesheet */
+
+h1.bold {
+  font-weight: 600;
+}
+
+a.saira {
+  font-family: Saira;
+}
+
 `;
 
 interface IndexProps {
@@ -495,9 +516,7 @@ const IndexLayout: React.FunctionComponent<IndexProps> = props => {
   const langKey: String = props.langKey || 'en';
   return (
     <IntlProvider locale={'en'} messages={i18n.messages[langKey]}>
-      <div className={props.className}>
-        {props.children}
-      </div>
+      <div className={props.className}>{props.children}</div>
     </IntlProvider>
   );
 };

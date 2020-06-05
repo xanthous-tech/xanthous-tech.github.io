@@ -3,55 +3,46 @@ import { Link } from 'gatsby';
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { css } from 'emotion';
+import { SiteHeader, outer } from '../../styles/shared';
 
-import { SocialLink } from '../../styles/shared';
-import config from '../../website-config';
 import SubscribeModal from '../subsribe/SubscribeOverlay';
-import SiteNavLogo from './SiteNavLogo';
 import LanguageToggle from '../LanguangeToggle';
-
-import Facebook from '../icons/facebook';
-import Twitter from '../icons/twitter';
-import Medium from '../icons/medium';
-import GitHub from '../icons/github';
+import SiteNavLogo from './SiteNavLogo';
 
 import t from '../../content/i18n';
 
 const HomeNavRaise = css`
   @media (min-width: 900px) {
     position: relative;
-    top: -70px;
   }
 `;
 
 const SiteNavStyles = css`
   position: relative;
-  z-index: 300;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  overflow-y: hidden;
-  height: 40px;
-  font-size: 1.2rem;
+  max-width: 1300px;
+  margin: auto;
+  padding: 0 30px;
 `;
 
 const SiteNavLeft = styled.div`
   display: flex;
+  z-index: 900;
   align-items: center;
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   margin-right: 10px;
-  padding-bottom: 80px;
   letter-spacing: 0.4px;
   white-space: nowrap;
 
   -ms-overflow-scrolling: touch;
 
-  @media (max-width: 700px) {
+  /* @media (max-width: 700px) {
     margin-right: 0;
     padding-left: 4vw;
-  }
+  } */
 `;
 
 const NavStyles = css`
@@ -70,9 +61,15 @@ const NavStyles = css`
   li a {
     display: block;
     margin: 0;
-    padding: 10px 12px;
+    padding-left: 60px;
     color: #fff;
-    opacity: 0.8;
+    opacity: 0.85;
+    font-family: Saira;
+    font-size: 16px;
+    line-height: 12px;
+    @media (max-width: 1000px) {
+      padding-left: 30px;
+    }
   }
 
   li a:hover {
@@ -81,23 +78,18 @@ const NavStyles = css`
   }
 `;
 
+const bold = css`
+  font-weight: 800;
+`;
+
 const SiteNavRight = styled.div`
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  height: 40px;
+  height: 24px;
 
   @media (max-width: 700px) {
     display: none;
-  }
-`;
-
-const SocialLinks = styled.div`
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  a:last-of-type {
-    padding-right: 20px;
   }
 `;
 
@@ -144,86 +136,50 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
   render() {
     const { isHome = false } = this.props;
     const linkPrefix = this.props.langKey === 'en' ? '' : this.props.langKey;
+
     console.log(this.props);
     return (
-      <nav className={`${isHome ? HomeNavRaise : ''} ${SiteNavStyles}`}>
-        <SiteNavLeft>
-          {!isHome && <SiteNavLogo link={`${linkPrefix}/`} />}
-          <ul className={`${NavStyles}`} role="menu">
-            {/* TODO: mark current nav item - add class nav-current */}
-            <li role="menuitem">
-              <Link to={`${linkPrefix}/`}>{t['general.nav.home']()}</Link>
-            </li>
-            <li role="menuitem">
-              <Link to={`${linkPrefix}/about`}>{t['general.nav.about']()}</Link>
-            </li>
-            <li role="menuitem">
-              <Link to={`${linkPrefix}/blog`}>{t['general.nav.blog']()}</Link>
-            </li>
-            <li role="menuitem">
-              <Link to={`${linkPrefix}/projects`}>{t['general.nav.projects']()}</Link>
-            </li>
-            <li role="menuitem">
-              <Link to={`${linkPrefix}/contact`}>{t['general.nav.contact']()}</Link>
-            </li>
-          </ul>
-        </SiteNavLeft>
-        <SiteNavRight>
-          <SocialLinks>
-            {config.facebook && (
-              <a
-                className={`${SocialLink}`}
-                href={config.facebook}
-                target="_blank"
-                title="Facebook"
-                rel="noopener noreferrer"
-              >
-                <Facebook />
-              </a>
-            )}
-            {config.twitter && (
-              <a
-                className={`${SocialLink}`}
-                href={config.twitter}
-                title="Twitter"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Twitter />
-              </a>
-            )}
-            {config.medium && (
-              <a
-                className={`${SocialLink}`}
-                href={config.medium}
-                title="Medium"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Medium />
-              </a>
-            )}
-            {config.github && (
-              <a
-                className={`${SocialLink}`}
-                href={config.github}
-                title="GitHub"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <GitHub />
-              </a>
-            )}
-          </SocialLinks>
-          {config.showSubscribe && (
-            <SubscribeButton onClick={this.openModal}>Subscribe</SubscribeButton>
-          )}
-          {config.showSubscribe && <SubscribeModal ref={this.subscribe} />}
-          <LanguageToggle {...this.props} />
-        </SiteNavRight>
-      </nav>
+      <header className={`${SiteHeader} ${outer}`}>
+        <nav className={`${SiteNavStyles}`}>
+          <SiteNavLeft>{!isHome && <SiteNavLogo link={`${linkPrefix}/`} />}</SiteNavLeft>
+          <SiteNavRight>
+            <ul className={`${NavStyles}`} role="menu">
+              <SiteNavItem exact={true} path={`${linkPrefix}/`} label={t['general.nav.home']()} />
+              <SiteNavItem path={`${linkPrefix}/about`} label={t['general.nav.about']()} />
+              <SiteNavItem path={`${linkPrefix}/projects`} label={t['general.nav.projects']()} />
+              <SiteNavItem path={`${linkPrefix}/blog`} label={t['general.nav.blog']()} />
+              <SiteNavItem path={`${linkPrefix}/contact`} label={t['general.nav.contact']()} />
+            </ul>
+            <LanguageToggle {...this.props} />
+          </SiteNavRight>
+        </nav>
+      </header>
     );
   }
 }
+
+const SiteNavItem: React.FC<{ path: string; label: string; exact?: boolean }> = ({
+  label,
+  path,
+  exact,
+}) => {
+  const currentSlug = () => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    if (exact) {
+      return window.location.pathname === path ? `${bold}` : '';
+    }
+
+    return window.location.pathname.includes(path) ? `${bold}` : '';
+  };
+
+  return (
+    <li className={currentSlug()} role="menuitem">
+      <Link to={path}>{label}</Link>
+    </li>
+  );
+};
 
 export default SiteNav;

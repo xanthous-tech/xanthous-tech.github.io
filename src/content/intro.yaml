@@ -1,9 +1,9 @@
 - id: whoWeAre
   title: general.intro.whoWeAre.title
   content: general.intro.whoWeAre.content
-- id: whatWeDo 
+- id: whatWeDo
   title: general.intro.whatWeDo.title
   content: general.intro.whatWeDo.content
-- id: howWeDoIt 
+- id: howWeDoIt
   title: general.intro.howWeDoIt.title
   content: general.intro.howWeDoIt.content

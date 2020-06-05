@@ -1,7 +1,7 @@
 import IndexLayout from '../layouts';
 import Wrapper from '../components/Wrapper';
 import SiteNav from '../components/header/SiteNav';
-import { SiteHeader, outer, inner, SiteMain, AuthorProfileImage } from '../styles/shared';
+import { outer, SiteMain, AuthorProfileImage } from '../styles/shared';
 import * as React from 'react';
 import { css } from 'emotion';
 import t from '../content/i18n';
@@ -184,13 +184,9 @@ const About: React.FunctionComponent<IProps> = props => {
     <IndexLayout langKey={props.pageContext.langKey}>
       <Helmet>
         <title>{currentData.title} Xanthous Tech</title>
-      </Helmet>
+      </Helmet>{' '}
+      <SiteNav langKey={props.pageContext.langKey} slug="/about" />
       <Wrapper className={`${PageTemplate}`}>
-        <header className={`${SiteHeader} ${outer}`}>
-          <div className={`${inner}`}>
-            <SiteNav langKey={props.pageContext.langKey} slug="/about" />
-          </div>
-        </header>
         <main id="site-main" className={`site-main ${SiteMain} ${outer}`}>
           <article className={`${PostFull} post page ${NoImage}`}>
             <PostFullHeader>
@@ -247,8 +243,8 @@ const About: React.FunctionComponent<IProps> = props => {
             </PostFullContent>
           </article>
         </main>
-        <Footer />
-      </Wrapper>
+      </Wrapper>{' '}
+      <Footer />
     </IndexLayout>
   );
 };

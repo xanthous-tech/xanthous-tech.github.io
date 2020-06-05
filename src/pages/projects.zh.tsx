@@ -127,7 +127,29 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <meta property="og:image:width" content={width} />
         <meta property="og:image:height" content={height} />
       </Helmet>
+      <SiteNav {...props.pageContext} slug="/projects" />
       <Wrapper>
+        <main id="site-main" className={`${SiteMain} ${outer}`}>
+          <div className={`${inner}`}>
+            <div className={`${PostFeed} ${PostFeedRaise}`}>
+              {!props.data.allMdx
+                ? null
+                : props.data.allMdx.edges.map(post => {
+                    return <ProjectCard key={post.node.fields.slug} post={post.node} />;
+                  })}
+            </div>
+          </div>
+        </main>
+        {props.children}
+      </Wrapper>
+      <Footer />
+    </IndexLayout>
+  );
+};
+
+export default IndexPage;
+
+/*
         <header
           className={`${SiteHeader} ${outer}`}
           style={{
@@ -152,25 +174,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
             <SiteNav {...props.pageContext} isHome slug="/projects" />
           </div>
         </header>
-        <main id="site-main" className={`${SiteMain} ${outer}`}>
-          <div className={`${inner}`}>
-            <div className={`${PostFeed} ${PostFeedRaise}`}>
-              {(!props.data.allMdx) ? null : props.data.allMdx.edges.map(post => {
-                return <ProjectCard key={post.node.fields.slug} post={post.node} />;
-              })}
-            </div>
-          </div>
-        </main>
-        {props.children}
-
-        <Footer />
-      </Wrapper>
-    </IndexLayout>
-  );
-};
-
-export default IndexPage;
-
+*/
 export const pageQuery = graphql`
   query {
     logo: file(relativePath: { eq: "img/x-tech-logo-2.png" }) {

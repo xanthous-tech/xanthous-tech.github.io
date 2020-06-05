@@ -1,19 +1,19 @@
 import { css } from 'emotion';
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 import { colors } from './colors';
 import { darken, lighten } from 'polished';
 
 export const outer = css`
   position: relative;
-  padding: 0 4vw;
+  padding: 60px 0;
 `;
 
 // Centered content container blocks
 export const inner = css`
   margin: 0 auto;
-  max-width: 1040px;
   width: 100%;
 `;
+//  max-width: 1040px;
 
 export const SiteMain = css`
   z-index: 100;
@@ -42,13 +42,12 @@ export const PostFeed = css`
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -20px;
+  margin: 20px;
   padding: 40px 0 0 0;
 `;
 
 export const PostFeedRaise = css`
   @media (min-width: 900px) {
-    margin-top: -70px;
     padding-top: 0;
   }
 `;
@@ -58,8 +57,8 @@ export const SocialLink = css`
   justify-content: center;
   align-items: center;
   margin: 0;
-  padding: 10px;
-  color: #fff;
+  padding: 0;
+  color: #474747;
   opacity: 0.8;
 
   :hover {
@@ -74,12 +73,10 @@ export const SocialLink = css`
 
 export const SiteHeader = css`
   position: relative;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding: 12px 0;
   color: #fff;
-  /* background: color(var(--darkgrey) l(-5%)) no-repeat center center; */
-  background: ${darken('0.05', colors.midgrey)} no-repeat center center;
-
+  height: 50px;
+  background: ${darken('0.05', colors.gray)} no-repeat center center;
   background-size: cover;
 `;
 
