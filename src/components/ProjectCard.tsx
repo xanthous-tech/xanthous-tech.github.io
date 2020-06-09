@@ -8,7 +8,6 @@ import { css } from 'emotion';
 
 import { colors } from '../styles/colors';
 import { PageContext } from '../pages/projects';
-import MoreButton from './icons/more-buttons.png';
 
 const ProjectCardStyles = css`
   flex: 1 1 300px;
@@ -178,21 +177,21 @@ const ProjectCard: React.FunctionComponent<ProjectCardProps> = ({ post }) => {
 
       <ProjectCardContent className="post-card-content">
         <TechList>
-          {meta.techstack.map((tech, idx) => {
-            // if (idx < 3) {
-            return (
-              <TechListItem>
-                {/* <TechNameTooltip className="tech-name-tooltip">{tech.name}</TechNameTooltip> */}
-                <Link className={`${StaticAvatar}`} to={`/tech/${_.kebabCase(tech.id)}/`}>
-                  <img
-                    className={`${TechImage}`}
-                    srcSet={tech.logo.childImageSharp.fixed.srcSet}
-                    alt={tech.id}
-                  />
-                </Link>
-              </TechListItem>
-            );
-          })}
+          {!meta
+            ? null
+            : meta.techstack.map((tech, idx) => {
+                return (
+                  <TechListItem>
+                    <Link className={`${StaticAvatar}`} to={`/tech/${_.kebabCase(tech.id)}/`}>
+                      <img
+                        className={`${TechImage}`}
+                        srcSet={tech.logo.childImageSharp.fixed.srcSet}
+                        alt={tech.id}
+                      />
+                    </Link>
+                  </TechListItem>
+                );
+              })}
         </TechList>
         <Link
           className={`${ProjectCardContentLink} post-card-content-link`}

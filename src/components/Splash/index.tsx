@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
-import t from '../../content/i18n';
 import { colors } from '../../styles/colors';
+
+// @ts-ignore
+import t from '../../content/i18n';
 
 const StyledSplash = styled.section`
   position: relative;
@@ -66,11 +68,6 @@ const StyledSplash = styled.section`
     width: max-content;
     position: relative;
   }
-
-  /* .intro-title h1 {
-    position: relative;
-    z-index: 2;
-  } */
 
   .intro > .intro-quote {
     position: absolute;
