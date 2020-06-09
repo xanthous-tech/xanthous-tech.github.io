@@ -24,16 +24,16 @@ const StyledSplash = styled.section`
     position: relative;
   }
 
-  .intro > .dashed {
+  /* .intro > .dashed {
     position: absolute;
     height: 554px;
     width: 95px;
     top: 65px;
     left: 18px;
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' stroke-dasharray='5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
-  }
+  } */
 
-  .intro > .dashed-pic-border {
+  /* .intro > .dashed-pic-border {
     position: relative;
     background-position: right;
     height: 554px;
@@ -41,7 +41,7 @@ const StyledSplash = styled.section`
     top: 65px;
     left: 800px;
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' stroke-dasharray='5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
-  }
+  } */
 
   .intro > .intro-title {
     position: absolute;
@@ -81,7 +81,7 @@ const StyledSplash = styled.section`
     font-weight: 500;
     font-size: 300px;
     line-height: 300px;
-    color: ${colors.whitegrey};
+    color: ${colors.quotegray};
   }
 
   .intro > .intro-text {
@@ -99,7 +99,7 @@ const StyledSplash = styled.section`
   .intro > .intro-invitation {
     position: absolute;
     width: 200px;
-    height: 83px;
+    height: 60px;
     top: 540px;
     left: 50px;
     background: ${colors.yellow};
@@ -174,9 +174,7 @@ export interface SplashProps {
 const Splash: React.FunctionComponent<SplashProps> = ({ bg }) => (
   <StyledSplash>
     <div className="intro" style={{ backgroundImage: `url(${bg})` }}>
-      <div className="dashed" />
       <div className="intro-quote">“</div>
-      <div className="dashed-pic-border" />
       <div className="intro-title">
         <h1 className="bold">
           {t['general.splash.title1']()}

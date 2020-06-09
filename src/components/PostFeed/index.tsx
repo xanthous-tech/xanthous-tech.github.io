@@ -6,7 +6,7 @@ import Arrow from '../icons/arrow';
 
 const PostFeedContainer = styled.div`
   align-content: center;
-  padding: 60px 70px;
+  padding: 60px 30px;
 
   .getMore_container {
     max-width: 300px;
@@ -40,7 +40,7 @@ const PostFeedContainer = styled.div`
     display: inline-block;
     margin-left: 30px;
     height: 45px;
-    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' stroke-dasharray='5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+    /* background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' stroke-dasharray='5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e"); */
   }
 
   @media (max-width: 900px) {
@@ -60,7 +60,7 @@ const PostFeedContainer = styled.div`
       display: inline-block;
       margin-left: 20px;
       height: 40px;
-      background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' stroke-dasharray='5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+      /* background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' stroke-dasharray='5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e"); */
     }
   }
 `;

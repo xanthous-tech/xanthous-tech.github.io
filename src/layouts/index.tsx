@@ -436,7 +436,7 @@ h1 {
   font-size: 6.6rem;
   font-weight: 600;
 }
-@media (max-width: 1440px) {
+@media (max-width: 1439px) {
   h1 {
       font-size: 4.8rem;
   }
@@ -451,7 +451,7 @@ h2 {
   margin: 1.5em 0 0.5em 0;
   font-size: 5rem;
 }
-@media (max-width: 1440px) {
+@media (max-width: 1439px) {
   h2 {
       font-size: 4rem;
   }

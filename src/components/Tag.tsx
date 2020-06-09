@@ -5,7 +5,8 @@ const TagItem = styled.a`
   text-decoration: none !important;
   display: block;
   padding: 0 8px;
-  margin-right: 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
   background-color: ${(props: any) => props.inputColor || 'gray'};
   border-radius: 3rem;
   width: fit-content;

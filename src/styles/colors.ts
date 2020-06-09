@@ -13,7 +13,8 @@ export const colors = {
   pink: '#fa3a57',
   brown: '#a3821a',
   gray: '#272727',
-  backgroundgray: '#F8F8F8',
+  backgroundgray: '#f6f6f6',
   darkyellow: '#735D13',
   textgray: '#626262',
+  quotegray: '#e4e4e4',
 };
