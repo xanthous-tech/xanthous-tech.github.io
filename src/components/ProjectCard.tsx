@@ -74,17 +74,6 @@ const ProjectCardTitle = styled.p`
   margin-bottom: 5px;
 `;
 
-const ProjectCardExcerpt = styled.section`
-  font-family: Georgia, serif;
-`;
-
-const ProjectCardMeta = styled.footer`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 0 25px 25px;
-`;
-
 const TechList = styled.ul`
   display: flex;
   position: relative;
@@ -150,29 +139,6 @@ const StaticAvatar = css`
   border-radius: 100%;
 `;
 
-const TechNameTooltip = styled.div`
-  position: absolute;
-  bottom: 105%;
-  z-index: 999;
-  display: block;
-  padding: 2px 8px;
-  color: white;
-  font-size: 1.2rem;
-  letter-spacing: 0.2px;
-  white-space: nowrap;
-  background: ${colors.darkgrey};
-  border-radius: 3px;
-  box-shadow: rgba(39, 44, 49, 0.08) 0 12px 26px, rgba(39, 44, 49, 0.03) 1px 3px 8px;
-  opacity: 0;
-  transition: all 0.3s cubic-bezier(0.4, 0.01, 0.165, 0.99);
-  transform: translateY(6px);
-  pointer-events: none;
-
-  @media (max-width: 650px) {
-    display: none;
-  }
-`;
-
 const TechImage = styled.img`
   display: block;
   width: 100%;
@@ -189,7 +155,6 @@ export interface ProjectCardProps {
 
 const ProjectCard: React.FunctionComponent<ProjectCardProps> = ({ post }) => {
   const { meta } = post.frontmatter;
-  console.log('postname', post.frontmatter.meta.techstack);
   return (
     <article
       className={`post-card ${ProjectCardStyles} ${!post.frontmatter.image ? 'no-image' : ''}`}
@@ -227,14 +192,6 @@ const ProjectCard: React.FunctionComponent<ProjectCardProps> = ({ post }) => {
                 </Link>
               </TechListItem>
             );
-            // }
-            // if (idx === 3) {
-            //   return (
-            //     <div className={`${StaticAvatar}`}>
-            //       <img src={MoreButton} className={`${TechImage}`} alt={tech.id} />
-            //     </div>
-            //   );
-            // }
           })}
         </TechList>
         <Link
@@ -244,42 +201,7 @@ const ProjectCard: React.FunctionComponent<ProjectCardProps> = ({ post }) => {
           <header className="post-card-header">
             <ProjectCardTitle>{post.frontmatter.title}</ProjectCardTitle>
           </header>
-          {/* <ProjectCardExcerpt>
-            <p>{post.excerpt}</p>
-          </ProjectCardExcerpt> */}
         </Link>
-        {/* <ProjectCardMeta className="post-card-meta">
-          {meta && meta.techstack && (
-            <div className="tech-stack">
-              <h6>Tech Stack</h6>
-              <TechList>
-                {meta.techstack.map((tech, idx) => {
-                  if (idx < 3) {
-                    return (
-                      <TechListItem>
-                        <TechNameTooltip className="tech-name-tooltip">{tech.name}</TechNameTooltip>
-                        <Link className={`${StaticAvatar}`} to={`/tech/${_.kebabCase(tech.id)}/`}>
-                          <img
-                            className={`${TechImage}`}
-                            srcSet={tech.logo.childImageSharp.fixed.srcSet}
-                            alt={tech.id}
-                          />
-                        </Link>
-                      </TechListItem>
-                    );
-                  }
-                  if (idx === 3) {
-                    return (
-                      <div className={`${StaticAvatar}`}>
-                        <img src={MoreButton} className={`${TechImage}`} alt={tech.id} />
-                      </div>
-                    );
-                  }
-                })}
-              </TechList>
-            </div>
-          )}
-        </ProjectCardMeta> */}
       </ProjectCardContent>
     </article>
   );
